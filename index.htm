@@ -1,0 +1,2506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 01~15번 (통합)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            color: #3b342a;
+            background-color: #f2eadb;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+        .header {
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .header h1 { font-size: 1.5rem; color: #2f2a22; }
+        .header .meta { font-size: 0.85rem; color: #8a7d66; margin-top: 5px; }
+        .section { margin-bottom: 25px; }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #7b5a2b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #b08a4f;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        .box.given {
+            background-color: #f3e9cf;
+            border: 2px dashed #c9a96a;
+        }
+        .passage { font-size: 0.98rem; color: #3b342a; word-break: keep-all; }
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .translation p { margin-bottom: 8px; }
+        .logic-step {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 3px solid #b08a4f;
+        }
+        .logic-step:last-child { margin-bottom: 0; }
+        .option-list { list-style: none; margin-top: 10px; }
+        .option-list li { padding: 6px 0; border-bottom: 1px dashed #d9cbab; }
+        .option-list li:last-child { border-bottom: none; }
+        .option-list li.correct { color: #a8402f; font-weight: bold; }
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+        .ul-target { text-decoration: underline; font-weight: bold; color: #a8402f; }
+        .err { color: #a8402f; font-weight: bold; text-decoration: underline; }
+        .fix { color: #2f5d7c; font-weight: bold; }
+        .irrelevant {
+            color: #a8402f;
+            text-decoration: line-through;
+            font-weight: bold;
+            background-color: #f6dfd2;
+            padding: 0 4px;
+        }
+        .summary-box {
+            background-color: #f3e9cf;
+            border: 1px solid #dcc98f;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        .summary-box p + p { margin-top: 6px; }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+        .vocab-item strong { color: #2f2a22; }
+        .nav {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .nav a {
+            text-decoration: none;
+            background: #fbf8f0;
+            color: #7b5a2b;
+            border: 1px solid #e3d8c0;
+            border-radius: 16px;
+            padding: 3px 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav"><a href="#q01">01</a><a href="#q02">02</a><a href="#q03">03</a><a href="#q04">04</a><a href="#q05">05</a><a href="#q06">06</a><a href="#q07">07</a><a href="#q08">08</a><a href="#q09">09</a><a href="#q10">10</a><a href="#q11">11</a><a href="#q12">12</a><a href="#q13">13</a><a href="#q14">14</a><a href="#q15">15</a></div>
+<div class="container" id="q01">
+    <div class="header">
+        <h1>[01번] 글의 순서 배열 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ④ (C) – (A) – (B)</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>제시문:</strong> 'Lee Saem'이라는 자신의 한국어 이름과 이름(Saem)의 의미("힘과 생명력의 샘")를 소개합니다.<br>
+- <strong>(C) 연결:</strong> 이름 'Saem'이 'Sam'과 발음이 비슷해 영어 이름으로 정했고, 자라면서 'Lee'라는 성이 한국에서만 흔한 줄 알았다고 언급합니다.<br>
+- <strong>(A) 연결:</strong> (C)의 마지막 문장을 받아 부정어 도치 구문(Little did I know...)으로 다른 여러 나라에서도 흔하다는 것을 몰랐다고 반전시킵니다. 이후 소셜 미디어에서 "Sam Lee"를 검색한 행위가 제시됩니다.<br>
+- <strong>(B) 연결:</strong> (A)의 검색 결과(I was amazed at what I saw)를 받아 전 세계에 그렇게 많은 'Sam Lee'가 있었다는 내용으로 자연스럽게 이어지고, 친구 요청을 보낸 이야기로 마무리됩니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문 및 순서</div>
+        <div class="box passage">
+            <strong>[제시문]</strong><br>
+My name is Lee Saem. My first name has an impressive meaning in Korean: “a source of power and vitality.”<br><br>
+<strong>(C)</strong> Since Saem sounds like Sam, I decided to make that my English name. Growing up, I thought Lee was a common last name only in Korea.<br><br>
+<strong>(A)</strong> Little did I know that it’s actually common in many other countries, too. When I searched “Sam Lee” on a social media website, I was amazed at what I saw.<br><br>
+<strong>(B)</strong> There were so many people all over the world with that name! Just for fun, I randomly chose several Sam Lees and sent them friend requests.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① (A) – (C) – (B) [오답]</li>
+                <li>② (B) – (A) – (C) [오답]</li>
+                <li>③ (B) – (C) – (A) [오답]</li>
+                <li class="correct">④ (C) – (A) – (B) [정답]</li>
+                <li>⑤ (C) – (B) – (A) [오답]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 이름 및 발음 연관성 (제시문 → C)</strong><br>
+                한국어 이름 '샘'의 의미를 제시한 뒤, 발음이 유사한 'Sam'을 영어 이름으로 선택하고 'Lee'라는 성에 대한 기존 통념을 언급함.
+            </div>
+            <div class="logic-step">
+                <strong>2. 통념의 깨짐과 검색 (C → A)</strong><br>
+                'Lee'가 다른 나라에서도 흔하다는 사실을 깨닫고, 소셜 미디어에서 "Sam Lee"를 검색해 봄.
+            </div>
+            <div class="logic-step">
+                <strong>3. 검색 결과 및 후속 행동 (A → B)</strong><br>
+                전 세계에 존재하는 수많은 'Sam Lee'를 확인한 후 재미 삼아 친구 요청을 보냄.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p><strong>[제시문]</strong> 내 이름은 이샘이다. 나의 이름(first name)은 한국어로 "힘과 생명력의 샘"이라는 인상적인 의미를 가지고 있다.</p>
+            <p><strong>(C)</strong> '샘'이 'Sam'처럼 들리기 때문에, 나는 그것을 나의 영어 이름으로 정하기로 했다. 자라면서, 나는 '이(Lee)'가 한국에서만 흔한 성(last name)이라고 생각했다.</p>
+            <p><strong>(A)</strong> 그것이 실제로는 다른 많은 국가들에서도 흔하다는 것을 나는 전혀 알지 못했다. 소셜 미디어 웹사이트에 "Sam Lee"를 검색했을 때, 나는 내가 본 것에 놀랐다.</p>
+            <p><strong>(B)</strong> 전 세계에 그 이름을 가진 사람들이 너무나도 많았다! 재미 삼아, 나는 몇몇 Sam Lee를 무작위로 골라 그들에게 친구 요청을 보냈다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘 및 문법 Point</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>vitality</strong> 활력, 생명력</div>
+            <div class="vocab-item"><strong>common</strong> 흔한, 공통의</div>
+            <div class="vocab-item"><strong>amazed</strong> 놀란, 경악한</div>
+            <div class="vocab-item"><strong>randomly</strong> 무작위로, 임의로</div>
+            <div class="vocab-item"><strong>Little did I know</strong> 전혀 알지 못했다 (부정어 도치)</div>
+            <div class="vocab-item"><strong>sound like + N</strong> ~처럼 들리다</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q02">
+    <div class="header">
+        <h1>[02번] 밑줄 친 의미 추론 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ③ worked collaboratively to solve a problem</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>맥락 상황:</strong> 영상 통화 앱으로 연주 연습을 시도했으나 시차 문제와 음향 문제(싱크 불일치)라는 여러 어려움에 직면함.<br>
+- <strong>밑줄 문장:</strong> "So we <span class="ul-target">put our heads together</span> and devised a better way of playing music."<br>
+- <strong>의미 추론:</strong> 관용구 <i>put one's heads together</i>는 "머리를 맞대다, 함께 협력하여 지혜를 모으다"라는 뜻입니다. 문제 상황에 대해 서로 머리를 맞대고 더 나은 연주 방식을 고안해 해결책을 마련했다는 문맥이므로 <strong>③ "문제를 해결하기 위해 협력하여 일했다"</strong>가 가장 적절합니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문</div>
+        <div class="box passage">
+            We tried to practice once a week through a video chat app, but we encountered several problems. First of all, we all lived in different time zones. This made it difficult to pick a convenient time for everyone to practice. Secondly, there were audio issues with the app, which caused us to be out of sync. So we <span class="ul-target">put our heads together</span> and devised a better way of playing music. We decided to assemble the songs as if we were working in a virtual music factory.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① decided to stop playing music as a group (그룹으로서 연주하는 것을 그만두기로 결정했다) [오답]</li>
+                <li>② took turns practicing individually at home (집에서 개별적으로 교대로 연습했다) [오답]</li>
+                <li class="correct">③ worked collaboratively to solve a problem (문제를 해결하기 위해 협력하여 일했다) [정답]</li>
+                <li>④ focused on improving individual musical skills (개인의 음악적 기술을 향상시키는 데 집중했다) [오답]</li>
+                <li>⑤ competed with each other for leadership roles (리더십 역할을 두고 서로 경쟁했다) [오답]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 문제 발생 (Problem)</strong><br>
+                비디오 채팅 앱을 이용한 연습 중 시차 차이와 음향 싱크 문제가 발생함.
+            </div>
+            <div class="logic-step">
+                <strong>2. 협력적 대응 (Action: put our heads together)</strong><br>
+                문제를 해결하기 위해 멤버들이 머리를 맞대고 고민함(협력).
+            </div>
+            <div class="logic-step">
+                <strong>3. 해결책 도출 (Solution)</strong><br>
+                가상의 음악 공장에서 일하는 것처럼 곡을 조립하는 방식을 고안해 냄.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>우리는 화상 채팅 앱을 통해 일주일에 한 번 연습하려고 노력했지만, 몇 가지 문제에 부딪혔다. 우선, 우리 모두는 서로 다른 시차에 살고 있었다. 이로 인해 모두가 연습하기 편리한 시간을 정하는 것이 어려웠다. 둘째로, 앱에 음향 문제가 있어서 우리가 싱크(박자)가 맞지 않게 되었다. 그래서 우리는 <span class="ul-target">머리를 맞대고(협력하여)</span> 음악을 연주하는 더 나은 방법을 고안해 냈다. 우리는 마치 가상의 음악 공장에서 일하는 것처럼 노래를 조립하기로 결정했다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>encounter</strong> (문제에) 부딪히다, 직면하다</div>
+            <div class="vocab-item"><strong>out of sync</strong> 싱크(박자/동기화)가 맞지 않는</div>
+            <div class="vocab-item"><strong>put one's heads together</strong> 머리를 맞대다, 협력하다</div>
+            <div class="vocab-item"><strong>devise</strong> 고안하다, 창안하다</div>
+            <div class="vocab-item"><strong>assemble</strong> 조립하다, 모으다</div>
+            <div class="vocab-item"><strong>collaboratively</strong> 협력적으로</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q03">
+    <div class="header">
+        <h1>[03번] 요약문 완성 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ③ (A) backgrounds — (B) friendships</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>(A)의 근거:</strong> 본문에서 "우리는 비슷한 배경에서 오지 않았다(we don’t come from similar backgrounds)"고 언급합니다. 따라서 요약문의 "서로 다른 <strong><u>배경(backgrounds)</u></strong>을 가지고 있음에도 불구하고"에 해당하는 (A)에는 <strong>backgrounds</strong>가 가장 적절합니다.<br>
+- <strong>(B)의 근거:</strong> 본문의 "강한 관계를 형성할 것이라고 기대하지 못했다(build such strong relationships)"와 "네 명의 임의의 사람들이 훌륭한 친구가 되었다(became great friends)"를 재진술한 단어가 들어가야 합니다. 요약문의 "밴드 멤버들은 강한 <strong><u>우정(friendships)</u></strong>을 형성했다"로 이어지는 ③번이 정답입니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">요약문</div>
+        <div class="summary-box">
+<p>Despite having different <strong>(A) backgrounds</strong>, the band members formed strong <strong>(B) friendships</strong> and value their unique perspectives.</p>
+<p><i>(서로 다른 <u>배경</u>을 가졌음에도 불구하고, 밴드 멤버들은 강한 <u>우정</u>을 형성했으며 서로의 독특한 관점들을 가치 있게 여긴다.)</i></p>
+</div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문</div>
+        <div class="box passage">
+            Our band is something really special. Never did we expect that we would build such strong relationships with one another. After all, we don’t come from similar backgrounds, nor have we had the same life experiences. Yet we now talk about almost everything together, including the hardships we face in life. I think it’s been really valuable to get advice from people with such different perspectives. We would all like to meet in person and play our music on the street someday. But even if that never happens, we’ve still been incredibly lucky. Four random people became great friends simply because of our names. Life can be amazing sometimes!
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① interests (관심사) — bonds (유대) [오답: 지문은 서로 다른 '배경'을 언급함]</li>
+                <li>② interests (관심사) — experiences (경험) [오답]</li>
+                <li class="correct">③ backgrounds (배경) — friendships (우정) [정답]</li>
+                <li>④ talents (재능) — relationships (관계) [오답: 본문의 배경/경험에 대한 대조와 일치하지 않음]</li>
+                <li>⑤ talents (재능) — experiences (경험) [오답]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 멤버들의 상이한 배경 (Backgrounds)</strong><br>
+                멤버들은 서로 다른 출신 배경과 삶의 경험을 지니고 있음.
+            </div>
+            <div class="logic-step">
+                <strong>2. 유대감 및 우정 형성 (Friendships)</strong><br>
+                삶의 어려움을 공유하고 다른 관점의 조언을 들으며 소중한 관계를 쌓음.
+            </div>
+            <div class="logic-step">
+                <strong>3. 요약 결론</strong><br>
+                배경(backgrounds)의 차이에도 불구하고 강한 우정(friendships)을 다지며 다양한 시각을 존중함.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>우리 밴드는 매우 특별합니다. 우리가 서로 이렇게 강한 관계를 형성하리라고는 전혀 예상하지 못했습니다. 결국, 우리는 비슷한 배경 출신도 아니고, 같은 삶의 경험을 하지도 않았습니다. 하지만 우리는 이제 삶에서 직면하는 고난을 포함하여 거의 모든 것에 대해 함께 이야기합니다. 이렇게 서로 다른 관점을 가진 사람들에게 조언을 구하는 것은 매우 가치 있는 일이라고 생각합니다. 우리는 언젠가 모두 직접 만나 거리에서 음악을 연주하고 싶습니다. 설령 그런 일이 일어나지 않더라도, 우리는 여전히 믿을 수 없을 만큼 운이 좋았습니다. 단지 우리의 이름 때문에 무작위의 네 사람이 훌륭한 친구가 된 것입니다. 인생은 때때로 정말 놀라울 수 있습니다!</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>background</strong> 배경, 출신</div>
+            <div class="vocab-item"><strong>perspective</strong> 관점, 시각</div>
+            <div class="vocab-item"><strong>hardship</strong> 어려움, 고난</div>
+            <div class="vocab-item"><strong>friendship</strong> 우정</div>
+            <div class="vocab-item"><strong>valuable</strong> 가치 있는, 소중한</div>
+            <div class="vocab-item"><strong>in person</strong> 직접, 실물로</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q04">
+    <div class="header">
+        <h1>[04번] 빈칸 추론 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ③ valued our online interactions more than ever</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>상황 설명:</strong> 세계적 팬데믹으로 대면 일상이 보류(put on hold)되었고, 싱가포르인 Sam이 아파서 병원에 입원하게 되었습니다.<br>
+- <strong>후속 맥락 근거:</strong> 그럼에도 멤버들은 <strong>화상 채팅 앱(video chat app)</strong>을 이용해 계속 만나 일상을 나누고, 생일 선물로 녹음한 노래를 들려주는 등 온라인 소통을 적극 활용했습니다.<br>
+- <strong>결론 도출:</strong> 따라서 "온라인에서의 상호작용을 그 어느 때보다 가치 있게 여겼다"는 <strong>③번</strong>이 빈칸에 가장 적절합니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문</div>
+        <div class="box passage">
+            Shortly after we started the band, a global pandemic began. Since all of our normal lives were put on hold, we <span class="hl">valued our online interactions more than ever</span>. At one point, Singaporean Sam became ill and needed to spend some time in the hospital, so the band took a break. However, we still met from time to time by using the video chat app. We talked about our lives and did what we could do to cheer Singaporean Sam up. Since he had to stay in the hospital on his birthday, the rest of us recorded his favorite song as his birthday present. When we played it for him, he laughed so hard that he cried.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① met in person more often than before (전보다 더 자주 직접 만났다) [오답 - 팬데믹으로 대면이 불가능한 상황]</li>
+                <li>② decided to stop playing music completely (음악 연주를 완전히 그만두기로 결정했다) [오답 - 생일 선물 노래를 녹음해 들려줌]</li>
+                <li class="correct">③ valued our online interactions more than ever (온라인 상호작용을 그 어느 때보다 소중히 여겼다) [정답]</li>
+                <li>④ lost contact with each other for several months (몇 달 동안 서로 연락이 두절되었다) [오답 - 화상 앱으로 지속 소통]</li>
+                <li>⑤ started performing live shows in different countries (여러 나라에서 라이브 공연을 시작했다) [오답]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 원인 (Problem)</strong><br>
+                밴드 결성 직후 글로벌 팬데믹이 발생해 정상적인 일상이 중단됨.
+            </div>
+            <div class="logic-step">
+                <strong>2. 대응 (Topic Sentence - 빈칸)</strong><br>
+                대면이 차단된 상황에서 온라인 소통/교류의 중요성이 커짐.
+            </div>
+            <div class="logic-step">
+                <strong>3. 구체적 예시 (Supporting Detail)</strong><br>
+                싱가포르인 Sam의 입원 중에도 화상 채팅 앱으로 지속 연락하며 생일 축하 노래를 녹음해 선물함.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>우리가 밴드를 시작하고 얼마 지나지 않아 세계적인 팬데믹이 시작되었습니다. 우리의 모든 평범한 일상이 보류되었기 때문에, 우리는 <span class="hl">온라인에서의 상호작용을 그 어느 때보다 소중히 여겼습니다</span>. 한때 싱가포르인 Sam이 병에 걸려 병원에서 얼마간 시간을 보내야 했고, 이에 따라 밴드는 휴식기를 가졌습니다. 하지만 우리는 화상 채팅 앱을 사용하여 여전히 때때로 만났습니다. 우리는 우리 삶에 대해 이야기했고 싱가포르인 Sam의 기운을 북돋아 주기 위해 할 수 있는 일을 했습니다. 그가 생일에 병원에 머물러야 했기 때문에, 나머지 멤버들은 그의 생일 선물로 그가 가장 좋아하는 노래를 녹음했습니다. 우리가 그에게 노래를 들려주었을 때, 그는 눈물이 날 정도로 크게 웃었습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>put on hold</strong> 보류되다, 연기되다</div>
+            <div class="vocab-item"><strong>interaction</strong> 상호작용, 교류</div>
+            <div class="vocab-item"><strong>take a break</strong> 휴식기를 가지다</div>
+            <div class="vocab-item"><strong>cheer up</strong> ~의 기운을 북돋우다</div>
+            <div class="vocab-item"><strong>from time to time</strong> 때때로, 가끔</div>
+            <div class="vocab-item"><strong>value</strong> 가치 있게 여기다, 소중히 하다</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q05">
+    <div class="header">
+        <h1>[05번] 문장 삽입 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ⑤</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>주어진 문장:</strong> "To my surprise, all three eagerly agreed." (놀랍게도, 세 사람 모두 흔쾌히 동의했다.)<br>
+- <strong>지시어/대명사 단서:</strong> 주어진 문장의 <strong>all three(세 사람 모두)</strong>가 무엇에 동의(agreed)했는지에 대한 제안 내용이 바로 앞 문장에 나와야 합니다.<br>
+- <strong>문맥적 연결:</strong> ⑤번 앞 문장에서 필자가 세 명에게 "The Sam Lees라는 가상 밴드를 만드는 게 어때?"라고 제안합니다. 이에 대한 반응으로 주어진 문장이 ⑤번에 위치하고, 뒤에 "그것이 우리 밴드 여정의 시작이었다"가 이어지는 것이 가장 자연스럽습니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주어진 문장</div>
+        <div class="box given"><strong>To my surprise, all three eagerly agreed.</strong><br>(놀랍게도, 세 사람 모두 흔쾌히 동의했다.)</div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문 (삽입 완료)</div>
+        <div class="box passage">
+            There was a Sam Lee in his mid-30s from Singapore who enjoyed singing and writing lyrics. And there was a 42-year-old Canadian Sam Lee who was a drummer. According to her profile, everyone called her Sam even though her real name was Samantha. ( ① ) Finally, there was an American Sam Lee who played the electric guitar. ( ② ) Suddenly, I had a great idea. ( ③ ) I sent a message to all three. ( ④ ) Here is what I wrote: “Hi! I’m Sam Lee from Korea. I write songs and play the keyboard. How about making a virtual band called The Sam Lees?” ( ⑤ ) <span class="hl">To my surprise, all three eagerly agreed.</span> That was the start of our band’s journey.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 인물 등장 (Setup)</strong><br>
+                동명이인인 Sam Lee 3명(싱가포르인, 캐나다인, 미국인)을 발견함.
+            </div>
+            <div class="logic-step">
+                <strong>2. 제안 (Proposal)</strong><br>
+                세 사람에게 메시지를 보내 "The Sam Lees"라는 가상 밴드를 만들자고 제안함.
+            </div>
+            <div class="logic-step">
+                <strong>3. 반응 (Reaction - ⑤번 위치)</strong><br>
+                세 명 모두가 놀랍게도 그 제안에 흔쾌히 동의함 (all three eagerly agreed).
+            </div>
+            <div class="logic-step">
+                <strong>4. 결과 (Result)</strong><br>
+                이 동의를 계기로 밴드의 여정이 본격적으로 시작됨.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>싱가포르 출신의 30대 중반 Sam Lee가 있었는데, 그는 노래 부르기와 작사를 즐겼습니다. 그리고 드럼 연주자인 42세의 캐나다인 Sam Lee가 있었습니다. 그녀의 프로필에 따르면 본명은 Samantha였지만 모두가 그녀를 Sam이라고 불렀습니다. 마지막으로 일렉트릭 기타를 치는 미국인 Sam Lee가 있었습니다. 갑자기 나에게 좋은 생각이 떠올랐습니다. 나는 세 사람 모두에게 메시지를 보냈습니다. 내가 쓴 내용은 다음과 같았습니다. "안녕하세요! 저는 한국에서 온 Sam Lee입니다. 저는 곡을 쓰고 키보드를 연주합니다. 'The Sam Lees'라는 가상 밴드를 만드는 건 어떨까요?" <span class="hl">놀랍게도, 세 사람 모두 흔쾌히 동의했습니다.</span> 그것이 우리 밴드 여정의 시작이었습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>eagerly</strong> 열렬히, 흔쾌히</div>
+            <div class="vocab-item"><strong>virtual band</strong> 가상 밴드</div>
+            <div class="vocab-item"><strong>journey</strong> 여정, 여정의 길</div>
+            <div class="vocab-item"><strong>lyrics</strong> 가사</div>
+            <div class="vocab-item"><strong>profile</strong> 프로필, 인물 소개</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q06">
+    <div class="header">
+        <h1>[06번] 빈칸 추론 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 고난도 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ③ decided to compile and structure the songs as if we were operating within a virtual music production factory</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>원문 핵심 표현:</strong> 원문 교과서 지문은 <i>"We decided to assemble the songs as if we were working in a virtual music factory."</i> (마치 가상의 음악 공장에서 일하는 것처럼 노래를 조립하기로 결정했다)입니다.<br>
+- <strong>패러프레이징(Paraphrasing) 분석:</strong><br>
+&nbsp;&nbsp;• <i>assemble</i> → <strong>compile and structure</strong> (편집하고 구성하다)<br>
+&nbsp;&nbsp;• <i>working in a virtual music factory</i> → <strong>operating within a virtual music production factory</strong> (가상 음악 생산 공장 내에서 작동/작업하다)<br>
+- <strong>후속 문장과의 논리적 연결:</strong> 빈칸 뒷문장에서 한 사람이 키보드를 쳐서 보내면, 다음 사람이 노래를 얹고, 그 다음 사람이 기타, 마지막 사람이 드럼을 얹어 순차적으로 완제품을 만드는 '공장 조립 라인(Music Factory)' 방식을 구체적으로 설명하고 있습니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문</div>
+        <div class="box passage">
+            We tried to practice once a week through a video chat app, but we encountered several problems. First of all, we all lived in different time zones. This made it difficult to pick a convenient time for everyone to practice. Secondly, there were audio issues with the app, which caused us to be out of sync. So we put our heads together and devised a better way of playing music. We <span class="hl">decided to compile and structure the songs as if we were operating within a virtual music production factory</span>. After we decided on a song, I would play it on my keyboard and send it to Singaporean Sam. He would sing along with the keyboard and send the recording to American Sam. Then American Sam would add his guitar part, and Samantha would finish the song with her drumming. When it came to choosing songs to play, we took turns.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① agreed to perform the songs as if we were appearing in a digitally streamed concert venue (디지털 스트리밍 콘서트장에 출연하는 것처럼 연주하기로 합의했다) [오답 - 라이브 공연 방식이 아님]</li>
+                <li>② planned to develop our music as though we were working together in a fully online recording studio (완전한 온라인 녹음 스튜디오에서 함께 일하는 것처럼 음악을 개발하려고 계획했다) [오답 - 실시간 동시 작업 스튜디오가 아님]</li>
+                <li class="correct">③ decided to compile and structure the songs as if we were operating within a virtual music production factory (가상의 음악 생산 공장 내에서 작동하는 것처럼 곡들을 편집하고 구성하기로 결정했다) [정답]</li>
+                <li>④ opted to produce each track as though it were being created by an internationally distributed music team (국제적으로 분산된 음악 팀에 의해 만들어지는 것처럼 각 트랙을 제작하기로 선택했다) [오답 - '공장 조립 라인'이라는 핵심 비유가 빠짐]</li>
+                <li>⑤ chose to organize each song in a manner similar to musicians collaborating through remote recording sessions (원격 녹음 세션을 통해 협력하는 음악가들과 유사한 방식으로 각 곡을 구성하기로 했다) [오답]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 실시간 합주의 문제점 (Problem)</strong><br>
+                시차 차이와 음향 싱크 문제로 동시 합주가 불가능함.
+            </div>
+            <div class="logic-step">
+                <strong>2. 해결 비유 제시 (Concept - 빈칸)</strong><br>
+                가상 공장 조립 라인처럼 순차적으로 음원을 모아 완성하는 방식을 도입함.
+            </div>
+            <div class="logic-step">
+                <strong>3. 공장형 조립 과정 (Process)</strong><br>
+                키보드(필자) → 보컬(싱가포르인 Sam) → 기타(미국인 Sam) → 드럼(Samantha) 순으로 릴레이 녹음하여 완성함.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>우리는 화상 채팅 앱을 통해 일주일에 한 번 연습하려고 노력했지만, 몇 가지 문제에 부딪혔습니다. 우선, 우리 모두는 서로 다른 시차에 살고 있었습니다. 이로 인해 모두가 연습하기 편리한 시간을 정하는 것이 어려웠습니다. 둘째로, 앱에 음향 문제가 있어서 우리가 싱크가 맞지 않게 되었습니다. 그래서 우리는 머리를 맞대고 음악을 연주하는 더 나은 방법을 고안해 냈습니다. 우리는 <span class="hl">마치 가상의 음악 생산 공장 내부에서 작업하는 것처럼 곡을 편집하고 구성하기로 결정했습니다</span>. 곡을 결정한 후, 내가 키보드로 연주하여 싱가포르인 Sam에게 보냈습니다. 그는 키보드 반주에 맞춰 노래를 부르고 그 녹음본을 미국인 Sam에게 보냈습니다. 그러고 나서 미국인 Sam이 자신의 기타 파트를 추가했고, Samantha가 드럼 연주로 곡을 완성했습니다. 연주할 곡을 정할 때는 번갈아 가며 선택했습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>compile</strong> 편집하다, 수집하다</div>
+            <div class="vocab-item"><strong>structure</strong> 구성하다, 체계화하다</div>
+            <div class="vocab-item"><strong>virtual</strong> 가상의</div>
+            <div class="vocab-item"><strong>encounter</strong> (문제에) 직면하다</div>
+            <div class="vocab-item"><strong>out of sync</strong> 싱크가 맞지 않는</div>
+            <div class="vocab-item"><strong>take turns</strong> 번갈아 하다</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q07">
+    <div class="header">
+        <h1>[07번] 어법 판단 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ③ that → what</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>③번 오류 원인:</strong> <code>did</code>의 목적어 역할을 하면서, 절 내부의 목적어(<code>we could do [목적어]</code>)가 빠져 있는 불완전한 문장을 이끌어야 합니다.<br>
+- 선행사를 포함하며 절 안에서 목적어 역할을 하는 <strong>관계대명사 <code>what</code></strong>이 쓰여야 하므로, <span class="err">that</span>을 <span class="fix">what</span>으로 고쳐야 어법상 올바릅니다. (...did <span class="fix">what</span> we could do... = 우리가 할 수 있는 일을 했다)
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문 분석</div>
+        <div class="box passage">
+            Shortly after we started the band, a global pandemic began. Since all of our normal lives ① <u>were</u> put on hold, we valued our online interactions more than ever. At one point, Singaporean Sam became ill and needed ② <u>to spend</u> some time in the hospital, so the band took a break. However, we still met from time to time by using the video chat app. We talked about our lives and did ③ <span class="err">that</span> (<span class="fix">→ what</span>) we could do to cheer Singaporean Sam up. Since he had to stay in the hospital on his birthday, the rest of us recorded his favorite song ④ <u>as</u> his birthday present. When we played it for him, he laughed so hard that he cried. That was mainly because the song was sung by the worst singer in the band — me! It was good to see him ⑤ <u>laugh</u> even though he was lying in his hospital bed.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지별 상세 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① <strong>were</strong> [적절]: 주어가 복수 명사구인 <code>all of our normal lives</code>이므로 복수 동사 <code>were</code>가 올바르게 사용되었습니다. (<code>put on hold</code>: 보류되다)</li>
+                <li>② <strong>to spend</strong> [적절]: 타동사 <code>need</code>는 목적어로 to부정사를 취하므로 <code>needed to spend</code>는 적절합니다.</li>
+                <li class="correct">③ <strong>that</strong> [부적절 → what]: <code>did</code>의 목적어 역할을 함과 동시에 <code>could do</code> 뒤의 목적어가 비어 있으므로, 선행사를 포함하는 관계대명사 <code>what</code>이 와야 합니다.</li>
+                <li>④ <strong>as</strong> [적절]: "~로서"라는 의미의 전치사로, <code>as his birthday present</code>(그의 생일 선물로서)로 올바르게 사용되었습니다.</li>
+                <li>⑤ <strong>laugh</strong> [적절]: 지각동사 <code>see</code> + 목적어(<code>him</code>) + 목적격 보어 구조에서 원형부정사 <code>laugh</code>가 올바르게 쓰였습니다.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>우리가 밴드를 시작하고 얼마 지나지 않아 세계적인 팬데믹이 시작되었습니다. 우리의 모든 평범한 일상이 보류되었기 때문에, 우리는 온라인에서의 상호작용을 그 어느 때보다 소중히 여겼습니다. 한때 싱가포르인 Sam이 병에 걸려 병원에서 얼마간 시간을 보내야 했고, 이에 따라 밴드는 휴식기를 가졌습니다. 하지만 우리는 화상 채팅 앱을 사용하여 여전히 때때로 만났습니다. 우리는 우리 삶에 대해 이야기했고 싱가포르인 Sam의 기운을 북돋아 주기 위해 <span class="fix">우리가 할 수 있는 일(what)</span>을 했습니다. 그가 생일에 병원에 머물러야 했기 때문에, 나머지 멤버들은 그의 생일 선물로 그가 가장 좋아하는 노래를 녹음했습니다. 우리가 그에게 노래를 들려주었을 때, 그는 눈물이 날 정도로 크게 웃었습니다. 그것은 주로 그 노래가 밴드에서 가장 노래를 못 부르는 가수인 나에 의해 불렸기 때문이었습니다! 그가 병상에 누워 있음에도 불구하고 웃는 모습을 보는 것은 좋았습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>put on hold</strong> 보류되다</div>
+            <div class="vocab-item"><strong>cheer up</strong> ~의 기운을 북돋우다</div>
+            <div class="vocab-item"><strong>relationship</strong> 관계</div>
+            <div class="vocab-item"><strong>see + O + v/v-ing</strong> ~가 -하는 것을 보다 (지각동사)</div>
+            <div class="vocab-item"><strong>what (~하는 것)</strong> 선행사 포함 관계대명사</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q08">
+    <div class="header">
+        <h1>[08번] 어휘 적절성 판단 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ④ same → different</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>④번 오류 원인:</strong> 앞에서 "우리는 비슷한 배경에서 오지도 않았고, 같은 삶의 경험을 하지도 않았다(we don’t come from similar backgrounds, nor have we had the same life experiences)"고 언급했습니다.<br>
+- <strong>문맥 분석:</strong> 서로 출신과 경험이 전혀 다르므로 조언을 얻을 때도 <span class="err">same</span>(같은) 관점이 아니라 <strong><span class="fix">different</span>(서로 다른 / 다양한)</strong> 관점의 사람들에게 받는 것이 가치 있다고 해야 논리적으로 일치합니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문 분석</div>
+        <div class="box passage">
+            Our band is something really ① <u>special</u>. Never did we ② <u>expect</u> that we would build such strong relationships with one another. After all, we don’t come from similar backgrounds, nor have we had the same life experiences. Yet we now talk about almost everything together, including the ③ <u>hardships</u> we face in life. I think it’s been really valuable to get advice from people with such ④ <span class="err">same</span> (<span class="fix">→ different</span>) perspectives. We would all like to meet in person and play our music on the street someday. But even if that never happens, we’ve still been incredibly lucky. Four ⑤ <u>random</u> people became great friends simply because of our names. Life can be amazing sometimes!
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지별 상세 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① <strong>special</strong> [적절]: 출신과 경험이 다름에도 강한 유대를 형성하는 밴드이므로 "특별한(special)"이 맞습니다.</li>
+                <li>② <strong>expect</strong> [적절]: 예상을 뛰어넘어 관계가 깊어졌다는 맥락이므로 "예상하다(expect)"는 자연스럽습니다.</li>
+                <li>③ <strong>hardships</strong> [적절]: 삶에서 직면하는 "고난/어려움(hardships)"을 포함해 모든 것을 이야기한다는 맥락에 부합합니다.</li>
+                <li class="correct">④ <strong>same</strong> [부적절 → different]: 배경과 경험이 서로 다르다고 명시했으므로, "다양한/서로 다른(different)" 관점의 사람들로부터 조언을 얻는 것이 소중하다고 해야 맞습니다.</li>
+                <li>⑤ <strong>random</strong> [적절]: 이름만 같은 "무작위의/임의의(random)" 네 사람이 모였다는 표현은 어휘상 적절합니다.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 전제 (Premise)</strong><br>
+                멤버들은 서로 유사한 배경이나 동일한 삶의 경험을 공유하지 않음.
+            </div>
+            <div class="logic-step">
+                <strong>2. 논리적 대조 (Contrast)</strong><br>
+                그럼에도 깊은 대화를 나누며, <strong>서로 다른(different)</strong> 시각에서 나오는 조언의 가치를 높게 평가함.
+            </div>
+            <div class="logic-step">
+                <strong>3. 결론 (Conclusion)</strong><br>
+                우연히 이름으로 묶인 무작위의 사람들이 친구가 된 놀라운 결과가 형성됨.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>우리 밴드는 참으로 특별합니다. 우리가 서로 이렇게 강한 관계를 형성하리라고는 전혀 예상하지 못했습니다. 결국, 우리는 비슷한 배경 출신도 아니고, 같은 삶의 경험을 하지도 않았습니다. 하지만 우리는 이제 삶에서 직면하는 고난을 포함하여 거의 모든 것에 대해 함께 이야기합니다. 이렇게 <span class="fix">서로 다른(different)</span> 관점을 가진 사람들에게 조언을 구하는 것은 매우 가치 있는 일이라고 생각합니다. 우리는 언젠가 모두 직접 만나 거리에서 음악을 연주하고 싶습니다. 설령 그런 일이 일어나지 않더라도, 우리는 여전히 믿을 수 없을 만큼 운이 좋았습니다. 단지 우리의 이름 때문에 무작위의 네 사람이 훌륭한 친구가 된 것입니다. 인생은 때때로 정말 놀라울 수 있습니다!</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>hardship</strong> 고난, 어려움</div>
+            <div class="vocab-item"><strong>perspective</strong> 관점, 시각</div>
+            <div class="vocab-item"><strong>different</strong> 다른, 다양한</div>
+            <div class="vocab-item"><strong>random</strong> 무작위의, 임의의</div>
+            <div class="vocab-item"><strong>incredibly</strong> 믿을 수 없을 정도로</div>
+            <div class="vocab-item"><strong>in person</strong> 직접, 실물로</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q09">
+    <div class="header">
+        <h1>[09번] 글의 제목 추론 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ② How We Made Music Together from Afar</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>정답 핵심 이유:</strong> 지문 전체가 서로 다른 지역·시차로 떨어져 있는 밴드 멤버들이 화상 앱의 한계를 극복하고, 음원을 순차적으로 녹음·전송하는 가상 공장 방식을 통해 멀리서(from afar) 함께 음악을 만들어 나간 과정(How)을 다루고 있으므로 ②번이 가장 적절한 제목입니다.<br>
+- <strong>논리 흐름:</strong> 원거리 온라인 합주의 한계 극복(시차, 싱크 문제) → 릴레이식 음원 녹음 방식의 고안 및 수행 → 서로 다른 문화와 음악 장르를 배우며 즐겁게 완성.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문</div>
+        <div class="box passage">
+            We tried to practice once a week through a video chat app, but we encountered several problems. First of all, we all lived in different time zones. This made it difficult to pick a convenient time for everyone to practice. Secondly, there were audio issues with the app, which caused us to be out of sync. So we put our heads together and devised a better way of playing music. We decided to assemble the songs as if we were working in a virtual music factory. After we decided on a song, I would play it on my keyboard and send it to Singaporean Sam. He would sing along with the keyboard and send the recording to American Sam. Then American Sam would add his guitar part, and Samantha would finish the song with her drumming. When it came to choosing songs to play, we took turns.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① Music Genres That Bring People Closer (사람들을 더 가깝게 만드는 음악 장르) [오답 - 음악 장르의 분류나 효과에 대한 글이 아님]</li>
+                <li class="correct">② How We Made Music Together from Afar (우리가 멀리서 함께 음악을 만들어 낸 방법) [정답]</li>
+                <li>③ Why Time Zone Differences Ruin Friendships (시차 차이가 우정을 망치는 이유) [오답 - 시차 문제를 극복하고 협력함]</li>
+                <li>④ The Challenges of Playing Live Online Concerts (라이브 온라인 콘서트 연주의 난제들) [오답 - 온라인 라이브 공연에 대한 내용이 아님]</li>
+                <li>⑤ Virtual Bands: The Future of the Music Industry? (가상 밴드: 음악 산업의 미래인가?) [오답 - 음악 산업 전체의 미래 전망을 논하는 일반론이 아님]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 문제 상황 (Problem)</strong><br>
+                시차 차이와 화상 앱의 음향 지연 문제로 실시간 온라인 합주에 어려움을 겪음.
+            </div>
+            <div class="logic-step">
+                <strong>2. 해결책 모색 (Solution)</strong><br>
+                가상 음악 공장처럼 각자의 연주/보컬 파트를 차례대로 녹음하여 전송·조립하는 새로운 방식을 고안함.
+            </div>
+            <div class="logic-step">
+                <strong>3. 협업 결과 (Outcome)</strong><br>
+                순차적 협업을 통해 서로의 문화와 음악 장르를 배우며 성공적으로 함께 음악을 만듦.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">지문 내용 요약</div>
+        <div class="box translation">
+            <p>화상 앱을 통한 주 1회 연습 시 시차와 음향 오차 문제가 발생하자, 멤버들은 각자 맡은 파트(키보드 → 보컬 → 기타 → 드럼)를 순서대로 녹음해 전송하는 가상 공장 방식의 협업을 시작했습니다. 이 방식을 통해 서로 다른 문화와 음악 장르를 공유하며 즐겁게 멀리서 함께 음악을 완성해 나갈 수 있었습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>from afar</strong> 멀리서</div>
+            <div class="vocab-item"><strong>encounter</strong> (어려움에) 직면하다</div>
+            <div class="vocab-item"><strong>out of sync</strong> 싱크가 맞지 않는</div>
+            <div class="vocab-item"><strong>devise</strong> 고안하다</div>
+            <div class="vocab-item"><strong>assemble</strong> 조립하다, 모으다</div>
+            <div class="vocab-item"><strong>take turns</strong> 순번을 따르다, 번갈아 하다</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q10">
+    <div class="header">
+        <h1>[10번] 어휘 적절성 판단 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ② rare → common</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>②번 오류 원인:</strong> 뒤이어 나오는 "<i>Little did I know that it’s actually <strong>common</strong> in many other countries, <strong>too</strong>.</i>(이 씨 성이 다른 많은 나라에서도 역시 흔하다는 것을 전혀 알지 못했다)"와의 논리적 대조 관계를 살펴봐야 합니다.<br>
+- <strong>문맥 분석:</strong> 한국에서만 '흔한(common)' 성씨인 줄 알았는데 알고 보니 다른 나라에서도 역시 '흔하더라(common)'라고 서술해야 역접 구문과 <code>too</code>의 쓰임이 자연스럽게 연결됩니다. 따라서 <span class="err">rare</span>(드문)를 <strong><span class="fix">common</span>(흔한)</strong>으로 고쳐야 합니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문 분석</div>
+        <div class="box passage">
+            My name is Lee Saem. My first name has an ① <u>impressive</u> meaning in Korean: “a source of power and vitality.” Since Saem sounds like Sam, I decided to make that my English name. Growing up, I thought Lee was a ② <span class="err">rare</span> (<span class="fix">→ common</span>) last name only in Korea. Little did I know that it’s actually ③ <u>common</u> in many other countries, too. When I searched “Sam Lee” on a social media website, I was ④ <u>amazed</u> at what I saw. There were so many people all over the world with that name! Just for fun, I ⑤ <u>randomly</u> chose several Sam Lees and sent them friend requests.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지별 상세 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① <strong>impressive</strong> [적절]: "힘과 활력의 샘"이라는 이름의 의미를 수식하므로 "인상적인(impressive)"은 적절합니다.</li>
+                <li class="correct">② <strong>rare</strong> [부적절 → common]: 뒤 문장의 <code>too</code>(역시)와 <code>actually common</code>(실제로 흔한)으로 미루어 볼 때, "한국에서만 흔한(common) 성씨인 줄 알았다"가 되어야 논리적 호응이 맞습니다.</li>
+                <li>③ <strong>common</strong> [적절]: 이 씨 성이 다른 국가에서도 "흔하다(common)"는 사실을 깨닫는 맥락이므로 적절합니다.</li>
+                <li>④ <strong>amazed</strong> [적절]: 전 세계에 동명이인이 수없이 존재하는 것을 보고 "놀란(amazed)" 감정을 나타내므로 적절합니다.</li>
+                <li>⑤ <strong>randomly</strong> [적절]: 재미 삼아 "무작위로(randomly)" 몇 명을 골라 친구 요청을 보냈다는 맥락에 부합합니다.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 통념 (Initial Belief)</strong><br>
+                'Lee'라는 성씨가 한국에서만 흔한(common) 성씨일 것이라 생각함.
+            </div>
+            <div class="logic-step">
+                <strong>2. 반전 및 발견 (Reversal & Discovery)</strong><br>
+                실제로는 다른 여러 국가에서도 똑같이 흔하다(common, too)는 사실을 알게 됨.
+            </div>
+            <div class="logic-step">
+                <strong>3. 후속 행동 (Action)</strong><br>
+                SNS 검색을 통해 수많은 동명이인을 확인하고 무작위로 친구 요청을 보냄.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>내 이름은 이샘입니다. 내 이름(이름 중 '샘')은 한국어로 "힘과 활력의 샘"이라는 인상적인 의미를 가지고 있습니다. '샘'이 'Sam'과 발음이 비슷해서 그것을 내 영어 이름으로 하기로 결정했습니다. 자라면서 나는 'Lee'가 오직 한국에서만 <span class="fix">흔한(common)</span> 성씨라고 생각했습니다. 그것이 실제로는 다른 많은 나라에서도 역시 흔하다는 것을 나는 전혀 알지 못했습니다. 소셜 미디어 웹사이트에 "Sam Lee"를 검색했을 때, 나는 내가 본 것에 놀랐습니다. 전 세계에 그 이름을 가진 사람들이 아주 많이 있었습니다! 재미 삼아, 나는 무작위로 몇 명의 Sam Lee를 선택해 그들에게 친구 요청을 보냈습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>impressive</strong> 인상적인</div>
+            <div class="vocab-item"><strong>common</strong> 흔한, 공통의</div>
+            <div class="vocab-item"><strong>vitality</strong> 활력, 생기</div>
+            <div class="vocab-item"><strong>little did I know</strong> ~일 줄은 전혀 알지 못했다 (부정어 도치)</div>
+            <div class="vocab-item"><strong>amazed</strong> 놀란</div>
+            <div class="vocab-item"><strong>randomly</strong> 무작위로, 임의로</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q11">
+    <div class="header">
+        <h1>[11번] 무관한 문장 찾기 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ②</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>전체 주제:</strong> 싱가포르인 Sam의 회복 후 자작곡 "Long-Distance Friendship"을 만들어 발표하고, 배경과 경험이 다름에도 밴드 멤버 간에 깊은 우정과 유대감을 쌓아 간 특별한 이야기입니다.<br>
+- <strong>흐름 단절 이유:</strong> ②번 문장("I was looking for a new guitar at the time, but most of the models I liked were out of my price range." / 그 당시 나는 새 기타를 찾고 있었지만 마음에 든 모델 대부분이 예산 범위를 벗어났다)은 개인적인 악기 구매와 가격대에 관한 내용으로, <strong>밴드 멤버 간의 유대감 형성 및 관계 발전이라는 중심 흐름에서 벗어난 무관한 문장</strong>입니다.<br>
+- <strong>논리적 연결:</strong> ②번을 제외하면 ①번("서로 강한 관계를 형성하리라고 예상치 못함")과 ③번("결국 우리는 배경과 삶의 경험이 다름")이 자연스럽게 연결됩니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문 분석</div>
+        <div class="box passage">
+            After Singaporean Sam recovered, we decided to write and record our own song. We called the song “Long-Distance Friendship,” and we posted it online. The song didn’t get much attention, but we were proud of what we had achieved together. Our band is something really special. ① Never did we expect that we would build such strong relationships with one another. <span class="irrelevant">② I was looking for a new guitar at the time, but most of the models I liked were out of my price range.</span> ③ After all, we don’t come from similar backgrounds, nor have we had the same life experiences. ④ Yet we now talk about almost everything together, including the hardships we face in life. ⑤ I think it’s been really valuable to get advice from people with such different perspectives.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 자작곡 발표 및 성취감</strong><br>
+                "Long-Distance Friendship"이라는 곡을 기록·공유하며 함께 이뤄 낸 결실에 자부심을 느낌.
+            </div>
+            <div class="logic-step">
+                <strong>2. 밴드의 특별함과 유대감 (주제)</strong><br>
+                예상치 못했던 멤버들 간의 강한 관계 및 우정이 형성됨.
+            </div>
+            <div class="logic-step">
+                <strong>3. [무관한 흐름 - ②번]</strong><br>
+                갑작스러운 개인의 기타 구매 및 예산 관련 언급으로 흐름이 끊김.
+            </div>
+            <div class="logic-step">
+                <strong>4. 차이점 극복과 가치 있는 교류</strong><br>
+                서로 다른 배경에도 불구하고 삶의 고난과 다양한 관점을 공유하는 소중한 관계로 발전함.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>싱가포르인 Sam이 회복된 후, 우리는 우리만의 노래를 만들고 녹음하기로 결정했습니다. 우리는 그 노래를 "Long-Distance Friendship(장거리 우정)"이라고 불렀고, 온라인에 게시했습니다. 그 노래는 많은 관심을 받지는 못했지만, 우리는 함께 이뤄 낸 것에 자부심을 느꼈습니다. 우리 밴드는 정말 특별합니다. ① 우리가 서로 이렇게 강한 관계를 형성하리라고는 전혀 예상하지 못했습니다. <span class="irrelevant">② 그 당시 나는 새 기타를 찾고 있었지만, 내가 마음에 들어 한 모델 대부분은 내 예산 범위를 벗어나 있었습니다.</span> ③ 결국, 우리는 비슷한 배경 출신도 아니고, 같은 삶의 경험을 하지도 않았습니다. ④ 하지만 우리는 이제 삶에서 직면하는 고난을 포함하여 거의 모든 것에 대해 함께 이야기합니다. ⑤ 이렇게 서로 다른 관점을 가진 사람들에게 조언을 구하는 것은 매우 가치 있는 일이라고 생각합니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>recover</strong> 회복하다</div>
+            <div class="vocab-item"><strong>achieve</strong> 달성하다, 이루다</div>
+            <div class="vocab-item"><strong>out of price range</strong> 예산 범위를 벗어난</div>
+            <div class="vocab-item"><strong>background</strong> 배경</div>
+            <div class="vocab-item"><strong>hardship</strong> 고난, 어려움</div>
+            <div class="vocab-item"><strong>perspective</strong> 관점, 시각</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q12">
+    <div class="header">
+        <h1>[12번] 글의 주제 추론 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ③ the value of supportive friendship in difficult times</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>중심 내용:</strong> 팬데믹이라는 어려운 시기와 멤버(싱가포르인 Sam)의 입원이라는 위기 속에서, 나머지 멤버들이 그를 응원하기 위해 화상 앱으로 대화하고 생일 선물로 특별한 노래를 녹음해 주며 웃음과 위로를 건넨 이야기입니다.<br>
+- <strong>논리적 주제 연결:</strong> 힘든 상황(difficult times) 속에서 서로 힘이 되어 주는 우정의 가치(the value of supportive friendship)를 다루고 있으므로 <strong>③번</strong>이 가장 적절합니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문</div>
+        <div class="box passage">
+            Shortly after we started the band, a global pandemic began. Since all of our normal lives were put on hold, we valued our online interactions more than ever. At one point, Singaporean Sam became ill and needed to spend some time in the hospital, so the band took a break. However, we still met from time to time by using the video chat app. We talked about our lives and did what we could do to cheer Singaporean Sam up. Since he had to stay in the hospital on his birthday, the rest of us recorded his favorite song as his birthday present. When we played it for him, he laughed so hard that he cried. That was mainly because the song was sung by the worst singer in the band — me! It was good to see him laugh even though he was lying in his hospital bed.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① the psychological benefits of music therapy (음악 치료의 심리학적 이점) [오답 - 임상적 음악 치료에 대한 학술적 글이 아님]</li>
+                <li>② conflicts after the band stopped performing (밴드 활동 중단 이후의 갈등) [오답 - 멤버 간 갈등은 등장하지 않음]</li>
+                <li class="correct">③ the value of supportive friendship in difficult times (어려운 시기에 서로 힘이 되어 주는 우정의 가치) [정답]</li>
+                <li>④ the importance of forming a band with equally skilled musicians (동등한 실력을 갖춘 음악가들과 밴드를 구성하는 것의 중요성) [오답 - 실력보다 마음을 모은 대목이 드러남]</li>
+                <li>⑤ how an online performance led the band to widespread success (온라인 공연이 밴드를 대대적인 성공으로 이끈 방법) [오답 - 상업적/대중적 성공에 관한 글이 아님]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 시련 발생 (Crisis)</strong><br>
+                팬데믹 발생 및 멤버(싱가포르인 Sam)의 입원으로 밴드 활동이 일시 중단됨.
+            </div>
+            <div class="logic-step">
+                <strong>2. 정서적 지원 (Support)</strong><br>
+                화상 앱을 통한 지속적인 교류와 병상에 있는 친구를 응원하기 위한 이벤트를 정성껏 준비함.
+            </div>
+            <div class="logic-step">
+                <strong>3. 감동과 위로의 창출 (Value)</strong><br>
+                노래를 잘 부르지 못하는 멤버가 직접 부른 생일 선물 음원으로 병상의 친구에게 웃음과 정서적 위안을 전달함.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">지문 내용 요약</div>
+        <div class="box translation">
+            <p>팬데믹과 싱가포르인 Sam의 입원으로 밴드는 휴식기를 가졌지만, 멤버들은 화상 앱으로 계속 만나며 그를 응원했습니다. 생일을 병원에서 맞이하게 된 Sam을 위해 멤버들은 노래를 녹음해 선물했고, 밴드에서 노래를 가장 못하는 필자의 열창 덕분에 Sam은 병상에서도 큰 웃음을 되찾을 수 있었습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>supportive</strong> 지지하는, 힘이 되는</div>
+            <div class="vocab-item"><strong>put on hold</strong> 보류되다, 중단되다</div>
+            <div class="vocab-item"><strong>cheer up</strong> ~의 기운을 북돋우다</div>
+            <div class="vocab-item"><strong>interaction</strong> 상호작용, 교류</div>
+            <div class="vocab-item"><strong>take a break</strong> 휴식을 취하다</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q13">
+    <div class="header">
+        <h1>[13번] 글의 요지 추론 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ⑤ 서로 다른 배경을 가진 사람들이 우정을 쌓는 것은 뜻밖의 행복이 될 수 있다.</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>핵심 논리:</strong> Different backgrounds → Great friends → Life can be amazing 으로 수렴합니다.<br>
+- <strong>근거:</strong> 겉으로 보이는 소재는 '음악/밴드'이지만 실제 핵심은 밴드 활동 자체가 아니라 '사람 간의 관계'입니다. 서로 다른 배경의 사람들이 뜻밖에 좋은 친구가 되었고, 그 과정에서 삶의 놀라움과 행복을 느꼈다는 것이 글 전체의 요지이므로 <strong>⑤번</strong>이 정답입니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문</div>
+        <div class="box passage">
+            Our band is something really special. Never did we expect that we would build such strong relationships with one another. After all, we don’t come from similar backgrounds, nor have we had the same life experiences. Yet we now talk about almost everything together, including the hardships we face in life. I think it’s been really valuable to get advice from people with such different perspectives. We would all like to meet in person and play our music on the street someday. But even if that never happens, we’ve still been incredibly lucky. Four random people became great friends simply because of our names. Life can be amazing sometimes!
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① 음악 동아리 활동은 새로운 경험과 자기 계발에 도움이 된다. [오답 - '자기 계발'은 지문에서 언급되지 않은 소재 과확장 함정]</li>
+                <li>② 다양한 관점을 지닌 친구들과의 대화가 문제 해결에 유익하다. [오답 - 본문 중간의 'advice'에 낚이게 만든 지엽적 정보 지향 함정]</li>
+                <li>③ 공통된 취미 활동은 또래 집단 내에서 진정한 우정을 갖게 한다. [오답 - '공통된 취미'에 집중하게 만듦 (지문은 '서로 다른 배경'을 강조함)]</li>
+                <li>④ 온라인 모임도 오프라인 만남 못지않게 특별한 관계를 형성할 수 있다. [오답 - 지문의 매체 형태(온라인/오프라인)는 핵심 주제가 아님]</li>
+                <li class="correct">⑤ 서로 다른 배경을 가진 사람들이 우정을 쌓는 것은 뜻밖의 행복이 될 수 있다. [정답]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 화두 던지기 (Premise)</strong><br>
+                우리 밴드는 특별하며, 서로 이렇게 강한 관계(우정)를 형성할 것이라고는 기대하지 않았음.
+            </div>
+            <div class="logic-step">
+                <strong>2. 대조적 배경 (Contrast Background)</strong><br>
+                비슷한 배경 출신도 아니고 같은 삶의 경험을 하지도 않았음 (이질적 배경 강조).
+            </div>
+            <div class="logic-step">
+                <strong>3. 관점 전환 (Shift & Value)</strong><br>
+                Yet 이후 지금은 모든 것을 함께 이야기하며, 서로 다른 관점을 가진 사람들에게 조언을 구하는 것이 매우 가치 있다고 봄.
+            </div>
+            <div class="logic-step">
+                <strong>4. 최종 논지 수렴 (Core Convergence)</strong><br>
+                서로 다른 무작위의 4명이 우연히 좋은 친구가 되었고, "Life can be amazing sometimes!"로 뜻밖의 행복을 표현함.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>우리 밴드는 참으로 특별합니다. 우리가 서로 이렇게 강한 관계를 형성하리라고는 전혀 예상하지 못했습니다. 결국, 우리는 비슷한 배경 출신도 아니고, 같은 삶의 경험을 하지도 않았습니다. 하지만 우리는 이제 삶에서 직면하는 고난을 포함하여 거의 모든 것에 대해 함께 이야기합니다. 이렇게 서로 다른 관점을 가진 사람들에게 조언을 구하는 것은 매우 가치 있는 일이라고 생각합니다. 우리는 언젠가 모두 직접 만나 거리에서 음악을 연주하고 싶습니다. 설령 그런 일이 일어나지 않더라도, 우리는 여전히 믿을 수 없을 만큼 운이 좋았습니다. 단지 우리의 이름 때문에 무작위의 네 사람이 훌륭한 친구가 된 것입니다. 인생은 때때로 정말 놀라울 수 있습니다!</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>background</strong> 배경, 출신</div>
+            <div class="vocab-item"><strong>perspective</strong> 관점, 시각</div>
+            <div class="vocab-item"><strong>hardship</strong> 고난, 어려움</div>
+            <div class="vocab-item"><strong>random</strong> 무작위의, 임의의</div>
+            <div class="vocab-item"><strong>incredibly</strong> 믿을 수 없을 정도로</div>
+            <div class="vocab-item"><strong>in person</strong> 직접, 실물로</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q14">
+    <div class="header">
+        <h1>[14번] 문장 삽입 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ②</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>신호어 파악:</strong> 주어진 문장의 "So"는 인과 관계를 나타내므로, 앞에는 '문제점/원인'이, 뒤에는 '더 나은 연주 방식을 고안한 결과(해결책)'가 이어져야 합니다.<br>
+- <strong>앞부분 흐름:</strong> First of all(시차 문제) → Secondly(오디오 싱크 문제)로 문제점 열거가 끝나는 지점이 바로 ②번 직전입니다.<br>
+- <strong>뒷부분 흐름:</strong> ②번 뒷문장의 "We decided to assemble..."은 주어진 문장의 "a better way"를 구체화한 해결책입니다. 따라서 Problem → Solution 전환점인 ②번이 정답입니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주어진 문장</div>
+        <div class="box given"><strong>So we put our heads together and devised a better way of playing music.</strong><br>(그래서 우리는 머리를 맞대고 음악을 연주할 더 나은 방법을 고안해 냈다.)</div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문</div>
+        <div class="box passage">
+            We tried to practice once a week through a video chat app, but we encountered several problems. First of all, we all lived in different time zones. This made it difficult to pick a convenient time for everyone to practice. ( ① ) Secondly, there were audio issues with the app, which caused us to be out of sync. ( ② ) We decided to assemble the songs as if we were working in a virtual music factory. ( ③ ) After we decided on a song, I would play it on my keyboard and send it to Singaporean Sam. ( ④ ) He would sing along with the keyboard and send the recording to American Sam. ( ⑤ ) Then American Sam would add his guitar part, and Samantha would finish the song with her drumming. When it came to choosing songs to play, we took turns.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">위치별 논리 단절 검증</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① <strong>앞:</strong> Problem 1 (시차 문제) / <strong>뒤:</strong> Secondly - Problem 2 (오디오 문제) [오답 - 문제점 연속 열거 중]</li>
+                <li class="correct">② <strong>앞:</strong> Problem 2 (오디오 싱크 안 맞음) / <strong>뒤:</strong> Solution (가상 공장 방식으로 조립 결정) [정답 - Problem → Solution 전환점]</li>
+                <li>③ <strong>앞:</strong> 가상 공장 방식 결정 / <strong>뒤:</strong> 곡 선택 후 키보드 연주 및 녹음 전송 [오답 - 해결책의 구체적 순서 진행 중]</li>
+                <li>④ <strong>앞:</strong> 키보드 연주본을 Sam에게 보냄 / <strong>뒤:</strong> Sam이 노래를 불러 American Sam에게 보냄 [오답 - 릴레이 녹음 순서 연결]</li>
+                <li>⑤ <strong>앞:</strong> American Sam에게 녹음본 전송 / <strong>뒤:</strong> 기타 추가 후 Samantha가 드럼으로 완성 [오답 - 최종 곡 완성 단계 연결]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 문제점 열거 (Problem)</strong><br>
+                시차 문제(First of all)와 오디오 싱크 문제(Secondly)로 실시간 연습이 어려움.
+            </div>
+            <div class="logic-step">
+                <strong>2. 해결책 모색 (Pivot - ②번 위치)</strong><br>
+                "So we put our heads together..."로 Problem에서 Solution으로 전환됨.
+            </div>
+            <div class="logic-step">
+                <strong>3. 해결책의 구체화 (Solution)</strong><br>
+                가상 음악 공장에서 일하는 것처럼 곡을 조립하는 방식이 제시되고, 키보드 → 보컬 → 기타 → 드럼 순의 릴레이 녹음으로 이어짐.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p>우리는 화상 채팅 앱을 통해 일주일에 한 번 연습하려고 노력했지만, 몇 가지 문제에 부딪혔습니다. 우선, 우리 모두는 서로 다른 시차에 살고 있었습니다. 이로 인해 모두가 연습하기 편리한 시간을 정하는 것이 어려웠습니다. 둘째로, 앱에 음향 문제가 있어서 우리가 싱크가 맞지 않게 되었습니다. <span class="hl">그래서 우리는 머리를 맞대고 음악을 연주할 더 나은 방법을 고안해 냈습니다.</span> 우리는 마치 가상의 음악 공장에서 일하는 것처럼 곡을 조립하기로 결정했습니다. 곡을 결정한 후, 내가 키보드로 연주하여 싱가포르인 Sam에게 보냈습니다. 그는 키보드 반주에 맞춰 노래를 부르고 그 녹음본을 미국인 Sam에게 보냈습니다. 그러고 나서 미국인 Sam이 자신의 기타 파트를 추가했고, Samantha가 드럼 연주로 곡을 완성했습니다. 연주할 곡을 정할 때는 번갈아 가며 선택했습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>put one's heads together</strong> 머리를 맞대다, 협력하다</div>
+            <div class="vocab-item"><strong>devise</strong> 고안하다, 창안하다</div>
+            <div class="vocab-item"><strong>assemble</strong> 조립하다, 모으다</div>
+            <div class="vocab-item"><strong>out of sync</strong> 싱크가 맞지 않는</div>
+            <div class="vocab-item"><strong>time zone</strong> 시간대, 시차 지역</div>
+            <div class="vocab-item"><strong>take turns</strong> 번갈아 하다</div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="q15">
+    <div class="header">
+        <h1>[15번] 글의 순서 배열 문제 해설</h1>
+        <div class="meta">[고교 내신/수능형 변형]</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ② (B) – (A) – (C)</span>
+        <div class="box">
+            <strong>핵심 근거 및 맥락 분석:</strong><br>
+            - <strong>[주어진 글] → (B):</strong> 온라인 교류의 필요성을 강조한 뒤, (B)에서 싱가포르인 Sam의 입원 사건(became ill and needed to spend some time in the hospital)이 처음 도입됩니다.<br>
+- <strong>(B) → (A):</strong> (B)의 'cheer Singaporean Sam up'의 방법으로 (A)에서 생일 선물 노래 녹음이 제시됩니다. (A)의 'he had to stay in the hospital'은 (B)의 입원 배경을 직접 받습니다.<br>
+- <strong>(A) → (C):</strong> (A)의 결말 'he laughed so hard'를 (C)의 첫 문장 'It was good to see him laugh'가 직접 받고, 이후 Sam의 회복(After Singaporean Sam recovered)으로 서사가 마무리됩니다.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주어진 글</div>
+        <div class="box given">Shortly after we started the band, a global pandemic began. Since all of our normal lives were put on hold, we valued our online interactions more than ever.<br>
+<i>(밴드를 시작한 직후 팬데믹이 시작됨. 일상이 멈추면서 온라인 교류를 그 어느 때보다 가치 있게 여김.)</i></div>
+    </div>
+    <div class="section">
+        <div class="section-title">전체 지문 및 순서</div>
+        <div class="box passage">
+            <strong>[주어진 글]</strong><br>
+Shortly after we started the band, a global pandemic began. Since all of our normal lives were put on hold, we valued our online interactions more than ever.<br><br>
+<strong>(B)</strong> At one point, Singaporean Sam became ill and needed to spend some time in the hospital, so the band took a break. However, we still met from time to time by using the video chat app. We talked about our lives and did what we could do to cheer Singaporean Sam up.<br><br>
+<strong>(A)</strong> Since he had to stay in the hospital on his birthday, the rest of us recorded his favorite song as his birthday present. When we played it for him, he laughed so hard that he cried. That was mainly because the song was sung by the worst singer in the band — me!<br><br>
+<strong>(C)</strong> It was good to see him laugh even though he was lying in his hospital bed. After Singaporean Sam recovered, we decided to write and record our own song. We called the song “Long-Distance Friendship,” and we posted it online. The song didn’t get much attention, but we were proud of what we had achieved together.
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">선택지 분석</div>
+        <div class="box">
+            <ul class="option-list">
+                <li>① (A) – (C) – (B) [오답 - (A)의 대명사 'he'가 가리키는 대상이 주어진 글에 없어 출발 불가]</li>
+                <li class="correct">② (B) – (A) – (C) [정답 - Sam 입원(B) → 생일 선물 노래와 웃음(A) → 웃음에 대한 소감 및 회복(C)의 매끄러운 서사]</li>
+                <li>③ (B) – (C) – (A) [오답 - (C)의 'see him laugh'가 (A)의 'he laughed'보다 먼저 나올 수 없음 (인과 단절)]</li>
+                <li>④ (C) – (A) – (B) [오답 - (C)의 'him' 대상 부재 및 시간 순서 역전]</li>
+                <li>⑤ (C) – (B) – (A) [오답 - (C)에서 이미 회복(recovered)된 후 (B)에서 다시 입원하는 순서 오류 발생]</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">상세 논리 구조</div>
+        <div class="box">
+            <div class="logic-step">
+                <strong>1. 사건 발생 및 상황 제시 (주어진 글 → B)</strong><br>
+                팬데믹으로 온라인 교류가 중요해진 상황에서, 싱가포르인 Sam의 입원과 그를 응원하려는 노력이 처음 도입됨.
+            </div>
+            <div class="logic-step">
+                <strong>2. 응원 방식의 구체화 (B → A)</strong><br>
+                생일에도 병원에 있어야 했던 Sam을 위해 생일 선물로 노래를 녹음해 주었고, 그는 눈물이 날 정도로 크게 웃음.
+            </div>
+            <div class="logic-step">
+                <strong>3. 반응의 결과 및 회복 후 상황 (A → C)</strong><br>
+                (A)의 웃음을 (C)의 'see him laugh'가 직접 받고, Sam의 회복 후 자작곡을 만들며 서사가 마무리됨.
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">전문 해석</div>
+        <div class="box translation">
+            <p><strong>[주어진 글]</strong> 우리가 밴드를 시작하고 얼마 지나지 않아 세계적인 팬데믹이 시작되었습니다. 우리의 모든 평범한 일상이 보류되었기 때문에, 우리는 온라인에서의 상호작용을 그 어느 때보다 소중히 여겼습니다.</p>
+            <p><strong>(B)</strong> 한때 싱가포르인 Sam이 병에 걸려 병원에서 얼마간 시간을 보내야 했고, 이에 따라 밴드는 휴식기를 가졌습니다. 하지만 우리는 화상 채팅 앱을 사용하여 여전히 때때로 만났습니다. 우리는 우리 삶에 대해 이야기했고 싱가포르인 Sam의 기운을 북돋아 주기 위해 할 수 있는 일을 했습니다.</p>
+            <p><strong>(A)</strong> 그가 생일에 병원에 머물러야 했기 때문에, 나머지 멤버들은 그의 생일 선물로 그가 가장 좋아하는 노래를 녹음했습니다. 우리가 그에게 노래를 들려주었을 때, 그는 눈물이 날 정도로 크게 웃었습니다. 그것은 주로 그 노래가 밴드에서 가장 노래를 못 부르는 가수인 나에 의해 불렸기 때문이었습니다!</p>
+            <p><strong>(C)</strong> 그가 병상에 누워 있음에도 불구하고 웃는 모습을 보는 것은 좋았습니다. 싱가포르인 Sam이 회복한 후, 우리는 우리만의 노래를 만들고 녹음하기로 결정했습니다. 우리는 그 노래를 "Long-Distance Friendship(장거리 우정)"이라고 불렀고, 온라인에 게시했습니다. 그 노래는 많은 관심을 받지는 못했지만, 우리는 함께 이뤄 낸 것에 자부심을 느꼈습니다.</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">주요 어휘</div>
+        <div class="vocab-grid">
+            <div class="vocab-item"><strong>put on hold</strong> 보류되다, 중단되다</div>
+            <div class="vocab-item"><strong>cheer up</strong> ~의 기운을 북돋우다</div>
+            <div class="vocab-item"><strong>from time to time</strong> 때때로, 가끔</div>
+            <div class="vocab-item"><strong>take a break</strong> 휴식기를 가지다</div>
+            <div class="vocab-item"><strong>recover</strong> 회복하다</div>
+            <div class="vocab-item"><strong>achieve</strong> 달성하다, 이루다</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 통합본 (2차 세트)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            color: #3b342a;
+            background-color: #f2eadb;
+            padding: 20px;
+        }
+        .container {
+            max-width: 860px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+        .header {
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .header h1 { font-size: 1.4rem; color: #2f2a22; }
+        .header .meta { font-size: 0.85rem; color: #8a7d66; margin-top: 5px; }
+        .section { margin-bottom: 25px; }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #7b5a2b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #b08a4f;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        /* Sentence structural breakdown boxes (색상 구분은 유지하되 미색 팔레트 내로 통일) */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox:last-child { margin-bottom: 0; }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: .02em;
+            background: #e7dcc0;
+            color: #6b5a34;
+        }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+        .sbox .en-text { font-weight: 600; color: #2f2a22; margin-bottom: 4px; }
+        .sbox .kr-text { font-size: 0.9rem; color: #7c6f57; }
+        .sbox .en-text .hl, .kr-text .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 3px;
+        }
+        /* Logic flow steps */
+        .box { background-color: #f6f0e0; border: 1px solid #e3d8c0; padding: 18px; border-radius: 8px; font-size: 0.95rem; }
+        .logic-step { margin-bottom: 12px; padding-left: 10px; border-left: 3px solid #b08a4f; }
+        .logic-step:last-child { margin-bottom: 0; }
+        .logic-step .step-title { font-weight: 700; color: #2f2a22; margin-bottom: 3px; }
+        .logic-step .step-desc { font-size: 0.9rem; color: #6b5f49; }
+        .step-num-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: #b08a4f;
+            color: #fffaf0;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        /* Option analysis table */
+        table.opt-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.88rem;
+            vertical-align: top;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        table.opt-table td:first-child, table.opt-table th:first-child { width: 6%; }
+        table.opt-table td:nth-child(3), table.opt-table th:nth-child(3) { width: 9%; white-space: nowrap; }
+        table.opt-table tr:last-child td { border-bottom: none; }
+        table.opt-table tr.is-correct td { background-color: #f3e9cf; }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+        .nav {
+            max-width: 860px;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .nav a {
+            text-decoration: none;
+            background: #fbf8f0;
+            color: #7b5a2b;
+            border: 1px solid #e3d8c0;
+            border-radius: 16px;
+            padding: 3px 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            table.opt-table { font-size: 0.8rem; }
+            table.opt-table th, table.opt-table td { padding: 6px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav"><a href="#q01">01</a><a href="#q02">02</a><a href="#q04">04</a><a href="#q05">05</a><a href="#q06">06</a><a href="#q07">07</a><a href="#q08">08</a><a href="#q09">09</a><a href="#q10">10</a><a href="#q11">11</a><a href="#q12">12</a><a href="#q13">13</a><a href="#q14">14</a><a href="#q15">15</a></div>
+<div class="container" id="q01">
+    <div class="header">
+        <h1>[01번] Main Idea Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 대의파악(주제) 문제 구조 및 정답 메커니즘 분석 (Question 01)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ③ a new approach to dealing with abandoned apartments</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 지문 문장별 논리 구조 분석 (Problem - Solution)</div>
+        <div class="sbox">
+            <span class="tagpill">1. 문제 상황 제시 (Background)</span>
+            <div class="en-text">For years, the neighborhood was known for its high crime rates. Many apartments in Wallisblok were abandoned and then taken over by people who lived in them illegally.</div>
+            <div class="kr-text">높은 범죄율, 방치된 아파트(abandoned apartments), 무단 점유 문제 발생.</div>
+        </div>
+        <div class="sbox neg">
+            <span class="tagpill">2. 기존 해결책의 한계 (Initial Solution Defect)</span>
+            <div class="en-text">At first, the local government thought that the best solution was simply to tear the building down and build a new one in its place. However, having a limited budget, the government was unable to do so...</div>
+            <div class="kr-text">철거 및 신축을 고려했으나 예산 부족(limited budget)으로 실행 불가능.</div>
+        </div>
+        <div class="sbox piv">
+            <span class="tagpill">3. 전환점 (Turn Around)</span>
+            <div class="en-text">...and had to come up with <span class="highlight">a new plan</span>.</div>
+            <div class="kr-text">새로운 계획(a new plan/approach)을 세워야 하는 상황 도달.</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">4. 핵심 주제: 새로운 해결책 (Core Solution)</span>
+            <div class="en-text">The plan was to <span class="highlight">sell the empty apartments for one euro each</span>. The only condition was that people who bought these apartments <span class="highlight">needed to renovate them</span>.</div>
+            <div class="kr-text">방치된 아파트를 1유로에 매각하고, 매수인이 직접 리노베이션하도록 하는 **새로운 대처 방식** 도입.</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 주제 도출 논리 매커니즘 (Problem → Solution)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>Problem (문제): 방치된 아파트들 (abandoned apartments)</div>
+            <div class="step-desc">Wallisblok 지역의 방치된 아파트와 불법 점유자 문제 발생</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>Constraint (제약): 예산 부족으로 인한 기존 방식(철거) 불가</div>
+            <div class="step-desc">철거 후 재건축은 예산 문제로 실패</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>New Solution (새로운 접근법): 1유로 판매 및 리노베이션 조건</div>
+            <div class="step-desc">방치된 아파트를 다루기 위한 **새로운 정책/접근 방식** 도입 → <b>③ a new approach to dealing with abandoned apartments</b></div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지 오답 트랩 및 정답 검증 (Distractor Analysis)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>선택지 내용 (English)</th><th>판단</th><th>오답 요인 및 트랩 분석</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>benefits of renovating old buildings in urban areas</td>
+                <td class="status-wrong">오답</td>
+                <td><b>지나친 확장/부분 언급:</b> '리노베이션의 이점(benefits)'에 대한 구체적 설명이나 장점 열거는 글에 존재하지 않음.</td>
+            </tr>
+            <tr class="">
+                <td>②</td>
+                <td>the local government’s efforts to reduce the crime rate</td>
+                <td class="status-wrong">오답</td>
+                <td><b>너무 광범위함(Overly Broad):</b> 범죄율 감소 노력 전체가 아니라, '방치된 아파트 처리 방식'이라는 핵심 대상이 빠져 있음.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>③</td>
+                <td>a new approach to dealing with abandoned apartments</td>
+                <td class="status-correct">정답</td>
+                <td><b>핵심 패러프레이징:</b> 지문의 'abandoned apartments' 처리 문제와 'a new plan (1유로 매각+리노베이션)'을 완벽하게 포괄함.</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>problems that arise from selling apartments at low prices</td>
+                <td class="status-wrong">오답</td>
+                <td><b>반대/부정적 트랩:</b> 저가 판매로 인해 발생하는 '문제점들(problems)'은 언급되지 않음.</td>
+            </tr>
+            <tr class="">
+                <td>⑤</td>
+                <td>the process of transforming Wallisblok into a residential area</td>
+                <td class="status-wrong">오답</td>
+                <td><b>매개변수 오류:</b> 주거 지역으로 변모하는 단계별 '과정(process)' 전체를 설명하는 글이 아님.</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q02">
+    <div class="header">
+        <h1>[02번] Irrelevant Sentence Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 무관한 문장 찾기 논리 단절 및 키워드 트랩 분석 (Question 02)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ① modern residential structure / families</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 문장별 흐름 및 주제 일탈 분석 (Coherence Analysis)</div>
+        <div class="sbox">
+            <span class="tagpill">주제 설정 (Topic & Setting)</span>
+            <div class="en-text">Rotterdam... is known for its modern architecture and busy port. By taking a ten-minute tram ride west from the city center, however, you can get to a <span class="highlight">more peaceful environment</span>.</div>
+            <div class="kr-text">로테르담 도심에서 트램을 타고 서쪽으로 가면 평화로운 주거 환경을 만날 수 있음.</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">①번 문장: 평화로운 환경 묘사</span>
+            <div class="en-text">① Instead of crowded streets, you will see neighbors chatting in front of a modern residential structure and families spending time in its garden.</div>
+            <div class="kr-text">혼잡한 거리 대신 주민들이 현대적 주거 구조물 앞과 정원에서 시간을 보내는 모습이 보임.</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">②번 문장: 주거 건물 명칭 지칭 (Wallisblok)</span>
+            <div class="en-text">② <span class="highlight">The structure</span> is a large apartment building called <span class="highlight">Wallisblok</span>.</div>
+            <div class="kr-text">그 구조물(The structure)은 Wallisblok이라 불리는 대형 아파트 건물임.</div>
+        </div>
+        <div class="sbox neg">
+            <span class="tagpill">③번 문장: [흐름 단절 / 정답] 무관한 소재 도입</span>
+            <div class="en-text">③ Rotterdam’s historic windmills continue to be a popular tourist attraction for visitors from around the world.</div>
+            <div class="kr-text">로테르담의 역사적인 풍차는 전 세계 관광객들에게 인기 있는 관광명소임. (<b>주택지 Wallisblok 변화 서사와 무관한 관광지 소재</b>)</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">④번 문장: Wallisblok 지역의 과거 문제점 (지시어 연결)</span>
+            <div class="en-text">④ Not that long ago, <span class="highlight">this area</span> was very different, and nobody thought it could become a place where families would want to live.</div>
+            <div class="kr-text">얼마 전까지만 해도 이 지역(this area = Wallisblok 주변)은 매우 달랐으며, 살고 싶은 장소가 될 거라 생각지 못함. (②번의 Wallisblok 서사 지속)</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">⑤번 문장: 현재의 반전 상황 강조</span>
+            <div class="en-text">⑤ Yet that is exactly what happened.</div>
+            <div class="kr-text">하지만 그것이 실제로 일어난 일임 (과거의 미흡했던 장소가 살기 좋은 곳으로 변화함).</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 흐름 추적 및 단절 판별 알고리즘 (Algorithm)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>전체 주제(Topic) 설정: '로테르담의 특정 주거 지역(Wallisblok)의 변화'</div>
+            <div class="step-desc">도심 외곽의 평화로운 주거지 구조물과 그 지역의 과거/현재 모습 변화가 글의 핵심 흐름.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>지시어(Demonstratives) 및 개념 연결성 검증</div>
+            <div class="step-desc">②번의 'The structure' → ①번의 'residential structure'를 지칭.<br/>④번의 'this area' → ②번의 'Wallisblok' 주거 지역을 지칭.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>오답 트랩 파악: 'Rotterdam'이라는 상위 소재를 이용한 낚시</div>
+            <div class="step-desc">③번 문장은 'Rotterdam'이라는 동일 지역명을 사용했으나, 주거 공간(Wallisblok)의 변화 흐름과 무관한 '풍차/관광 명소'를 언급하여 논리적 단절을 일으킴.</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지별 흐름 유효성 검증 (Option Matrix)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>연결 키워드 / 내용</th><th>논리적 유효성</th><th>판단 및 이유</th></tr></thead>
+            <tbody>
+            <tr class="is-correct">
+                <td>①</td>
+                <td>modern residential structure / families</td>
+                <td class="status-correct">적절함</td>
+                <td>도심 밖 평화로운 주거 환경의 구체적 묘사 진행.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>②</td>
+                <td>The structure → Wallisblok</td>
+                <td class="status-correct">적절함</td>
+                <td>①번의 residential structure를 지시어로 직접 연결.</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>Rotterdam’s historic windmills</td>
+                <td class="status-wrong">흐름 일탈 (정답)</td>
+                <td>주택지 Wallisblok의 환경 변화 서사에서 탈피하여 '관광지 풍차'를 언급함.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>this area (Wallisblok area)</td>
+                <td class="status-correct">적절함</td>
+                <td>③번을 제거할 경우 ②번의 Wallisblok 지역으로 매끄럽게 연결됨.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>that is exactly what happened</td>
+                <td class="status-correct">적절함</td>
+                <td>④번의 과거 상황과 대비되는 현재의 긍정적 변화 결론.</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q04">
+    <div class="header">
+        <h1>[04번] Main Gist Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 글의 요지 추론 및 패러프레이징 분석 (Question 04)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ⑤ De Ceuvel은 친환경 기술과 도시 재생의 성공적 사례로 주목받고 있다.</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 문장별 논리 구조 및 의미 응축 (Paragraph Breakdown)</div>
+        <div class="sbox">
+            <span class="tagpill">1. 도시 재생 방식 및 친환경 시도 (Practices)</span>
+            <div class="en-text">The architects created a small community... all by <span class="highlight">upcycling the boats</span>... In addition, <span class="highlight">special plants that purify polluted soil</span> were planted across the site.</div>
+            <div class="kr-text">배를 업사이클링하여 커뮤니티 공간을 조성하고, 오염된 토양을 정화하는 특별한 식물들을 심음 (친환경 도시 재생 시도).</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">2. 성공적 실행 및 사람들의 방문 (Successful Impact)</span>
+            <div class="en-text">Today, some people come to De Ceuvel to test new <span class="highlight">sustainable technologies</span>... Many others come to experience this <span class="highlight">successful revitalization project</span> in person.</div>
+            <div class="kr-text">지속 가능한 기술을 테스트하고, 이 **성공적인 재생 프로젝트(revitalization project)**를 직접 체험하기 위해 방문함.</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">3. 주제 요약 및 핵심 결론 (Core Conclusion)</span>
+            <div class="en-text"><span class="highlight">De Ceuvel is now known as one of the most active playgrounds for innovative green technology</span> in all of Amsterdam.</div>
+            <div class="kr-text">De Ceuvel은 이제 암스테르담 전체에서 가장 활성화된 **혁신적 친환경 기술의 장**으로 알려져 있음.</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 키워드 대응 및 요지 도출 매커니즘 (Key Mapping)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>지문 키워드 1: green technology / sustainable technologies / upcycling</div>
+            <div class="step-desc">선지 매핑 → <b>'친환경 기술'</b></div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>지문 키워드 2: successful revitalization project / De Ceuvel</div>
+            <div class="step-desc">선지 매핑 → <b>'도시 재생의 성공적 사례'</b></div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>최종 논리 합성 (Main Gist)</div>
+            <div class="step-desc"><b>De Ceuvel은 친환경 기술과 도시 재생의 성공적 사례로 주목받고 있다.</b> (⑤번 선택지 완성)</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지별 오답 트랩 및 정답 검증 (Distractor Analysis)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>선택지 내용</th><th>판단</th><th>오답 요인 및 분석</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>도시 내 유휴 공간 활용이 문화 교류를 촉진할 수 있다.</td>
+                <td class="status-wrong">오답</td>
+                <td><b>지나친 일반화:</b> '문화 교류'는 글의 핵심 지향점(친환경 기술/도시 재생)이 아님.</td>
+            </tr>
+            <tr class="">
+                <td>②</td>
+                <td>지속 가능한 개발을 위해 다양한 식물 종의 도입이 필요하다.</td>
+                <td class="status-wrong">오답</td>
+                <td><b>부분적 정보(세부 사항):</b> 토양 정화 식물(special plants)은 재생의 한 요소일 뿐 전체 글의 핵심 요지가 아님.</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>혁신적인 건축 설계는 지역 경제 활성화에 긍정적으로 기여한다.</td>
+                <td class="status-wrong">오답</td>
+                <td><b>초점 일탈:</b> '지역 경제 활성화'에 대한 구체적 언급이나 논증이 없음.</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>친환경 프로젝트는 미래 세대를 위한 새로운 토지를 남길 수 있다.</td>
+                <td class="status-wrong">오답</td>
+                <td><b>지문 지엽/왜곡:</b> 마지막 문장(more valuable piece of land)의 세부 내용을 왜곡하여 부차적 정보에 치중함.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>De Ceuvel은 친환경 기술과 도시 재생의 성공적 사례로 주목받고 있다.</td>
+                <td class="status-correct">정답</td>
+                <td><b>완벽한 요약:</b> 지문 전체의 주어(De Ceuvel)와 핵심 키워드(green technology + revitalization)를 모두 포괄함.</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q05">
+    <div class="header">
+        <h1>[05번] Blank Inference Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 빈칸 추론 및 병렬 구문 결합 단서 분석 (Question 05)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ② the optimal solution was to remove the building entirely</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 빈칸 문맥 및 구문 결합 분석 (Context Breakdown)</div>
+        <div class="sbox">
+            <span class="tagpill">배경 정보 (Background Context)</span>
+            <div class="en-text">For years, the neighborhood was known for its high crime rates. Many apartments in Wallisblok were abandoned and then taken over by people who lived in them illegally.</div>
+            <div class="kr-text">높은 범죄율과 빈 아파트, 무단 점유자로 인해 지역 황폐화가 진행된 상황.</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">빈칸 문장 (Target Sentence & Parallel Clue)</span>
+            <div class="en-text">At first, the local government thought that <span class="highlight"> [ ___________ ] </span> and <span class="highlight">build a new one in its place</span>.</div>
+            <div class="kr-text">처음에 지방 정부는 [ <span class="highlight">건물을 완전 철거하고</span> ] 그 자리에 <span class="highlight">새로운 건물을 짓는 것(build a new one)</span>이 최선이라고 생각함.</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">단서 및 결론 (Contrast & Result Clue)</span>
+            <div class="en-text">However, having a limited budget, the government was unable to do so... The plan was to sell the empty apartments for one euro each... needed to renovate them.</div>
+            <div class="kr-text">그러나 예산 제약으로 철거 후 재건축 방안을 실행할 수 없어, 1유로에 판매 후 개보수(renovate)하게 하는 대안 선택.</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 빈칸 도출 논리 매커니즘 (Grammatical & Semantic Clues)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>병렬 구조 접속사 'and' 단서 활용</div>
+            <div class="step-desc">빈칸 뒤의 <b>"and build a new one in its place(그 자리에 새것을 지음)"</b>와 자연스럽게 연결되는 선행 동작/방안이 들어가야 함.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>대명사 'its place'의 가리킴 추적</div>
+            <div class="step-desc">'its place'의 **it**은 기존의 낡은/방치된 건물을 뜻함. 기존 건물을 **'철거(remove/demolish)'**해야 그 자리에 새 건물을 지을 수 있음.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>대조 복선(However + renovate)과의 역관계 검증</div>
+            <div class="step-desc">뒤이어 나오는 대안이 '기존 건물의 개보수(renovate)'이므로, 초기 계획은 기존 건물을 <b>'완전히 없애는 것(remove the building entirely)'</b>이어야 완벽한 대조가 이뤄짐.</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지별 논리 적합성 검증 (Option Matrix)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>선택지 내용 (Meaning)</th><th>판단</th><th>오답 및 정답 이유</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>the main challenge was how to increase police patrols</td>
+                <td class="status-wrong">오답</td>
+                <td><b>문맥 일탈:</b> 경찰 순찰 증가는 뒤의 "and build a new one"과 병렬로 연결되지 않음.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>②</td>
+                <td>the optimal solution was to remove the building entirely</td>
+                <td class="status-correct">정답</td>
+                <td><b>완벽한 논리 결합:</b> 기존 건물을 완전히 철거하고(remove entirely), 그 자리에 새 건물을 짓는(build a new one) 계획.</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>their priority was to move all residents elsewhere quickly</td>
+                <td class="status-wrong">오답</td>
+                <td><b>단서 부족:</b> 모든 주민을 신속히 이주시키는 것이 핵심 구상으로 언급되지 않음.</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>the most urgent task was finding new owners for apartments</td>
+                <td class="status-wrong">오답</td>
+                <td><b>시기 오인:</b> 새 주인을 찾는 것(1유로 판매)은 예산 부족으로 초기 계획이 무산된 뒤 수립된 '대안'임.</td>
+            </tr>
+            <tr class="">
+                <td>⑤</td>
+                <td>they believed the area would improve without government help</td>
+                <td class="status-wrong">오답</td>
+                <td><b>정반대 해석:</b> 정부 도움 없이 개선될 것이라 본 것이 아니라 정부가 적극 개입하려고 했으나 예산 문제에 부딪힘.</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q06">
+    <div class="header">
+        <h1>[06번] Sentence Insertion Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 문장 삽입 및 인과관계 연결 체인 분석 (Question 06)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ② 폐업/공장이전 → [방치/오염] → 지역 개선 시도</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 문맥 연결 및 인과 체인 분석 (Causal Chain)</div>
+        <div class="sbox piv">
+            <span class="tagpill">②번 앞문장: 원인 제공 (Cause)</span>
+            <div class="en-text">Over time, the shipyards closed down, and the work once done at the factories was moved abroad.</div>
+            <div class="kr-text">시간이 지나면서 조선소들이 문을 닫았고, 공장에서 이뤄지던 작업들은 해외로 이전되었음.</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">삽입 문장 (Target Sentence - ②번 위치)</span>
+            <div class="en-text"><span class="highlight">As a result</span>, the area was left <span class="highlight">abandoned and polluted</span> for years.</div>
+            <div class="kr-text"><b>그 결과(As a result)</b>, 그 지역은 수년 동안 방치되고 오염된 상태로 남아있었음.</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">②번 뒷문장: 해결책 모색 (Subsequent Action)</span>
+            <div class="en-text">Wanting to do something to <span class="highlight">improve the area</span>, the city purchased an abandoned shipyard called De Ceuvel.</div>
+            <div class="kr-text"><b>그 지역을 개선하기(improve the area)</b>를 원했기 때문에, 시는 De Ceuvel이라 불리는 방치된 조선소를 매입함.</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 정답 위치 도출 메커니즘 (Logical Anchors)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>연결어 'As a result' (인과관계) 검증</div>
+            <div class="step-desc">삽입 문장은 결과(Result)를 나타내므로, 바로 앞에 <b>'조선소 폐업 및 공장 해외 이전'</b>이라는 명확한 원인이 위치해야 함.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>지시어 'the area' 및 어휘 수식 고리 연결</div>
+            <div class="step-desc">삽입 문장의 <b>'abandoned and polluted(방치되고 오염된)'</b> 상태가 형성되어야, 바로 뒤 문장의 <b>'improve the area(지역을 개선하기 위해)'</b>라는 행동 유발 단서와 자연스럽게 연결됨.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>완벽한 원인-결과-해결책 삼각 구도 완성</div>
+            <div class="step-desc">[원인] 조선소 폐업 → <b>[결과: ②번 위치] 지역 방치/오염</b> → [해결] 시에서 개선을 위해 조선소 매입.</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 위치별 적합성 검증 (Position Matrix)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>위치</th><th>앞뒤 문맥 흐름</th><th>판단</th><th>적합성 분석</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>지역 소개 ↔ 조선소 폐업 시작</td>
+                <td class="status-wrong">부적절</td>
+                <td>아직 조선소가 문을 닫기 전 상황이므로 '방치되고 오염된 결과'가 나올 수 없음.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>②</td>
+                <td>폐업/공장이전 → <b>[방치/오염]</b> → 지역 개선 시도</td>
+                <td class="status-correct">정답 (②)</td>
+                <td>조선소 폐업의 직관적 결과이자, 시에서 개선(improve)에 나서는 직전 계기가 됨.</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>조선소 매입 ↔ 활용 방법을 모름</td>
+                <td class="status-wrong">부적절</td>
+                <td>De Ceuvel 매입 완료 후 상황이므로 결과문 삽입 시 시점 및 논리가 꼬임.</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>활용 모름 ↔ 시민 공모전 개최</td>
+                <td class="status-wrong">부적절</td>
+                <td>How to use 문제 해결을 위해 시민들에게 도움을 청하는 흐름(So)으로 직접 연결됨.</td>
+            </tr>
+            <tr class="">
+                <td>⑤</td>
+                <td>공모전 요구 ↔ 첫 번째 목표 설명</td>
+                <td class="status-wrong">부적절</td>
+                <td>두 가지 목표 중 첫 번째(First)를 설명하는 구간으로 논리적 단절 없음.</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q07">
+    <div class="header">
+        <h1>[07번] Vocabulary Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 문맥상 적절하지 않은 어휘 판단 및 반의어 검증 (Question 07)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ① purify 정화하다</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 문맥적 오류 및 수정 (Contextual Error Breakdown)</div>
+        <div class="sbox neg">
+            <span class="tagpill">④번 오류 문장 (Incorrect Context)</span>
+            <div class="en-text">De Ceuvel is now known as one of the most <span class="highlight-err">④ inactive</span> playgrounds for innovative green technology in all of Amsterdam.</div>
+            <div class="kr-text">De Ceuvel은 이제 암스테르담 전체에서 혁신적인 친환경 기술을 위한 가장 **비활동적인(inactive)** 놀이터 중 하나로 알려져 있다. (문맥상 모순)</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">올바른 어휘 수정 (Correction)</span>
+            <div class="en-text">De Ceuvel is now known as one of the most <span class="highlight-fix">active</span> playgrounds for innovative green technology in all of Amsterdam.</div>
+            <div class="kr-text">De Ceuvel은 이제 암스테르담 전체에서 혁신적인 친환경 기술을 위한 가장 **활발한/활동적인(active)** 놀이터 중 하나로 알려져 있다.</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 어휘 적합성 판단 메커니즘 (Antonym Check)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>전반부 긍정적 논리 맥락 확인</div>
+            <div class="step-desc">지문 전반에서 배 업사이클링, 토양 정화 식물, 생물 필터 및 재활용 기술 테스트 등 <b>'성공적인 도시 재생(successful revitalization project)'</b> 사례를 설명함.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>앞문장 단서와의 호응 관계 검증</div>
+            <div class="step-desc">직전 문장에서 많은 사람들이 이 프로젝트를 직접 체험하러 방문한다는 내용을 통해 혁신적 기술 시도가 매우 <b>'활발하게(active)'</b> 이루어지고 있음을 유추할 수 있음.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>반의어 트랩(Antonym Trap) 적발</div>
+            <div class="step-desc">접두사 in-이 붙은 <b>inactive(활동하지 않는, 소극적인)</b>는 지문의 긍정적/활동적 어조와 완전히 상충되므로, 반의어인 <b>active</b>로 수정해야 함.</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지별 어휘 적합성 검증 (Option Matrix)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>어휘 및 의미</th><th>문맥적 유효성</th><th>단서 및 판단 이유</th></tr></thead>
+            <tbody>
+            <tr class="is-correct">
+                <td>① purify</td>
+                <td>정화하다</td>
+                <td class="status-correct">적절함</td>
+                <td>오염된 토양(polluted soil)을 처리하기 위한 식물의 긍정적 역할로 적절.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>② sustainable</td>
+                <td>지속 가능한</td>
+                <td class="status-correct">적절함</td>
+                <td>bio-filters, water reuse systems 등 친환경 기술을 수식하므로 적절.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>③ revitalization</td>
+                <td>재생, 부흥</td>
+                <td class="status-correct">적절함</td>
+                <td>버려진 조선소를 성공적인 공간으로 바꾼 프로젝트이므로 '재생' 표현 적절.</td>
+            </tr>
+            <tr class="">
+                <td>④ inactive</td>
+                <td>비활동적인, 소극적인</td>
+                <td class="status-wrong">부적절 (정답 ④)</td>
+                <td>많은 사람이 방문하고 새로운 기술을 테스트하는 공간이므로 <b>active</b>가 올바름.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤ valuable</td>
+                <td>가치 있는</td>
+                <td class="status-correct">적절함</td>
+                <td>친환경 프로젝트를 거쳐 오염이 개선된 토양이므로 더 '가치 있게' 된다는 설명 적절.</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q08">
+    <div class="header">
+        <h1>[08번] Paragraph Ordering Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 글의 순서 배열 및 지시어/연결어 추적 분석 (Question 08)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ② (B) — (A) — (C)</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 단락별 구조 및 맥락 연결 (Paragraph Breakdown)</div>
+        <div class="sbox">
+            <span class="tagpill">제시문 (Given Box)</span>
+            <div class="en-text">...the government’s plan soon attracted many <span class="highlight">applicants</span>. Apparently, it was not just the idea of one-euro apartments that <span class="highlight">people found attractive</span>.</div>
+            <div class="kr-text">정부의 계획은 곧 많은 지원자들(applicants)을 끌어모음. 사람들이 매력적이라고 느낀 것은 단지 1유로 아파트라는 아이디어 때문만은 아니었음.</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">(B) 첫 번째 연결 (First Step)</span>
+            <div class="en-text"><span class="highlight">They</span> were <span class="highlight">also</span> excited by the opportunity to use their creativity... In the end, <span class="highlight">42 new families</span> moved into Wallisblok.</div>
+            <div class="kr-text">그들(They = applicants)은 또한(also) 창의성을 발휘할 기회에 열광함. 결국 42가구가 Wallisblok으로 이주함.</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">(A) 두 번째 연결 (Second Step)</span>
+            <div class="en-text">The government’s bold plan was <span class="highlight">a success</span>. The residents transformed the old, worn-out building into <span class="highlight">42 unique apartments</span>...</div>
+            <div class="kr-text">정부의 과감한 계획은 성공적이었음. 입주민들은 낡은 건물을 커뮤니티 정원 등을 갖춘 42개의 독특한 아파트로 변모시킴.</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">(C) 세 번째 연결 (Final Step)</span>
+            <div class="en-text"><span class="highlight">The surrounding area</span> soon began to improve <span class="highlight">as well</span>. Today, Wallisblok is one of the most desirable places to live in Rotterdam.</div>
+            <div class="kr-text">주변 지역(The surrounding area) 역시(as well) 개선되기 시작함. 오늘날 Wallisblok은 로테르담에서 가장 살기 좋은 장소 중 하나가 됨.</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 순서 도출 핵심 논리 알고리즘 (Logical Anchors)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>제시문 → (B) 연결 단서: 대명사 'They' &amp; 부사 'also'</div>
+            <div class="step-desc">제시문 끝의 <b>applicants/people</b>을 받아서 (B)의 <b>They</b>로 지칭함. 사람들이 매력을 느낀 첫 번째 이유(1유로 아파트)에 이어 <b>'also(또한)'</b>를 통해 창의력 발휘 기회라는 추가 이유를 제시.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>(B) → (A) 연결 단서: 숫자 '42' 및 결과의 요약</div>
+            <div class="step-desc">(B)에서 <b>42 new families</b>가 이주한 결과를 만든 후, (A)에서 <b>"The government’s bold plan was a success"</b>로 총평하며, 42가구가 만든 <b>42 unique apartments</b>의 구체적 개보수 내용을 설명함.</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>(A) → (C) 연결 단서: 범위의 확장 (건물 → 주변 지역 'as well')</div>
+            <div class="step-desc">(A)에서 Wallisblok '건물 자체'의 성공적인 변화를 묘사한 뒤, (C)에서 <b>"The surrounding area... as well(주변 지역 역시)"</b>로 영향력이 확장되는 완벽한 논리적 전개 형성.</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지 검증 (Option Matrix)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>순서 배열</th><th>판단</th><th>검증 이유</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>(A) — (C) — (B)</td>
+                <td class="status-wrong">오답</td>
+                <td>제시문의 applicants에 대한 They/also 호응 없이 (A)로 시작하여 논리 단절.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>②</td>
+                <td>(B) — (A) — (C)</td>
+                <td class="status-correct">정답 (②)</td>
+                <td>They/also 연결 후, 42가구 입주 성공(A), 주변 지역 확장(C)으로 완벽한 연결.</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>(B) — (C) — (A)</td>
+                <td class="status-wrong">오답</td>
+                <td>(C)의 '주변 지역 역시'가 나온 후 (A)의 '건물 개보수'로 돌아가는 역행 발생.</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>(C) — (A) — (B)</td>
+                <td class="status-wrong">오답</td>
+                <td>건물 자체의 성공 전 주변 지역 확장(as well)이 먼저 나올 수 없음.</td>
+            </tr>
+            <tr class="">
+                <td>⑤</td>
+                <td>(C) — (B) — (A)</td>
+                <td class="status-wrong">오답</td>
+                <td>결론에 해당하는 (C)가 처음에 배치되어 논리 순서 위반.</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q09">
+    <div class="header">
+        <h1>[09번] Vocabulary Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 문맥상 적절하지 않은 어휘 판단 및 대조 구문 검증 (Question 09)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ① busy 바쁜, 붐비는</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 문맥적 오류 및 수정 (Contextual Error Breakdown)</div>
+        <div class="sbox neg">
+            <span class="tagpill">③번 오류 문장 (Incorrect Context)</span>
+            <div class="en-text">Instead of <span class="highlight-err">③ empty</span> streets, you will see neighbors chatting... and families spending time in its garden.</div>
+            <div class="kr-text">**텅 빈(empty)** 거리 대신에, 당신은 이웃들이 대화를 나누고 가족들이 정원에서 시간을 보내는 것을 보게 될 것이다. (뒤이어 묘사된 활기찬 일상과 역접 구문 'Instead of'의 논리적 모순)</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">올바른 어휘 수정 (Correction)</span>
+            <div class="en-text">Instead of <span class="highlight-fix">busy</span> (or crowded / noisy) streets, you will see neighbors chatting...</div>
+            <div class="kr-text">**붐비는/바쁜(busy)** 거리 대신에, 당신은 이웃들이 대화를 나누고 가족들이 정원에서 시간을 보내는 (평화로운) 모습을 보게 될 것이다.</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 어휘 적합성 판단 메커니즘 (Contrast & Context Check)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>전반부 대비 구조 확인 (Busy Port vs. Peaceful Environment)</div>
+            <div class="step-desc">로테르담 도심의 <b>'바쁜 항구(busy port)'</b>와 대비하여, 트램을 타고 서쪽으로 가면 나오는 <b>'평화로운 환경(peaceful environment)'</b>을 설명하는 맥락임[cite: 13].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>'Instead of A, B' 대조 구문 분석</div>
+            <div class="step-desc">A(대신에) B(를 보게 된다) 구조에서 B절은 '이웃들이 담소를 나누고 가족들이 정원에서 시간을 보내는 평화롭고 친밀한 풍경'임[cite: 13]. 따라서 대신할 대상 A는 복잡하고 <b>'붐비는 거리(busy/crowded streets)'</b>여야 함[cite: 13].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>논리적 모순 적발</div>
+            <div class="step-desc">만약 'empty streets(텅 빈 거리)'라면, 사람들로 활기차고 정겨운 풍경(B)과 상충되거나 도심의 복잡함과의 대조 흐름에 어긋남[cite: 13]. 따라서 <b>empty</b>를 <b>busy</b> 등으로 수정해야 함[cite: 13].</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지별 어휘 적합성 검증 (Option Matrix)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>어휘 및 의미</th><th>문맥적 유효성</th><th>단서 및 판단 이유</th></tr></thead>
+            <tbody>
+            <tr class="is-correct">
+                <td>① busy</td>
+                <td>바쁜, 붐비는</td>
+                <td class="status-correct">적절함</td>
+                <td>네덜란드 제2의 도시이자 주요 항구도시 로테르담의 항구(port)를 수식하므로 적절[cite: 13].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>② peaceful</td>
+                <td>평화로운</td>
+                <td class="status-correct">적절함</td>
+                <td>역접(however) 뒤에서 복잡한 도심과 대조되는 외곽의 주거 환경을 설명하므로 적절[cite: 13].</td>
+            </tr>
+            <tr class="">
+                <td>③ empty</td>
+                <td>텅 빈</td>
+                <td class="status-wrong">부적절 (정답 ③)</td>
+                <td>'Instead of' 뒤에서 도심의 '붐비는(busy)' 거리와 대비되어야 하므로 부적절[cite: 13].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④ large</td>
+                <td>규모가 큰</td>
+                <td class="status-correct">적절함</td>
+                <td>여러 가구와 정원, 커뮤니티 공간을 포함하는 건축물(Wallisblok)을 수식하므로 적절[cite: 13].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤ different</td>
+                <td>다른</td>
+                <td class="status-correct">적절함</td>
+                <td>과거에는 거주하기 꺼려지던 곳이었으나 현재는 살고 싶은 곳이 되었다는 변화(대조)를 나타내므로 적절[cite: 13].</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q10">
+    <div class="header">
+        <h1>[10번] Main Topic Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 지문 주제 파악 및 핵심 키워드 도출 (Question 10)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ⑤ creating a sustainable community on polluted land</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 지문 구조 분석 (Problem-Solution Framework)</div>
+        <div class="sbox pos">
+            <span class="tagpill">목표 설정 (Goal)</span>
+            <div class="en-text">The plan was to turn the site into a <span class="highlight">sustainable office park</span>.</div>
+            <div class="kr-text">그 계획은 해당 부지를 지속 가능한 오피스 파크로 만드는 것이었음[cite: 14].</div>
+        </div>
+        <div class="sbox neg">
+            <span class="tagpill">제약 요인 (Problem / Condition)</span>
+            <div class="en-text">...impossible to build foundations on the oily mud of the <span class="highlight">polluted land</span>...</div>
+            <div class="kr-text">오염된 토양(polluted land)의 기름진 진흙 위에 기초 공사를 하는 것이 불가능했음[cite: 14].</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">해결책 및 결과 (Solution & Result)</span>
+            <div class="en-text">...decided to use old, abandoned boats instead... created a <span class="highlight">small community</span>... all by upcycling the boats.</div>
+            <div class="kr-text">대신 버려진 배를 활용하기로 결정함[cite: 14]. 배를 업사이클링하여 다양한 시설을 갖춘 소규모 공동체(small community)를 조성함[cite: 14].</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 주제 도출 알고리즘 (Topic Extraction)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>핵심 소재(Topic) 및 조건 포착</div>
+            <div class="step-desc">지문의 배경인 <b>'오염된 땅(polluted land)'</b>이라는 제약 조건[cite: 14].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>주요 행위(Action) 포착</div>
+            <div class="step-desc">버려진 배들을 업사이클링하여 <b>'지속 가능한 공간/공동체(sustainable office park / community)'</b>를 만드는 과정[cite: 14].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>키워드 재진술(Paraphrasing) 결합</div>
+            <div class="step-desc"><b>polluted land</b> + <b>creating a sustainable community</b> → <b>⑤번 선택지</b>와 일치[cite: 14].</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지 검증 Matrix (Distractor Analysis)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>선택지 해석</th><th>판단</th><th>오답 요인 분석</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>the process of purifying soil with special plants</td>
+                <td class="status-wrong">오답</td>
+                <td>식물을 통한 토양 정화 프로세스는 언급되지 않음 (지문의 다른 단락 내용일 수 있으나 본문엔 없음)[cite: 14].</td>
+            </tr>
+            <tr class="">
+                <td>②</td>
+                <td>utilizing abandoned ships as cultural attractions</td>
+                <td class="status-wrong">오답</td>
+                <td>문화적 명소로만 한정하는 것은 오피스 파크 및 공동체 조성이라는 전체 범주에 비해 지엽적임[cite: 14].</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>difficulties in converting boats into living spaces</td>
+                <td class="status-wrong">오답</td>
+                <td>배를 주거 공간으로 전환할 때의 '어려움'에 대한 글이 아님[cite: 14].</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>factors to consider when designing an office park</td>
+                <td class="status-wrong">오답</td>
+                <td>오피스 파크 설계 시 고려 요소 전반을 다루는 일반론이 아님[cite: 14].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>creating a sustainable community on polluted land</td>
+                <td class="status-correct">정답 (⑤)</td>
+                <td><b>'오염된 땅 위에서 지속 가능한 공동체 조성하기'</b>로 지문의 핵심 주제를 완벽하게 포괄함[cite: 14].</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q11">
+    <div class="header">
+        <h1>[11번] Implied Meaning Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 함축 의미 추론 및 재진술(Paraphrasing) 검증 (Question 11)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ⑤ the chance for residents to shape and personalize their living space</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 밑줄 어구 및 뒷문장 단서 분석 (Context & Paraphrase)</div>
+        <div class="sbox">
+            <span class="tagpill">밑줄 친 어구 (Target Expression)</span>
+            <div class="en-text">They were also excited by <span class="highlight">the opportunity to use their creativity to improve the building</span>.</div>
+            <div class="kr-text">그들은 또한 **건물을 개선하기 위해 자신들의 창의성을 사용할 수 있는 기회**에 열광했다[cite: 15].</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">구체적 환언 단서 (Direct Evidence)</span>
+            <div class="en-text">The residents transformed the old, worn-out building into <span class="highlight">42 unique apartments</span> with a community garden and rooftop terrace.</div>
+            <div class="kr-text">입주민들은 낡은 건물을 커뮤니티 정원과 옥상 테라스를 갖춘 **42개의 독특한(개별적인) 아파트**로 탈바꿈시켰다[cite: 15].</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 함축 의미 추론 알고리즘 (Deciphering Algorithm)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>핵심 어휘의 은유적 의미 파악</div>
+            <div class="step-desc"><b>'use creativity to improve the building'</b>은 규격화된 수리를 넘어 주거 공간을 스스로 설계하고 자율적으로 꾸미는 행위를 의미함[cite: 15].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>뒷문장의 결과적 사실과 대조 및 매핑</div>
+            <div class="step-desc">결과적으로 주민들이 만들어낸 결과물은 일률적이지 않은 <b>'42 unique apartments(42개의 독특한/개성 있는 아파트)'</b>임[cite: 15].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>Paraphrasing Matching (동의어 재진술)</div>
+            <div class="step-desc"><b>opportunity → chance</b> / <b>use creativity to improve → shape and personalize</b> / <b>building → living space</b>의 대응 관계로 ⑤번이 완벽히 일치함[cite: 15].</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지 검증 Matrix (Option Matrix)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>선택지 해석</th><th>판단</th><th>오답 및 정답 단서</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>the obligation for residents to follow strict renovation guidelines</td>
+                <td class="status-wrong">오답</td>
+                <td>엄격한 개보수 지침 준수 의무는 '창의성 발휘(creativity)'와 정반대 개념[cite: 15].</td>
+            </tr>
+            <tr class="">
+                <td>②</td>
+                <td>a requirement that all apartments look identical after renovations</td>
+                <td class="status-wrong">오답</td>
+                <td>모든 아파트가 동일해 보여야 한다는 조건은 뒷문장의 '42 unique apartments'와 모순[cite: 15].</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>a rule preventing any changes from being made inside apartments</td>
+                <td class="status-wrong">오답</td>
+                <td>내부 변경을 금지하는 규칙은 건물을 개선하려 한 의도와 완전히 상충됨[cite: 15].</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>an expectation that only professionals would handle improvements</td>
+                <td class="status-wrong">오답</td>
+                <td>전문가만 개보수를 진행한다는 기대는 입주자(residents) 본인들의 창의성 발휘와 상충[cite: 15].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>the chance for residents to shape and personalize their living space</td>
+                <td class="status-correct">정답 (⑤)</td>
+                <td><b>'주민들이 자신의 주거 공간을 직접 가꾸고 개성화할 수 있는 기회'</b>로 밑줄의 의미를 완벽하게 재진술함[cite: 15].</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q12">
+    <div class="header">
+        <h1>[12번] Irrelevant Sentence Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 전체 흐름과 무관한 문장 적발 및 주제 이탈 검증 (Question 12)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ① 배들을 연결하기 위해 나무 길(wooden paths)을 설치함.</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 주제 설정 및 이탈 문장 분석 (Irrelevant Sentence)</div>
+        <div class="sbox">
+            <span class="tagpill">중심 주제 (Main Topic)</span>
+            <div class="en-text">The architects created a small community... all by <span class="highlight-topic">upcycling the boats</span>.</div>
+            <div class="kr-text">건축가들은 배들을 업사이클링하여 작은 공동체 공간(De Ceuvel)을 조성함[cite: 16].</div>
+        </div>
+        <div class="sbox neg">
+            <span class="tagpill">②번 무관한 문장 (Off-Topic Trap)</span>
+            <div class="en-text">② The recycled boats were first used in an <span class="highlight-err">international regatta</span> that attracted many tourists from other countries.</div>
+            <div class="kr-text">재활용된 배들은 많은 외국 관광객을 끌어모은 **국제 레가타(보트 경기 대회)**에서 처음 사용되었다[cite: 16]. (주제 탈선)</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 흐름 판단 및 겉보기 유사성 트랩 적발 (Logic Flow)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>전체 맥락 정의: 친환경 도시 재생 프로젝트 (De Ceuvel)</div>
+            <div class="step-desc">지문 전체는 버려진 배를 업사이클링하여 오염된 부지를 친환경 공동체 및 지속 가능한 기술 시험장으로 거듭나게 한 과정을 설명함[cite: 16].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>단어 재사용 트랩 적발 (recycled boats)</div>
+            <div class="step-desc">②번 문장은 앞서 언급된 <b>recycled boats</b>라는 소재 단어만 가져왔을 뿐, 내용상 뜬금없이 <b>'국제 보트 경기 대회(international regatta)'</b> 이야기를 끌어들여 글의 본질적 흐름(도시 재생)을 저해함[cite: 16].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>②번 제거 후 ①번 → ③번 논리적 연결 검증</div>
+            <div class="step-desc">②번을 제외하면 ①번(배를 연결하는 나무 길 구축)과 ③번(<b>In addition</b>, 오염된 토양 정화 식물 심기)이 <b>공간 조성 조경 과정</b>으로 완벽하게 직결됨[cite: 16].</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 문장별 흐름 적합성 검증 (Sentence Matrix)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>문장 내용</th><th>흐름 적합성</th><th>판단 이유</th></tr></thead>
+            <tbody>
+            <tr class="is-correct">
+                <td>①</td>
+                <td>배들을 연결하기 위해 나무 길(wooden paths)을 설치함.</td>
+                <td class="status-correct">적절함</td>
+                <td>업사이클링된 배들을 하나의 커뮤니티로 연결하는 인프라 구축 과정[cite: 16].</td>
+            </tr>
+            <tr class="">
+                <td>②</td>
+                <td>재활용된 배들이 국제 보트 대회(regatta)에 먼저 사용됨.</td>
+                <td class="status-wrong">무관함 (정답 ②)</td>
+                <td><b>보트 경기 대회 스포츠 이벤트</b> 이야기는 친환경 도시 재생 프로젝트 맥락과 전혀 관련 없음[cite: 16].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>③</td>
+                <td>게다가(In addition), 오염 토양 정화 식물들을 심음.</td>
+                <td class="status-correct">적절함</td>
+                <td>①번의 나무 길 설치에 이어 부지 환경 개선 조치를 추가 설명(In addition)[cite: 16].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>오늘날 생물 필터 등 지속 가능한 기술을 시험하러 방문함.</td>
+                <td class="status-correct">적절함</td>
+                <td>완성된 De Ceuvel 공간이 현재 친환경 기술 테스트 장으로 활용되는 현황[cite: 16].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>많은 이들이 이 성공적인 재생 프로젝트를 직접 보러 옴.</td>
+                <td class="status-correct">적절함</td>
+                <td>프로젝트의 최종적인 성공과 지역적 가치 결론[cite: 16].</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q13">
+    <div class="header">
+        <h1>[13번] Syntax & Grammar Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 어법 오류 적발 및 구문 분석 (Question 13)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ① was 병렬구조 수일치/태</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 어법 오류 문장 정밀 분석 (Core Error)</div>
+        <div class="sbox neg">
+            <span class="tagpill">⑤번 어법 오류 (Subject-Verb Agreement Trap)</span>
+            <div class="en-text">
+                In addition, <span class="highlight-subject">special plants</span> <span class="highlight-modifier">[that purify polluted soil]</span> <span class="highlight-verb">⑤was</span> planted across the site.
+            </div>
+            <div class="kr-text">
+                게다가, 오염된 토양을 정화하는 <b>특별한 식물들(복수 주어)</b>이 부지 전역에 <b>심어졌다(동사)</b>[cite: 17].
+            </div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">올바른 구문 수정 (Correction)</span>
+            <div class="en-text">
+                ... special plants [that purify polluted soil] <span style="color: var(--accent-green); font-weight: bold;">were</span> planted across the site.
+            </div>
+            <div class="kr-text">
+                주어인 <b>special plants</b>가 복수 명사이므로 동사 역시 복수 수동태인 <b>were planted</b>로 수정해야 함[cite: 17].
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 수일치 트랩 적발 메커니즘 (Agreement Trap)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>진짜 주어(Head Noun) 찾기</div>
+            <div class="step-desc">문장의 주어는 수식어구 앞에 위치한 복수 명사 <b>special plants</b>임[cite: 17].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>수식어구(관계대명사절) 차단 및 괄호 처리</div>
+            <div class="step-desc"><b>[that purify polluted soil]</b>은 주어를 수식하는 형용사절로 본동사의 수일치 판단 시 배제함[cite: 17]. 관계사절 내부의 단수 명사 <b>soil</b>에 낚이지 않도록 유의[cite: 17].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>주어-동사 원거리 수일치 연결</div>
+            <div class="step-desc">복수 주어 <b>special plants</b> → 복수 동사 <b>were planted</b> (was는 단수이므로 문법적 오류)[cite: 17].</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선지별 어법 적합성 검증 Matrix</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>출제 포인트</th><th>판단</th><th>구문 및 문법적 근거</th></tr></thead>
+            <tbody>
+            <tr class="is-correct">
+                <td>① was</td>
+                <td>병렬구조 수일치/태</td>
+                <td class="status-correct">적절함</td>
+                <td>주어 an architectural company에 걸리는 병렬 구조 (submitted ... and ① was awarded ...)로 단수 수동태 적절[cite: 17].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>② to turn</td>
+                <td>보어로 쓰인 부정사</td>
+                <td class="status-correct">적절함</td>
+                <td>주격 보어 자리에 위치한 to부정사의 명사적 용법 (The plan was ② to turn ...)으로 적절[cite: 17].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>③ to build</td>
+                <td>가주어-진주어 구문</td>
+                <td class="status-correct">적절함</td>
+                <td>가주어 it에 대응하는 진주어 역할의 to부정사 구문 (it was impossible ③ to build ...)으로 적절[cite: 17].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④ that</td>
+                <td>주격 관계대명사</td>
+                <td class="status-correct">적절함</td>
+                <td>선행사 a small community를 수식하며 뒤에 주어가 빠진 완전하지 않은 절을 이끄는 주격 관계대명사로 적절[cite: 17].</td>
+            </tr>
+            <tr class="">
+                <td>⑤ was</td>
+                <td>주어-동사 수일치</td>
+                <td class="status-wrong">오답 (정답 ⑤)</td>
+                <td>진짜 주어가 복수 명사 <b>special plants</b>이므로 단수 동사 <b>was</b>를 복수 동사 <b>were</b>로 수정해야 함[cite: 17].</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q14">
+    <div class="header">
+        <h1>[14번] Title Extraction Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 지문 제목 파악 및 핵심 논리 축 도출 (Question 14)</div>
+    </div>
+    <div class="section">
+        <span class="answer-tag">정답: ⑤ Transforming an Abandoned Shipyard into a Creative Hub</span>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 지문 구조 분석 (Context & Goal Framework)</div>
+        <div class="sbox">
+            <span class="tagpill">배경 설정 (Background)</span>
+            <div class="en-text">...the area was left <span class="highlight">abandoned and polluted</span> for years. ...purchased an <span class="highlight">abandoned shipyard</span> called De Ceuvel.</div>
+            <div class="kr-text">조선소 폐쇄 및 공장 이전으로 **버려지고 오염된 암스테르담 북부 부지(De Ceuvel)**가 방치됨[cite: 18].</div>
+        </div>
+        <div class="sbox neg">
+            <span class="tagpill">문제 및 해결 방식 (Problem & Approach)</span>
+            <div class="en-text">...city officials did not know what to do with it. So they turned to the public for help...</div>
+            <div class="kr-text">시 당국은 활용 방안을 몰라 대중에게 두 가지 주요 목표를 달성할 계획안을 공모함[cite: 18].</div>
+        </div>
+        <div class="sbox pos">
+            <span class="tagpill">핵심 목표 (Primary Goals)</span>
+            <div class="en-text">1. clean up the land and turn it into a <span class="highlight">sustainable development</span>.<br/>2. transform the site into a <span class="highlight">creative workspace</span>.</div>
+            <div class="kr-text">1. 땅을 정화하고 지속 가능한 개발로 전환[cite: 18].<br/>2. 해당 부지를 **창의적인 작업 공간(creative workspace)**으로 탈바꿈[cite: 18].</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 제목 도출 알고리즘 (Title Abstraction)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>출발점(A): 대상의 상태 식별</div>
+            <div class="step-desc">방치되고 오염된 폐조선소 → <b>an Abandoned Shipyard</b>[cite: 18].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>도착점(B): 변화의 방향성 식별</div>
+            <div class="step-desc">지속 가능한 개발 및 창의적 작업 공간으로의 변모 → <b>a Creative Hub</b>[cite: 18].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>동사적 연결(A → B Transformation)</div>
+            <div class="step-desc"><b>Transforming A into B</b> 구조 형성 → <b>⑤ Transform an Abandoned Shipyard into a Creative Hub</b> 완벽 매칭[cite: 18].</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지 검증 Matrix (Distractor Analysis)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>선택지 해석</th><th>판단</th><th>오답 요인 분석</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>Why Public Opinion Matters in Urban Development</td>
+                <td class="status-wrong">오답</td>
+                <td>시민 공모 방식이 언급되었으나 글 전체의 핵심인 '폐조선소 재개발'을 담지 못하고 일반화됨[cite: 18].</td>
+            </tr>
+            <tr class="">
+                <td>②</td>
+                <td>How to Clean Up Polluted Land for Housing Projects</td>
+                <td class="status-wrong">오답</td>
+                <td>주거 프로젝트(Housing Projects)가 아닌 창의적 작업 공간 조성 목적임[cite: 18].</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>Amsterdam's Factories: A History of Industrial Decline</td>
+                <td class="status-wrong">오답</td>
+                <td>산업 쇠퇴의 역사는 글 전반부의 단순 배경일 뿐 글 전체의 주제가 아님[cite: 18].</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>The Rise and Fall of De Ceuvel's Shipbuilding Industry</td>
+                <td class="status-wrong">오답</td>
+                <td>조선업의 흥망성쇠가 아니라 폐쇄 이후의 '재생/변모'에 초점이 맞춰짐[cite: 18].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>Transforming an Abandoned Shipyard into a Creative Hub</td>
+                <td class="status-correct">정답 (⑤)</td>
+                <td><b>'방치된 폐조선소를 창의적 거점으로 탈바꿈하기'</b>로 글의 전체 서사(A → B 변모)를 완벽히 포괄함[cite: 18].</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+<div class="container" id="q15">
+    <div class="header">
+        <h1>[15번] Summary Completion Analysis 문제 해설</h1>
+        <div class="meta">수능/모의고사 요약문 완성 및 어휘 패러프레이징 대응 분석 (Question 15)</div>
+    </div>
+    <div class="section">
+        <div class="section-title">1. 지문 단서와 요약문 빈칸 매핑 (Paraphrase Mapping)</div>
+        <div class="sbox">
+            <span class="tagpill">빈칸 (A) 단서 매핑 (Cause / Motivation)</span>
+            <div class="en-text">
+                Text: ...excited by the opportunity to use their <span class="highlight">creativity</span> to improve the building[cite: 19].<br/>
+                Summary: ...motivated by the chance for <span class="highlight">(A) creative</span> involvement...[cite: 19]
+            </div>
+            <div class="kr-text">주민들은 건물을 개선하기 위해 자신들의 **창의성(creativity)**을 발휘할 기회에 동기부여되었으므로 (A)에는 **creative**가 적절함[cite: 19].</div>
+        </div>
+        <div class="sbox">
+            <span class="tagpill">빈칸 (B) 단서 매핑 (Effect / Result)</span>
+            <div class="en-text">
+                Text: The surrounding area soon began to <span class="highlight">improve</span> as well. Today, Wallisblok is one of the most desirable places...[cite: 19]<br/>
+                Summary: ...resulting in a <span class="highlight">(B) revitalized</span> community[cite: 19].
+            </div>
+            <div class="kr-text">주변 지역까지 개선되어 활기를 되찾고 가장 살기 좋은 곳이 되었으므로 (B)에는 **재활성화된 / 활력을 찾은(revitalized)**이 적절함[cite: 19].</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">2. 요약문 도출 논리 구조 (Logic Flow)</div>
+        <div class="box">
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">1</span>Not only A but also B 구문 분석</div>
+            <div class="step-desc">Wallisblok 프로젝트의 성공 요인은 저렴한 주거 비용(1유로 아파트)뿐만 아니라 주민들의 자율적 참여 의지 때문임[cite: 19].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">2</span>(A) 명사 → 형용사 전환 포착</div>
+            <div class="step-desc">지문의 명사 <b>creativity</b>가 요약문의 명사 involvement를 수식하는 형용사 <b>creative</b>로 전환됨[cite: 19].</div>
+        </div>
+        <div class="logic-step">
+            <div class="step-title"><span class="step-num-badge">3</span>(B) 결과적 상태의 핵심 요약</div>
+            <div class="step-desc">주변 환경 개선 및 최적의 주거지 변화 결과를 한 단어로 유의어 재진술한 <b>revitalized</b> 선택[cite: 19].</div>
+        </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">3. 선택지 검증 Matrix (Distractor Analysis)</div>
+        <div class="box" style="padding:0;overflow-x:auto;"><table class="opt-table">
+            <thead><tr><th>선지</th><th>(A) 어휘 및 의미</th><th>(B) 어휘 및 의미</th><th>판단</th><th>오답 요인 분석</th></tr></thead>
+            <tbody>
+            <tr class="">
+                <td>①</td>
+                <td>collective (집단적인)</td>
+                <td class="status-wrong">crowded (혼잡한)</td>
+                <td>오답</td>
+            </tr>
+            <tr class="">
+                <td>②</td>
+                <td>temporary (일시적인)</td>
+                <td class="status-wrong">isolated (고립된)</td>
+                <td>오답</td>
+            </tr>
+            <tr class="">
+                <td>③</td>
+                <td>creative (창의적인)</td>
+                <td class="status-wrong">revitalized (재활성화된)</td>
+                <td>정답 (③)</td>
+            </tr>
+            <tr class="">
+                <td>④</td>
+                <td>financial (재정적인)</td>
+                <td class="status-wrong">neglected (방치된)</td>
+                <td>오답</td>
+            </tr>
+            <tr class="">
+                <td>⑤</td>
+                <td>practical (실용적인)</td>
+                <td class="status-wrong">expensive (비싼)</td>
+                <td>오답</td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+</div>
+
+</body>
+</html>
