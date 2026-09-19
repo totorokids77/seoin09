@@ -2504,3 +2504,4800 @@ Shortly after we started the band, a global pandemic began. Since all of our nor
 
 </body>
 </html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 01번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 박스 (지문 / 요약문) */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .box.given {
+            background-color: #f3e9cf;
+            border: 2px dashed #c9a96a;
+            font-weight: 500;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 */
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 단계별 논리 분석 */
+        .logic-step {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #b08a4f;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 단어장 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q01">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ④ unexpected ... random</span>
+
+    <!-- 문제 발문 -->
+    <h2>📌 원문 지문 및 요약문</h2>
+    <div class="box passage">
+        My name is Lee Saem. My first name has an impressive meaning in Korean: “a source of power and vitality.” Since Saem sounds like Sam, I decided to make that my English name. Growing up, I thought Lee was a common last name only in Korea. <span class="hl">Little did I know that it’s actually common in many other countries, too.</span> When I searched “Sam Lee” on a social media website, I was amazed at what I saw. There were so many people all over the world with that name! Just for fun, <span class="hl">I randomly chose several Sam Lees and sent them friend requests.</span>
+    </div>
+
+    <div class="box given">
+        After discovering the <strong>(A) <span class="hl">unexpected</span></strong> prevalence of his chosen name across cultures, the narrator reached out to <strong>(B) <span class="hl">random</span></strong> strangers sharing it.
+    </div>
+
+    <!-- 구문 및 논리 분석 -->
+    <h2>🔍 문장별 구문 & 논리 분석</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">핵심 반전 (A 근거)</span>
+        <div class="en-text">Little did I know that it’s actually common in many other countries, too.</div>
+        <div class="kr-text">한국에서만 흔한 성인 줄 알았으나, 실제로는 다른 많은 국가에서도 흔하다는 사실을 전혀 알지 못했음 (예상치 못한 발견 = <strong>unexpected</strong>).</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">행동 (B 근거)</span>
+        <div class="en-text">Just for fun, I randomly chose several Sam Lees and sent them friend requests.</div>
+        <div class="kr-text">단지 재미로, 무작위로 여러 Sam Lee를 골라 친구 요청을 보냄 (무작위의 낯선 사람들 = <strong>random</strong>).</div>
+    </div>
+
+    <!-- 논리 흐름 -->
+    <h2>💡 논리 전개 (Logic Flow)</h2>
+    <div class="logic-step">
+        <strong>1. 통념 (Assumption)</strong><br>
+        'Lee'라는 성이 한국에서만 흔할 것이라고 생각함.
+    </div>
+    <div class="logic-step">
+        <strong>2. 발견 (Discovery)</strong><br>
+        SNS 검색을 통해 전 세계적으로 흔한 이름이라는 **예상치 못한(unexpected)** 사실을 깨달음.
+    </div>
+    <div class="logic-step">
+        <strong>3. 실행 (Action)</strong><br>
+        동명이인인 **무작위(random)** 낯선 이들에게 친구 요청을 보냄.
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 상세 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>(A)</th>
+                <th>(B)</th>
+                <th>판단</th>
+                <th>분석 및 오답 이유</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>limited</td>
+                <td>specific</td>
+                <td class="status-wrong">오답</td>
+                <td>세계적으로 흔하다는 내용이므로 limited(제한된)는 부적절함.</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>regional</td>
+                <td>familiar</td>
+                <td class="status-wrong">오답</td>
+                <td>전 세계적이므로 regional(지역적인)은 문맥상 반대 의미임.</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>declining</td>
+                <td>selected</td>
+                <td class="status-wrong">오답</td>
+                <td>이름의 보편성이 감소(declining)하고 있다는 내용이 아님.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>unexpected</td>
+                <td>random</td>
+                <td class="status-correct">정답</td>
+                <td>'전혀 몰랐던 내용' = unexpected / 'randomly chose' = random 정확히 일치.</td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>cultural</td>
+                <td>international</td>
+                <td class="status-wrong">오답</td>
+                <td>(B)에서 무작위 선택이라는 행동 특성을 담지 못함.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>vitality</strong> 활력, 생명력</div>
+        <div class="vocab-item"><strong>prevalence</strong> 널리 퍼짐, 보편성</div>
+        <div class="vocab-item"><strong>unexpected</strong> 예상치 못한, 뜻밖의</div>
+        <div class="vocab-item"><strong>randomly</strong> 무작위로, 임의로</div>
+        <div class="vocab-item"><strong>reach out to</strong> ~에게 연락을 취하다</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 02번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 */
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 단계별 논리 분석 */
+        .logic-step {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #b08a4f;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 단어장 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q02">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ④ When a Shared Name Becomes a Musical Connection</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문</h2>
+    <div class="box passage">
+        Several Sam Lees of various ages and nationalities were interested in music[cite: 16]. There was a Sam Lee in his mid-30s from Singapore who enjoyed singing and writing lyrics[cite: 16]. And there was a 42-year-old Canadian Sam Lee who was a drummer[cite: 16]. According to her profile, everyone called her Sam even though her real name was Samantha[cite: 16]. Finally, there was an American Sam Lee who played the electric guitar[cite: 16]. Suddenly, I had a great idea[cite: 16]. I sent a message to all three[cite: 16]. Here is what I wrote: “Hi! I’m Sam Lee from Korea[cite: 16]. I write songs and play the keyboard[cite: 16]. <span class="hl">How about making a virtual band called The Sam Lees?</span>”[cite: 16] To my surprise, all three eagerly agreed[cite: 16]. <span class="hl">That was the start of our band’s journey.</span>[cite: 16]
+    </div>
+
+    <!-- 구문 및 논리 분석 -->
+    <h2>🔍 문장별 구문 & 논리 분석</h2>
+    
+    <div class="sbox pos">
+        <span class="tagpill">공통점 발견</span>
+        <div class="en-text">Several Sam Lees of various ages and nationalities were interested in music.</div>
+        <div class="kr-text">다양한 연령과 국적을 가진 몇몇 'Sam Lee'들이 음악에 관심이 있었음 (공통된 이름 + 음악적 관심사).</div>
+    </div>
+
+    <div class="sbox piv">
+        <span class="tagpill">핵심 제안 (제목 근거)</span>
+        <div class="en-text">“...How about making a virtual band called The Sam Lees?”</div>
+        <div class="kr-text">'The Sam Lees'라는 이름의 가상 밴드를 결성하자고 제안함 (동일한 이름을 매개로 한 음악적 연결).</div>
+    </div>
+
+    <!-- 논리 흐름 -->
+    <h2>💡 논리 전개 (Logic Flow)</h2>
+    <div class="logic-step">
+        <strong>1. 공통점 관찰 (Observation)</strong><br>
+        음악을 좋아하는 다양한 국가의 'Sam Lee'들을 발견함[cite: 16].
+    </div>
+    <div class="logic-step">
+        <strong>2. 아이디어 및 제안 (Idea & Proposal)</strong><br>
+        같은 이름을 공유하는 점에 착안해 가상 밴드 'The Sam Lees' 결성을 제안함[cite: 16].
+    </div>
+    <div class="logic-step">
+        <strong>3. 결과 (Outcome)</strong><br>
+        모두 동의하여 이름 공유를 바탕으로 한 밴드의 여정이 시작됨[cite: 16].
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 상세 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>제목 지문</th>
+                <th>판단</th>
+                <th>분석 및 오답 이유</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>Virtual Bands: The Future of Music Production</td>
+                <td class="status-wrong">오답</td>
+                <td>음악 제작의 미래나 가상 밴드의 일반적 전망을 다룬 글이 아니므로 너무 광범위함.</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>How Diverse Musicians Collaborate Across Borders</td>
+                <td class="status-wrong">오답</td>
+                <td>국경을 넘은 협업도 다루지만, 글의 핵심 요소인 '동일한 이름(Shared Name)'이라는 핵심 매개체가 누락됨.</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>The Power of Social Media in Building Communities</td>
+                <td class="status-wrong">오답</td>
+                <td>SNS의 영향력 전반을 설명하는 글이 아님.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>When a Shared Name Becomes a Musical Connection</td>
+                <td class="status-correct">정답</td>
+                <td>'공유된 이름(Shared Name)'이 어떻게 '음악적 연결(Musical Connection/밴드 결성)'로 이어졌는지 주제를 정확히 포괄함[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>Discovering Common Ground Through Online Profiles</td>
+                <td class="status-wrong">오답</td>
+                <td>온라인 프로필을 통한 공통점 발견에 그치지 않고, 밴드 결성이라는 음악적 결합으로 발전하는 내용이 핵심임[cite: 16].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>nationality</strong> 국적</div>
+        <div class="vocab-item"><strong>virtual band</strong> 가상 밴드</div>
+        <div class="vocab-item"><strong>eagerly</strong> 열렬히, 기꺼이</div>
+        <div class="vocab-item"><strong>shared name</strong> 공유된 이름, 같은 이름</div>
+        <div class="vocab-item"><strong>connection</strong> 유대, 연결</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 03번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 스타일 */
+        .err { color: #a8402f; text-decoration: line-through; font-weight: bold; }
+        .fix { color: #2f5d7c; font-weight: bold; }
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 단계별 논리 분석 */
+        .logic-step {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #b08a4f;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f8e3d8;
+        }
+        .status-correct { color: #a8402f; font-weight: bold; }
+        .status-wrong { color: #4f6530; font-weight: bold; }
+
+        /* 단어장 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q03">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ② healthy ➔ sick (또나 ill)</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문</h2>
+    <div class="box passage">
+        Shortly after we started the band, a global pandemic began[cite: 17]. Since all of our ①<u>normal</u> lives were put on hold, we valued our online interactions more than ever[cite: 17]. At one point, Singaporean Sam became <span class="err">②<u>healthy</u></span> <span class="fix">(➔ sick / ill)</span> and needed to spend some time in the hospital, so the band took a break[cite: 17]. However, we still met from time to time by using the video chat app[cite: 17]. We talked about our lives and did what we could do to ③<u>cheer</u> Singaporean Sam up[cite: 17]. Since he had to stay in the hospital on his birthday, the rest of us recorded his favorite song as his birthday present[cite: 17]. When we played it for him, he laughed so hard that he cried[cite: 17]. That was mainly because the song was sung by the ④<u>worst</u> singer in the band — me![cite: 17] It was good to see him laugh even though he was ⑤<u>lying</u> in his hospital bed[cite: 17].
+    </div>
+
+    <!-- 구문 및 논리 분석 -->
+    <h2>🔍 문장별 구문 & 논리 분석</h2>
+    
+    <div class="sbox neg">
+        <span class="tagpill">오류 지점 분석 (②)</span>
+        <div class="en-text">At one point, Singaporean Sam became <span class="err">healthy</span> and needed to spend some time in the hospital...</div>
+        <div class="kr-text">뒤이어 나오는 문맥인 <strong>'병원에서 시간을 보내야 했다(needed to spend time in the hospital)'</strong> 및 <strong>'활동을 중단했다(took a break)'</strong>와 직접 모순됨[cite: 17]. 따라서 건강해진 것(healthy)이 아니라 병에 걸린 것(sick 또는 ill)으로 수정해야 함[cite: 17].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">문맥적 호응 (③, ④, ⑤)</span>
+        <div class="en-text">...cheer Singaporean Sam up / worst singer / lying in his hospital bed</div>
+        <div class="kr-text">아픈 친구를 <strong>응원하기(cheer up)</strong> 위해, 밴드 내 <strong>최악의 가창력(worst singer)</strong>을 가진 내가 노래를 불러 웃음을 주고 병상에 <strong>누워있는(lying)</strong> 친구를 기쁘게 함[cite: 17].</div>
+    </div>
+
+    <!-- 논리 흐름 -->
+    <h2>💡 논리 전개 (Logic Flow)</h2>
+    <div class="logic-step">
+        <strong>1. 배경 상황 (Background)</strong><br>
+        팬데믹으로 인해 일상(normal)이 중단되고 온라인 소통이 중요해짐[cite: 17].
+    </div>
+    <div class="logic-step">
+        <strong>2. 위기 발생 (Problem)</strong><br>
+        싱가포르인 Sam이 **아프게(sick)** 되어 입원하고 밴드는 휴식기를 가짐[cite: 17].
+    </div>
+    <div class="logic-step">
+        <strong>3. 극복 및 유대 (Solution & Connection)</strong><br>
+        생일을 병원에서 맞이한 친구를 응원(cheer up)하기 위해 노래를 녹음해 선물했고, 병상에 누워(lying) 있는 친구에게 웃음을 선사함[cite: 17].
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 어휘 적절성 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>어휘</th>
+                <th>문맥상 의미</th>
+                <th>적절성</th>
+                <th>판단 근거</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>normal</td>
+                <td>평범한, 평소의</td>
+                <td class="status-wrong">적절</td>
+                <td>팬데믹으로 인해 보류된 '일상생활'을 의미하므로 적절함[cite: 17].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>②</td>
+                <td>healthy</td>
+                <td>건강한 ➔ 아픈 (sick)</td>
+                <td class="status-correct">부적절 (정답)</td>
+                <td>입원해야 했다는 후속 문장과의 논리적 모순 발생[cite: 17].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>cheer</td>
+                <td>기운을 북돋우다</td>
+                <td class="status-wrong">적절</td>
+                <td>입원한 친구에게 생일 선물을 주는 목적과 일치함[cite: 17].</td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>worst</td>
+                <td>최악의</td>
+                <td class="status-wrong">적절</td>
+                <td>친구를 폭소하게 만든 이유가 재미있고 형편없는 노래 실력 때문이었음을 나타냄[cite: 17].</td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>lying</td>
+                <td>누워 있는</td>
+                <td class="status-wrong">적절</td>
+                <td>병원 침대에 누워 있는 상황(hospital bed)을 올바르게 설명함[cite: 17].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>put on hold</strong> 보류되다, 연기되다</div>
+        <div class="vocab-item"><strong>interaction</strong> 상호작용, 소통</div>
+        <div class="vocab-item"><strong>cheer up</strong> ~에게 힘을 내게 하다</div>
+        <div class="vocab-item"><strong>worst</strong> 가장 나쁜, 최악의</div>
+        <div class="vocab-item"><strong>lie in bed</strong> 침대에 누워 있다</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 05번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 스타일 */
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 단계별 논리 분석 */
+        .logic-step {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #b08a4f;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 단어장 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q05">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ⑤ discovered a pattern that would inspire collaboration</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문 및 빈칸 완성</h2>
+    <div class="box passage">
+        While looking through their profiles, I <span class="hl">discovered a pattern that would inspire collaboration</span>[cite: 15]. <span class="hl">Several Sam Lees of various ages and nationalities were interested in music</span>[cite: 15]. There was a Sam Lee in his mid-30s from Singapore who enjoyed singing and writing lyrics[cite: 15]. And there was a 42-year-old Canadian Sam Lee who was a drummer[cite: 15]. According to her profile, everyone called her Sam even though her real name was Samantha[cite: 15]. Finally, there was an American Sam Lee who played the electric guitar[cite: 15]. Suddenly, I had a great idea[cite: 15]. I sent a message to all three[cite: 15]. Here is what I wrote: “Hi! I’m Sam Lee from Korea[cite: 15]. I write songs and play the keyboard[cite: 15]. How about making a virtual band called The Sam Lees?”[cite: 15] To my surprise, all three eagerly agreed[cite: 15]. That was the start of our band’s journey[cite: 15].
+    </div>
+
+    <!-- 구문 및 논리 분석 -->
+    <h2>🔍 문장별 구문 & 논리 분석</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">빈칸 추론 근거 (단서 1)</span>
+        <div class="en-text">Several Sam Lees of various ages and nationalities were interested in music.</div>
+        <div class="kr-text">프로필을 보며 발견한 <strong>패턴(공통점)</strong>: 다양한 국적과 연령의 'Sam Lee'들이 모두 음악에 관심이 있다는 사실[cite: 15].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">빈칸 추론 근거 (단서 2)</span>
+        <div class="en-text">Suddenly, I had a great idea... “How about making a virtual band called The Sam Lees?”</div>
+        <div class="kr-text">발견한 공통 패턴이 '가상 밴드 결성'이라는 <strong>협업(collaboration)의 영감(inspire)</strong>으로 이어짐[cite: 15].</div>
+    </div>
+
+    <!-- 논리 흐름 -->
+    <h2>💡 논리 전개 (Logic Flow)</h2>
+    <div class="logic-step">
+        <strong>1. 빈칸 문장 (Topic / General Statement)</strong><br>
+        프로필을 둘러보던 중 **협업에 영감을 준 패턴**을 발견함[cite: 15].
+    </div>
+    <div class="logic-step">
+        <strong>2. 구체적 구술 (Elaboration)</strong><br>
+        각양각색의 'Sam Lee'들이 보컬/작사, 드럼, 기타 등 각기 다른 영역의 음악적 관심사를 가졌다는 공통 패턴을 나열함[cite: 15].
+    </div>
+    <div class="logic-step">
+        <strong>3. 실행 및 결과 (Outcome)</strong><br>
+        이 공통 패턴에서 영감을 얻어 가상 밴드 협업을 제안하고 밴드 여정을 시작함[cite: 15].
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 상세 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>내용</th>
+                <th>판단</th>
+                <th>분석 및 오답 이유</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>found it difficult to distinguish one from another</td>
+                <td class="status-wrong">오답</td>
+                <td>서로 구별하기 어려웠다는 내용이 아니며, 뒤이어 각 인물의 특징(싱가포르 보컬, 캐나다 드럼, 미국 기타)이 명확히 구분되어 나옴[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>was impressed by their professional achievements</td>
+                <td class="status-wrong">오답</td>
+                <td>전문적인 업적에 감명받았다는 언급은 없음[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>noticed their preference for traditional instruments</td>
+                <td class="status-wrong">오답</td>
+                <td>보컬, 드럼, 일렉 기타, 키보드 등 전통 악기가 아닌 일반 악기들임[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>realized how diverse their musical backgrounds were</td>
+                <td class="status-wrong">오답</td>
+                <td>음악적 배경의 다양성 자체가 핵심이 아니라, '음악을 좋아한다는 공통된 패턴'을 통해 밴드라는 협업으로 발전한 점이 핵심임[cite: 15].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>discovered a pattern that would inspire collaboration</td>
+                <td class="status-correct">정답</td>
+                <td>'음악을 좋아하는 Sam Lee들'이라는 <strong>패턴(pattern)</strong>을 발견하고, 이것이 밴드 제안이라는 <strong>협업(collaboration)</strong>으로 발전한 전체 맥락을 정확히 간파한 답지[cite: 15].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>look through</strong> ~을 훑어보다</div>
+        <div class="vocab-item"><strong>inspire</strong> 영감을 주다, 고취시키다</div>
+        <div class="vocab-item"><strong>collaboration</strong> 협업, 공동 작업</div>
+        <div class="vocab-item"><strong>distinguish</strong> 구별하다, 판별하다</div>
+        <div class="vocab-item"><strong>virtual band</strong> 가상 밴드</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 06번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 및 제시문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .box.given {
+            background-color: #f3e9cf;
+            border: 2px dashed #c9a96a;
+            font-weight: 500;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 스타일 */
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 단계별 논리 분석 */
+        .logic-step {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #b08a4f;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 단어장 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q06">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ④</span>
+
+    <!-- 주어진 문장 -->
+    <h2>📌 주어진 문장 (제시문)</h2>
+    <div class="box given">
+        We decided to assemble the songs as if we were working in a virtual music factory.
+    </div>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문 및 삽입 위치</h2>
+    <div class="box passage">
+        We tried to practice once a week through a video chat app, but we encountered several problems[cite: 16]. First of all, we all lived in different time zones[cite: 16]. ( ① ) This made it difficult to pick a convenient time for everyone to practice[cite: 16]. ( ② ) Secondly, there were audio issues with the app, which caused us to be out of sync[cite: 16]. ( ③ ) So we put our heads together and devised a better way of playing music[cite: 16]. ( <span class="hl">④</span> ) After we decided on a song, I would play it on my keyboard and send it to Singaporean Sam[cite: 16]. ( ⑤ ) He would sing along with the keyboard and send the recording to American Sam[cite: 16].
+    </div>
+
+    <!-- 구문 및 논리 분석 -->
+    <h2>🔍 문장별 구문 & 논리 분석</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">전환점 (④ 앞 문장)</span>
+        <div class="en-text">So we put our heads together and devised a better way of playing music.</div>
+        <div class="kr-text">문제점들(시차, 동기화 오류)을 해결하기 위해 머리를 맞대고 <strong>더 나은 음악 연주 방식을 고안함</strong>[cite: 16].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">삽입 문장 (④ 위치)</span>
+        <div class="en-text">We decided to assemble the songs as if we were working in a virtual music factory.</div>
+        <div class="kr-text">새로 고안한 연주 방식의 핵심 개념 설명: <strong>'가상 음악 공장에서 일하듯 곡을 조립하기로 결정함'</strong>[cite: 16].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">구체적 예시 (④ 뒤 문장)</span>
+        <div class="en-text">After we decided on a song, I would play it on my keyboard and send it to Singaporean Sam.</div>
+        <div class="kr-text">'음악 공장 방식(조립)'의 <strong>구체적인 순차적 작업 과정</strong>(키보드 녹음 ➔ 싱가포르 Sam 전달 ➔ 보컬 추가 등)이 시작됨[cite: 16].</div>
+    </div>
+
+    <!-- 논리 흐름 -->
+    <h2>💡 논리 전개 (Logic Flow)</h2>
+    <div class="logic-step">
+        <strong>1. 문제 제기 (Problem)</strong><br>
+        서로 다른 시차(different time zones)와 앱의 음성 동기화 문제(out of sync)로 합주에 어려움을 겪음[cite: 16].
+    </div>
+    <div class="logic-step">
+        <strong>2. 해결책 모색 (General Solution)</strong><br>
+        더 나은 방식을 고안하기로 함 (devised a better way)[cite: 16].
+    </div>
+    <div class="logic-step">
+        <strong>3. 개념 정의 (삽입 위치 ④)</strong><br>
+        새로운 방식이란 <strong>'가상 음악 공장처럼 곡을 조립(assemble)하는 방식'</strong>임[cite: 16].
+    </div>
+    <div class="logic-step">
+        <strong>4. 구체적 공정 (Specific Illustration)</strong><br>
+        곡이 결정되면 키보드 ➔ 보컬 ➔ 기타 ➔ 드럼 순으로 조립해 나가는 과정을 상세히 묘사함[cite: 16].
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 위치별 논리적 단절 및 연결 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>위치</th>
+                <th>앞 문장 내용</th>
+                <th>뒤 문장 내용</th>
+                <th>판단</th>
+                <th>연결 적절성 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>시차가 다름[cite: 16]</td>
+                <td>This(이것)가 시차를 가리킴[cite: 16]</td>
+                <td class="status-wrong">불가</td>
+                <td><code>This</code> 지시대명사가 앞 문장을 자연스럽게 받고 있어 끊을 수 없음[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>연습 시간 잡기 어려움[cite: 16]</td>
+                <td>두 번째 문제점(audio issues)[cite: 16]</td>
+                <td class="status-wrong">불가</td>
+                <td><code>First of all</code>에 이어 <code>Secondly</code>로 두 번째 문제가 매끄럽게 연결됨[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>앱 오디오 문제로 박자가 안 맞음[cite: 16]</td>
+                <td>So(그래서) 더 나은 방법을 고안함[cite: 16]</td>
+                <td class="status-wrong">불가</td>
+                <td>문제 원인 뒤에 접속사 <code>So</code>를 통한 인과관계가 완벽히 이어짐[cite: 16].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>더 나은 방식을 고안함[cite: 16]</td>
+                <td>곡이 정해진 후의 구체적 공정[cite: 16]</td>
+                <td class="status-correct">정답</td>
+                <td>'새로운 방식을 고안함'과 '구체적 작업 단계' 사이에 개념적 연결고리인 **'가상 공장 방식(assemble)'**이 들어가야 논리 흐름이 완성됨[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>키보드 녹음 후 전달[cite: 16]</td>
+                <td>보컬 추가 후 전달[cite: 16]</td>
+                <td class="status-wrong">불가</td>
+                <td>조립 공정의 연속적인 단계(I would play... ➔ He would sing...) 사이이므로 삽입 시 흐름이 끊김[cite: 16].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>assemble</strong> 조립하다, 모으다</div>
+        <div class="vocab-item"><strong>virtual factory</strong> 가상 공장</div>
+        <div class="vocab-item"><strong>encounter</strong> (문제·난관에) 부딪히다</div>
+        <div class="vocab-item"><strong>time zone</strong> 시차, 시간대</div>
+        <div class="vocab-item"><strong>out of sync</strong> 동기화되지 않은, 박자가 안 맞는</div>
+        <div class="vocab-item"><strong>devise</strong> 고안하다, 창안하다</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 07번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 스타일 */
+        .err { color: #a8402f; text-decoration: line-through; font-weight: bold; }
+        .fix { color: #2f5d7c; font-weight: bold; }
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f8e3d8;
+        }
+        .status-correct { color: #a8402f; font-weight: bold; }
+        .status-wrong { color: #4f6530; font-weight: bold; }
+
+        /* 단어장 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q07">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ④ had amazed ➔ was amazed</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문</h2>
+    <div class="box passage">
+        My name is Lee Saem[cite: 15]. My first name has an impressive meaning in Korean: “a source of power and vitality.”[cite: 15] Since Saem sounds like Sam, I decided ①<u>to make</u> that my English name[cite: 15]. ②<u>Growing up</u>, I thought Lee was a common last name only in Korea[cite: 15]. Little did I know ③<u>that</u> it’s actually common in many other countries, too[cite: 15]. When I searched “Sam Lee” on a social media website, I <span class="err">④<u>had amazed</u></span> <span class="fix">(➔ was amazed)</span> at what I saw[cite: 15]. There were so many people all over the world with that name![cite: 15] Just for fun, I randomly chose several Sam Lees and sent ⑤<u>them</u> friend requests[cite: 15].
+    </div>
+
+    <!-- 구문 및 논리 분석 -->
+    <h2>🔍 문장별 어법 핵심 분석</h2>
+    
+    <div class="sbox neg">
+        <span class="tagpill">오류 지점 분석 (④)</span>
+        <div class="en-text">...when I searched "Sam Lee" on a social media website, I <span class="err">had amazed</span> at what I saw.</div>
+        <div class="kr-text">주어 <code>I</code>가 감정을 느끼는 <strong>피동/수동</strong>의 주체이므로, 감정 유발 동사 <code>amaze</code>를 수동태 능동 표현인 <strong>was amazed</strong> (또는 감정 수동 표현)로 써야 합니다[cite: 15]. 능동태인 <code>had amazed</code>는 뒤에 목적어가 있어야 하므로 어법상 틀립니다[cite: 15].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">주요 구문 분석 (①, ②, ③, ⑤)</span>
+        <div class="en-text">① decided <u>to make</u> / ② <u>Growing up</u> / ③ Little did I know <u>that</u>... / ⑤ sent <u>them</u> friend requests</div>
+        <div class="kr-text">
+            • ① <strong>목적어로 부정사를 취하는 동사</strong>: <code>decide</code>는 to부정사를 목적어로 취함[cite: 15].<br>
+            • ② <strong>분사구문</strong>: 주절의 주어 <code>I</code>가 자란(grow up) 주체이므로 능동 의미의 현재분사 <code>Growing</code>이 올바름[cite: 15].<br>
+            • ③ <strong>도치 구문 및 접속사 that</strong>: 부정어 <code>Little</code>이 문두로 나가 동사-주어가 도치(<code>did I know</code>)되었으며, <code>know</code>의 목적어 절을 이끄는 접속사 <code>that</code>이 올바르게 쓰임[cite: 15].<br>
+            • ⑤ <strong>4형식 간접목적어 대명사</strong>: 앞서 언급된 복수 명사 <code>several Sam Lees</code>를 가리키는 복수 대명사 <code>them</code>이 올바르게 쓰임[cite: 15].
+        </div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 어법 적절성 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>밑줄 요소</th>
+                <th>어법 포인트</th>
+                <th>판단</th>
+                <th>상세 해설</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>to make</td>
+                <td>to부정사 목적어</td>
+                <td class="status-wrong">적절</td>
+                <td>동사 <code>decide</code>는 to부정사를 목적어로 사용함[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>Growing up</td>
+                <td>현재분사구문</td>
+                <td class="status-wrong">적절</td>
+                <td>주절의 주어 <code>I</code>가 성장하는 주체이므로 능동의 분사구문 <code>Growing up</code>이 적절함[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>that</td>
+                <td>명사절 접속사</td>
+                <td class="status-wrong">적절</td>
+                <td>동사 <code>know</code>의 목적어 역할을 하는 완전한 절을 이끄는 접속사 <code>that</code>으로 적절함[cite: 15].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>had amazed</td>
+                <td>태 (능동 vs 수동)</td>
+                <td class="status-correct">틀림 (정답)</td>
+                <td>주어 <code>I</code>가 놀라움을 느낀 것이므로 수동 형태인 <strong>was amazed</strong>로 수정해야 함[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>them</td>
+                <td>대명사 수 일치</td>
+                <td class="status-wrong">적절</td>
+                <td>앞의 복수 명사 <code>several Sam Lees</code>를 가리키므로 복수 대명사 <code>them</code>이 올바름[cite: 15].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>vitality</strong> 활력, 생기</div>
+        <div class="vocab-item"><strong>grow up</strong> 자라다, 성장하다</div>
+        <div class="vocab-item"><strong>be amazed at</strong> ~에 놀라다</div>
+        <div class="vocab-item"><strong>randomly</strong> 무작위로, 임의로</div>
+        <div class="vocab-item"><strong>friend request</strong> 친구 요청</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 08번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 및 요약문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .box.summary-box {
+            background-color: #f3e9cf;
+            border: 2px dashed #c9a96a;
+            font-weight: 500;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 스타일 */
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 단계별 논리 분석 */
+        .logic-step {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #b08a4f;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 어휘 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q08">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ④ (A) hospitalization — (B) support</span>
+
+    <!-- 요약문 -->
+    <h2>📌 요약문</h2>
+    <div class="box summary-box">
+        When a band member faced <span class="hl">(A) hospitalization</span>, the others maintained their connection and offered <span class="hl">(B) support</span> through virtual meetings and a special birthday gift[cite: 16].
+        <br><br>
+        <em>(해석: 밴드 멤버가 **입원(A)**을 겪었을 때, 다른 멤버들은 화상 모임과 특별한 생일 선물을 통해 관계를 유지하며 **지지/원조(B)**를 제공했다.)</em>
+    </div>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문</h2>
+    <div class="box passage">
+        Shortly after we started the band, a global pandemic began[cite: 16]. Since all of our normal lives were put on hold, we valued our online interactions more than ever[cite: 16]. At one point, Singaporean Sam became ill and needed to spend some time in the hospital, so the band took a break[cite: 16]. However, we still met from time to time by using the video chat app[cite: 16]. We talked about our lives and did what we could do to cheer Singaporean Sam up[cite: 16]. Since he had to stay in the hospital on his birthday, the rest of us recorded his favorite song as his birthday present[cite: 16]. When we played it for him, he laughed so hard that he cried[cite: 16]. That was mainly because the song was sung by the worst singer in the band — me![cite: 16] It was good to see him laugh even though he was lying in his hospital bed[cite: 16].
+    </div>
+
+    <!-- 구문 및 논리 분석 -->
+    <h2>🔍 본문 핵심 논리 매칭</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">(A) 빈칸 매칭 근거</span>
+        <div class="en-text">...Singaporean Sam became ill and needed to spend some time in the **hospital**... / lying in his **hospital bed**.</div>
+        <div class="kr-text">멤버인 Sam이 아파서 병원에 입원하게 된 상황이므로, 빈칸 (A에는 '입원'을 뜻하는 <strong>hospitalization</strong>이 가장 적절함[cite: 16].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">(B) 빈칸 매칭 근거</span>
+        <div class="en-text">...did what we could do to **cheer** Singaporean Sam **up**... / recorded his favorite song as his birthday present.</div>
+        <div class="kr-text">화상 앱으로 소통하고 생일 노래를 녹음해 선물하며 기운을 북돋아 준 행위는 친구에 대한 <strong>지지 및 지원(support)</strong>에 해당함[cite: 16].</div>
+    </div>
+
+    <!-- 논리 흐름 -->
+    <h2>💡 글의 전체 흐름 요약</h2>
+    <div class="logic-step">
+        <strong>1. 상황 설정 (Context)</strong><br>
+        팬데믹 속에서 온라인으로 밴드를 결성함[cite: 16].
+    </div>
+    <div class="logic-step">
+        <strong>2. 위기 및 사건 (Crisis - A)</strong><br>
+        멤버의 질병으로 인한 **입원(hospitalization)** 발생[cite: 16].
+    </div>
+    <div class="logic-step">
+        <strong>3. 극복 및 행동 (Resolution - B)</strong><br>
+        화상 통화와 생일 선물(노래 녹음)을 통한 지속적인 **지지(support)**로 위기를 이겨내고 유대를 다짐[cite: 16].
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>(A) 빈칸 후보</th>
+                <th>(B) 빈칸 후보</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>difficulties (어려움)</td>
+                <td>guidance (지도)</td>
+                <td class="status-wrong">오답</td>
+                <td>(A)는 문맥상 구체적인 사건인 입원을 뜻하기에 다소 광범위하며, '지도'는 친구 간의 상호작용에 맞지 않음[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>recovery (회복)</td>
+                <td>celebration (축하)</td>
+                <td class="status-wrong">오답</td>
+                <td>입원하기 전 벌어진 위기 상황(아픔)이 (A)에 와야 하므로 '회복'은 시점상 맞지 않음[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>depression (우울증)</td>
+                <td>treatment (치료)</td>
+                <td class="status-wrong">오답</td>
+                <td>멤버들이 직접 치료를 제공한 것이 아니라 정서적 지원을 한 것이므로 (B)가 적절하지 않음[cite: 16].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>hospitalization (입원)</td>
+                <td>support (지지, 지원)</td>
+                <td class="status-correct">정답</td>
+                <td>Sam의 병원 체류 상황인 <strong>hospitalization</strong>과 친구들을 위로하고 응원한 <strong>support</strong>가 완벽하게 일치함[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>loneliness (외로움)</td>
+                <td>disconnection (단절)</td>
+                <td class="status-wrong">오답</td>
+                <td>관계를 유지하고 응원했다는 내용이므로 '단절(disconnection)'은 본문 내용과 정반대임[cite: 16].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>hospitalization</strong> 입원</div>
+        <div class="vocab-item"><strong>support</strong> 지지, 지원, 원조</div>
+        <div class="vocab-item"><strong>maintain</strong> 유지하다</div>
+        <div class="vocab-item"><strong>virtual meeting</strong> 화상 회의, 가상 모임</div>
+        <div class="vocab-item"><strong>cheer up</strong> 기운을 북돋우다</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 09번 (정정)</title>
+    <style>
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 필딩; padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q09-corrected">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ② a potential basis for forming a collaborative musical group</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문</h2>
+    <div class="box passage">
+        While looking through their profiles, I noticed <span class="hl">something interesting</span>[cite: 15]. Several Sam Lees of various ages and nationalities were interested in music[cite: 15]. There was a Sam Lee in his mid-30s from Singapore who enjoyed singing and writing lyrics[cite: 15]. And there was a 42-year-old Canadian Sam Lee who was a drummer[cite: 15]. According to her profile, everyone called her Sam even though her real name was Samantha[cite: 15]. Finally, there was an American Sam Lee who played the electric guitar[cite: 15]. Suddenly, I had a great idea[cite: 15]. I sent a message to all three[cite: 15]. Here is what I wrote: “Hi! I’m Sam Lee from Korea. I write songs and play the keyboard. How about making a virtual band called The Sam Lees?”[cite: 15] To my surprise, all three eagerly agreed[cite: 15]. That was the start of our band’s journey[cite: 15].
+    </div>
+
+    <!-- 함축 의미 추론 분석 -->
+    <h2>🔍 함축 의미 분석 (정답 ②번 도출 과정)</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">핵심 연결고리 (프로필 발견 ➔ 아이디어 창출)</span>
+        <div class="en-text">...I noticed <strong>something interesting</strong>. (...) How about making a virtual band called The Sam Lees?</div>
+        <div class="kr-text">필자가 프로필을 보며 흥미롭게 여긴 것은 단순히 이름이 같다는 사실 자체에 머무르지 않고, 이들이 <strong>협력적인 음악 그룹(가상 밴드)을 결성할 수 있는 최적의 조건과 가능성</strong>을 갖추고 있다는 점이었습니다[cite: 15]. 즉, 밴드 결성으로 이어지게 된 '잠재적 토대(basis)'를 의미합니다[cite: 15].</div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 분석 (정정 반영)</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>선지 내용 요약</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>다양한 음악 장르에 대해 배울 기회</td>
+                <td class="status-wrong">오답</td>
+                <td>장르 학습에 대한 언급은 본문에 존재하지 않습니다[cite: 15].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>②</td>
+                <td>협력적 음악 그룹 형성을 위한 잠재적 기반</td>
+                <td class="status-correct">정답</td>
+                <td>다양한 국적과 포지션(보컬/작사, 드럼, 기타, 키보드)의 'Sam Lee'들이 모여 <strong>가상 밴드(collaborative musical group)를 결성할 수 있게 만든 결정적인 공통 분모(basis)</strong>를 뜻합니다[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>음악적 선호에 반영된 문화적 차이</td>
+                <td class="status-wrong">오답</td>
+                <td>차이점이 아니라 밴드 결성이라는 협업의 가능성을 보여주는 공통점이 핵심입니다[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>사람들이 이름과 관심사를 공유한다는 이례적 사실</td>
+                <td class="status-wrong">오답</td>
+                <td>단순한 현상 서술에 가깝고, 문맥상 필자가 이를 바탕으로 밴드 결성 아이디어를 떠올렸다는 '기능적 역할(basis)'에 초점을 맞춘 ②번이 출제 의도에 더 부합합니다[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>개인별로 연주하는 다양한 악기의 범위</td>
+                <td class="status-wrong">오답</td>
+                <td>악기의 다양성은 밴드를 결성하게 된 하위 요소 중 일부일 뿐, 'something interesting'의 핵심 의미를 포괄하지 못합니다[cite: 15].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>collaborative</strong> 협력하는, 공동의</div>
+        <div class="vocab-item"><strong>basis</strong> 기반, 토대</div>
+        <div class="vocab-item"><strong>profile</strong> 프로필</div>
+        <div class="vocab-item"><strong>nationality</strong> 국적</div>
+        <div class="vocab-item"><strong>virtual band</strong> 가상 밴드</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 10번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 스타일 */
+        .err { color: #a8402f; text-decoration: line-through; font-weight: bold; }
+        .fix { color: #2f5d7c; font-weight: bold; }
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f8e3d8;
+        }
+        .status-correct { color: #a8402f; font-weight: bold; }
+        .status-wrong { color: #4f6530; font-weight: bold; }
+
+        /* 단어장 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q10">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ②번</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문 및 흐름 분석</h2>
+    <div class="box passage">
+        We talked about our lives and did what we could do to cheer Singaporean Sam up[cite: 16]. Since he had to stay in the hospital on his birthday, the rest of us recorded his favorite song as his birthday present[cite: 16]. When we played it for him, he laughed so hard that he cried[cite: 16]. That was mainly because the song was sung by the worst singer in the band — me![cite: 16] ① It was good to see him laugh even though he was lying in his hospital bed[cite: 16]. <span class="err">② In the local music scene, we frequently met other bands in person and attended all sorts of live performances.</span>[cite: 16] ③ After Singaporean Sam recovered, we decided to write and record our own song[cite: 16]. ④ We called the song “Long-Distance Friendship,” and we posted it online[cite: 16]. ⑤ The song didn't get much attention, but we were proud of what we had achieved together[cite: 16].
+    </div>
+
+    <!-- 구문 및 논리 분석 -->
+    <h2>🔍 흐름 무관 문장 분석</h2>
+    
+    <div class="sbox neg">
+        <span class="tagpill">오류 지점 분석 (②번 문장)</span>
+        <div class="en-text"><span class="err">In the local music scene, we frequently met other bands in person and attended all sorts of live performances.</span></div>
+        <div class="kr-text">이 글은 국경을 초월하여 온라인 화상 앱을 통해 결성된 **‘가상 밴드(The Sam Lees)’**의 이야기입니다[cite: 16]. 따라서 대면으로 오프라인 지역 음악 신(local music scene)에서 다른 밴드들을 직접 만나고 라이브 공연에 참석했다는 내용은 본문의 온라인 중심 활동 및 밴드 결성·창작 서사와 전혀 맥락이 맞지 않아 흐름을 끊습니다[cite: 16].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">전체 글의 핵심 흐름</span>
+        <div class="en-text">온라인 가상 밴드 결성 ➔ 멤버(Sam)의 입원 및 생일 축하 노래 선물 ➔ Sam의 회복 후 자작곡 제작 및 공유</div>
+        <div class="kr-text">전체 글은 온라인 밴드 멤버 간의 원격 우정과 협업, 그리고 자작곡 제작 과정을 다루고 있습니다[cite: 16]. ②번 문장의 오프라인 대면 활동은 이 흐름에서 완전히 벗어납니다[cite: 16].</div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 문장별 흐름 적절성 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>구분</th>
+                <th>문장 내용 요약</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>오프닝</td>
+                <td>아픈 싱가포르 샘을 응원하기 위한 생일 노래 녹음 및 웃음 선사[cite: 16]</td>
+                <td class="status-wrong">정상 흐름</td>
+                <td>멤버를 향한 정서적 지지와 밴드 활동의 에피소드로 자연스럽게 이어짐[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>①</td>
+                <td>병원 침대에 누워있지만 웃는 모습을 보니 좋았음[cite: 16]</td>
+                <td class="status-wrong">정상 흐름</td>
+                <td>샘을 응원한 직후의 감상을 매끄럽게 연결함[cite: 16].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>②</td>
+                <td>지역 음악 신에서 다른 밴드들을 대면으로 만나고 라이브 공연에 참석함[cite: 10, 16]</td>
+                <td class="status-correct">정답 (무관)</td>
+                <td>온라인으로만 활동하는 가상 밴드 콘셉트 및 서사와 무관한 <strong>오프라인 대면 활동</strong>을 다루어 글의 흐름을 완전히 이탈함[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>샘이 회복한 후, 자신들만의 노래를 작곡·녹음하기로 함[cite: 16]</td>
+                <td class="status-wrong">정상 흐름</td>
+                <td>①번(또는 병원 에피소드) 이후 샘의 회복과 본격적인 밴드 창작 활동으로 자연스럽게 이어짐[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>④~⑤</td>
+                <td>자작곡 'Long-Distance Friendship' 온라인 게시 및 성취감[cite: 16]</td>
+                <td class="status-wrong">정상 흐름</td>
+                <td>자작곡 발표와 그에 따른 소감을 마무리하는 결말부로 완벽히 연결됨[cite: 16].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>in person</strong> 직접, 대면하여</div>
+        <div class="vocab-item"><strong>music scene</strong> 음악계, 음악 현장</div>
+        <div class="vocab-item"><strong>recover</strong> 회복하다, 건강을 되찾다</div>
+        <div class="vocab-item"><strong>long-distance</strong> 원거리에 있는, 장거리의</div>
+        <div class="vocab-item"><strong>achieve</strong> 성취하다, 이루어내다</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 11번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 어휘 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q11">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ⑤ unexpected connections that transcend differences</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문</h2>
+    <div class="box passage">
+        Our band is something really special. Never did we expect that we would build such strong relationships with one another[cite: 14]. After all, we don't come from similar backgrounds, nor have we had the same life experiences[cite: 14]. Yet we now talk about almost everything together, including the hardships we face in life[cite: 14]. I think it's been really valuable to get advice from people with such different perspectives[cite: 14]. We would all like to meet in person and play our music on the street someday[cite: 14]. But even if that never happens, we’ve still been incredibly lucky[cite: 14]. Four random people became great friends simply because of our names[cite: 14]. Life can be amazing sometimes![cite: 14]
+    </div>
+
+    <!-- 글의 주제 분석 -->
+    <h2>🔍 글의 주제 도출 근거 분석</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">핵심 전제 (차이점과 배경의 불일치)</span>
+        <div class="en-text">After all, we don't come from similar backgrounds, nor have we had the same life experiences.</div>
+        <div class="kr-text">서로 다른 배경과 삶의 경험을 지닌 전혀 공통점 없어 보이는 사람들이 모였다는 점을 강조합니다[cite: 14].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">결론 및 주제 (차이를 뛰어넘는 뜻밖의 연결)</span>
+        <div class="en-text">Four random people became great friends simply because of our names. Life can be amazing sometimes!</div>
+        <div class="kr-text">이름이라는 우연한 공통점을 통해 **다양한 차이(배경, 경험)를 뛰어넘어(transcend)** 깊은 우정과 관계로 이어지게 된 놀라운 인연을 노래하고 있습니다[cite: 14].</div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>선지 내용 요약</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>우정에서 다양한 관점의 가치</td>
+                <td class="status-wrong">오답</td>
+                <td>다양한 관점으로부터 조언을 얻는 것은 본문의 일부 세부 내용일 뿐, 글 전체를 포괄하는 주제로는 부분적임[cite: 14].</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>원거리 우정 유지의 이점</td>
+                <td class="status-wrong">오답</td>
+                <td>원격으로 밴드 활동을 하는 배경은 있으나, '장거리 우정을 유지하는 방법이나 이점'을 설명하는 글이 아님[cite: 14].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>현대 음악 제작에서 기술의 역할</td>
+                <td class="status-wrong">오답</td>
+                <td>음악 제작 기술이나 프로덕션 과정은 본문의 핵심 논지가 아님[cite: 14].</td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>관계에서 공유된 경험의 중요성</td>
+                <td class="status-wrong">오답</td>
+                <td>이 글은 '공유된 경험이 없다(don't come from similar backgrounds, nor have we had the same life experiences)'는 점을 전제로 시작하므로 정답과 반대됨[cite: 14].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>차이점을 초월하는 예기치 못한 연결</td>
+                <td class="status-correct">정답</td>
+                <td>서로 다른 배경과 환경이라는 <strong>차이점을 초월(transcend differences)</strong>하여 이름이라는 우연을 통해 맺어진 <strong>뜻밖의 유대 관계(unexpected connections)</strong>가 글의 핵심 주제임[cite: 14].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>background</strong> 배경, 출신</div>
+        <div class="vocab-item"><strong>hardship</strong> 어려움, 역경</div>
+        <div class="vocab-item"><strong>perspective</strong> 관점, 시각</div>
+        <div class="vocab-item"><strong>in person</strong> 직접, 대면하여</div>
+        <div class="vocab-item"><strong>transcend</strong> 초월하다, 넘어서다</div>
+        <div class="vocab-item"><strong>unexpected</strong> 예기치 않은, 뜻밖의</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 12번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 어휘 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q12">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ⑤ 협업의 장애물은 창의적 사고로 극복할 수 있다.</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문</h2>
+    <div class="box passage">
+        We tried to practice once a week through a video chat app, but we encountered several problems[cite: 15]. First of all, we all lived in different time zones[cite: 15]. This made it difficult to pick a convenient time for everyone to practice[cite: 15]. Secondly, there were audio issues with the app, which caused us to be out of sync[cite: 15]. So we put our heads together and devised a better way of playing music[cite: 15]. We decided to assemble the songs as if we were working in a virtual music factory[cite: 15]. After we decided on a song, I would play it on my keyboard and send it to Singaporean Sam[cite: 15]. He would sing along with the keyboard and send the recording to American Sam[cite: 15]. Then American Sam would add his guitar part, and Samantha would finish the song with her drumming[cite: 15].
+    </div>
+
+    <!-- 요지 도출 근거 분석 -->
+    <h2>🔍 글의 요지 도출 과정 분석</h2>
+    
+    <div class="sbox neg">
+        <span class="tagpill">문제 상황 (Obstacles)</span>
+        <div class="en-text">...we encountered several problems. First... lived in different time zones. Secondly... audio issues... out of sync.</div>
+        <div class="kr-text">서로 다른 시간대(time zones)와 오디오 싱크 문제 등 원격 협업 과정에서 여러 가지 장애물과 난관에 부딪힙니다[cite: 15].</div>
+    </div>
+
+    <div class="sbox piv">
+        <span class="tagpill">전환 및 해결 (Creative Solution)</span>
+        <div class="en-text">So we put our heads together and devised a better way of playing music. (virtual music factory 방식 도입)</div>
+        <div class="kr-text">머리를 맞대고 고민하여(put our heads together) '가상 음악 공장'과 같은 순차적 녹음 방식이라는 창의적 대안을 고안해 냅니다[cite: 15].</div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>선지 내용 요약</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>음악 제작에는 직접 대면이 필수적이다.</td>
+                <td class="status-wrong">오답</td>
+                <td>대면 없이도 가상 공장 방식을 통해 성공적으로 음악을 제작했으므로 글의 내용과 정반대입니다[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>시차 문제는 글로벌 팀워크에서 불가피하다.</td>
+                <td class="status-wrong">오답</td>
+                <td>시차가 문제로 언급되기는 했으나, 단순히 문제가 불가피하다는 비관적 언급에서 그치지 않고 이를 극복한 과정이 핵심입니다[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>원격 음악 제작에는 고성능 장비가 필요하다.</td>
+                <td class="status-wrong">오답</td>
+                <td>고성능 장비에 대한 내용은 본문에 언급되지 않았습니다[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>기술적 한계는 원격 협업의 효율성을 저해한다.</td>
+                <td class="status-wrong">오답</td>
+                <td>기술적 한계(오디오 문제 등)는 난관의 일부일 뿐, 이를 창의적 방식으로 해결했다는 점이 글의 중심 요지입니다[cite: 15].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>협업의 장애물은 창의적 사고로 극복할 수 있다.</td>
+                <td class="status-correct">정답</td>
+                <td>시차와 앱의 음향 문제라는 <strong>협업의 장애물(problems)</strong>을 지혜를 모아 <strong>창의적인 방식(virtual music factory)으로 극복</strong>한 본문의 핵심 교훈을 정확히 담고 있습니다[cite: 15].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>encounter</strong> (문제 등에) 부딪히다</div>
+        <div class="vocab-item"><strong>time zone</strong> 시간대</div>
+        <div class="vocab-item"><strong>out of sync</strong> 싱크가 안 맞는, 박자가 안 맞는</div>
+        <div class="vocab-item"><strong>put our heads together</strong> 머리를 맞대고 의논하다</div>
+        <div class="vocab-item"><strong>devise</strong> 고안하다, 창안하다</div>
+        <div class="vocab-item"><strong>assemble</strong> 조립하다, 모으다</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 13번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 텍스트 강조 스타일 */
+        .hl {
+            background-color: #f6dfd2;
+            border-bottom: 2px solid #a8402f;
+            color: #8f2f21;
+            font-weight: bold;
+            padding: 0 4px;
+        }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 어휘 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q13">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ⑤ a humorous sacrifice made to bring joy to a suffering friend</span>
+
+    <!-- 문제 원문 -->
+    <h2>📌 원문 지문</h2>
+    <div class="box passage">
+        At one point, Singaporean Sam became ill and needed to spend some time in the hospital, so the band took a break[cite: 14]. However, we still met from time to time by using the video chat app[cite: 14]. We talked about our lives and did what we could do to cheer Singaporean Sam up[cite: 14]. Since he had to stay in the hospital on his birthday, the rest of us recorded his favorite song as his birthday present[cite: 14]. When we played it for him, he laughed so hard that he cried[cite: 14]. That was mainly because the song was sung by <span class="hl">the worst singer in the band — me!</span>[cite: 14] It was good to see him laugh even though he was lying in his hospital bed[cite: 14].
+    </div>
+
+    <!-- 함축 의미 추론 분석 -->
+    <h2>🔍 함축 의미 추론 근거 분석</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">핵심 단서 1 (웃음을 터뜨린 이유)</span>
+        <div class="en-text">When we played it for him, he laughed so hard that he cried. That was mainly because...</div>
+        <div class="kr-text">아픈 친구(Singaporean Sam)를 웃게 만들어 주기 위해 생일 노래를 녹음해 들려주었고, 친구가 눈물까지 흘리며 박장대소한 주된 이유가 바로 자신이 밴드에서 '가장 노래를 못 부르는 사람'이었기 때문임을 밝히고 있습니다[cite: 14].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">핵심 단서 2 (의도적인 유머와 희생)</span>
+        <div class="en-text">...the song was sung by the worst singer in the band — me! It was good to see him laugh...</div>
+        <div class="kr-text">자신의 부족한 노래 실력을 웃음의 소재로 삼아(유머러스한 희생), 병원에 입원해 지친 친구에게 큰 기쁨을 선물하고자 한 따뜻한 의도가 담겨 있습니다[cite: 14].</div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>선지 내용 요약</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>나레이터의 가창력에 대한 자신감 표출</td>
+                <td class="status-wrong">오답</td>
+                <td>'가장 노래를 못 하는 사람(the worst singer)'이라고 표현했으므로 자신감 표출과 정반대입니다[cite: 14].</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>헌신에도 불구하고 드러난 음악적 능력의 한계에 대한 인정</td>
+                <td class="status-wrong">오답</td>
+                <td>진지하게 자신의 음악적 한계를 한탄하거나 자책하는 맥락이 아니라, 친구를 웃기기 위한 유머러스한 자책입니다[cite: 14].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>향후 음악 공연 참여에 대한 꺼림칙함/기피</td>
+                <td class="status-wrong">오답</td>
+                <td>이후에도 계속 밴드 활동과 자작곡 제작을 이어가므로 참여를 기피한다는 내용은 틀렸습니다[cite: 14].</td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>우정이 예술적 재능을 초월한다는 깨달음</td>
+                <td class="status-wrong">오답</td>
+                <td>글 전체의 거시적 주제와 유사할 수 있으나, 밑줄 친 특정 표현("내가 밴드에서 노래를 가장 못한다")이 직접적으로 뜻하는 바는 친구를 웃기기 위한 유머러스한 연출입니다[cite: 14].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>고통받는 친구에게 기쁨을 주기 위해 한 유머러스한 희생</td>
+                <td class="status-correct">정답</td>
+                <td>병원에 입원해 힘들어하는 친구를 웃게 해주려고 자신의 서툰 노래 실력(worst singer)을 드러내어 <strong>유머러스한 웃음을 선사한 행동</strong>을 뜻합니다[cite: 14].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>cheer up</strong> 기운을 북돋우다, 위로하다</div>
+        <div class="vocab-item"><strong>laugh so hard</strong> 박장대소하다, 배가 아프게 웃다</div>
+        <div class="vocab-item"><strong>worst</strong> 가장 못하는, 최악의</div>
+        <div class="vocab-item"><strong>hospital bed</strong> 병원 침대</div>
+        <div class="vocab-item"><strong>humorous</strong> 유머러스한, 웃기는</div>
+        <div class="vocab-item"><strong>sacrifice</strong> 희생, 감수</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 14번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 지문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 주어진 문장 박스 */
+        .given-box {
+            background-color: #f7ecd2;
+            border: 2px solid #c9922f;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 어휘 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q14">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ⑤번</span>
+
+    <!-- 주어진 문장 -->
+    <h2>📌 주어진 문장</h2>
+    <div class="given-box">
+        But even if that never happens, we’ve still been incredibly lucky.[cite: 15]<br>
+        <span style="font-size: 0.9rem; font-weight: normal; color: #665745;">(하지만 설사 그것이 결코 일어나지 않는다 할지라도, 우리는 여전히 더할 나위 없이 운이 좋았다.)</span>[cite: 15]
+    </div>
+
+    <!-- 문제 원문 -->
+    <h2>📌 지문 흐름 및 정답 위치</h2>
+    <div class="box passage">
+        Our band is something really special. Never did we expect that we would build such strong relationships with one another. ( ① ) After all, we don't come from similar backgrounds, nor have we had the same life experiences. ( ② ) Yet we now talk about almost everything together, including the hardships we face in life. ( ③ ) I think it's been really valuable to get advice from people with such different perspectives. ( ④ ) We would all like to meet in person and play our music on the street someday. ( ⑤ ) <span style="background-color: #f6dfd2; border-bottom: 2px solid #a8402f; color: #8f2f21; font-weight: bold; padding: 0 4px;">[정답 위치]</span> Four random people became great friends simply because of our names.[cite: 15]
+    </div>
+
+    <!-- 논리 구조 분석 -->
+    <h2>🔍 문장 삽입 논리 분석</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">단서 및 연결 고리 (that의 지칭 대상)</span>
+        <div class="en-text">We would all like to meet in person and play our music on the street someday. ➔ But even if <strong>that</strong> never happens...</div>
+        <div class="kr-text">주어진 문장의 <code>that</code>은 바로 앞에서 언급된 **'언젠가 실제로 만나서 거리에서 음악을 연주하는 것(meet in person and play our music on the street)'**을 가리킵니다[cite: 15]. 따라서 이 문장은 소망 사항이 실현되지 않을 수도 있다는 가정 바로 뒤인 **⑤번 자리**에 들어가야 논리적으로 완벽하게 이어집니다[cite: 15].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">문맥적 흐름 (역접과 결론)</span>
+        <div class="en-text">...play our music on the street someday. ( ⑤ ) ➔ But even if that never happens, we’ve still been incredibly lucky.</div>
+        <div class="kr-text">"언젠가 직접 만나 길거리 공연을 하고 싶다"는 바람(④번 문장) 바로 다음에 배치되어, **"설사 그 소망이 이루어지지 않는다 하더라도(But even if that never happens)"** 우리는 여전히 행운아라는 반전과 위안의 메시지를 매끄럽게 연결해 줍니다[cite: 15].</div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 보기 위치별 적절성 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>위치</th>
+                <th>앞뒤 문맥 요약</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>① ~ ③</td>
+                <td>배경과 경험의 차이 및 서로 다른 관점에서의 조언과 소통</td>
+                <td class="status-wrong">부적절</td>
+                <td>오프라인 만남에 대한 소망이나 'that'이 가리킬 구체적인 사건이 아직 제시되지 않은 구간입니다[cite: 15].</td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>직접 만나 거리 공연을 하고 싶다는 소망 제시 직전</td>
+                <td class="status-wrong">부적절</td>
+                <td>소망을 말하기도 전에 "설사 그것이 일어나지 않는다 해도"라고 가정하는 것은 논리 순서에 어긋납니다[cite: 15].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>직접 만나 공연하고 싶다는 소망(④문장 직후) ➔ <strong>[주어진 문장 삽입]</strong> ➔ 이름으로 이어진 행운에 대한 결론</td>
+                <td class="status-correct">정답</td>
+                <td>'직접 만나 음악을 하는 것(that)'에 대한 실현 여부 가정과 위로가 자연스럽게 이어지며, 글을 마무리하는 최종 결론부로 완벽히 연결됩니다[cite: 15].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>in person</strong> 직접, 대면하여[cite: 15]</div>
+        <div class="vocab-item"><strong>someday</strong> 언젠가[cite: 15]</div>
+        <div class="vocab-item"><strong>even if</strong> 비록 ~라 할지라도</div>
+        <div class="vocab-item"><strong>incredibly</strong> 믿을 수 없을 만큼, 대단히[cite: 15]</div>
+        <div class="vocab-item"><strong>random</strong> 무작위의, 낯선[cite: 15]</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 15번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 주어진 문장 박스 */
+        .given-box {
+            background-color: #f7ecd2;
+            border: 2px solid #c9922f;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        /* 단락 박스 */
+        .paragraph-box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 어휘 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q15">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ⑤번 (C) - (B) - (A)</span>
+
+    <!-- 주어진 문장 -->
+    <h2>📌 주어진 문장</h2>
+    <div class="given-box">
+        We decided to assemble the songs as if we were working in a virtual music factory.[cite: 16]<br>
+        <span style="font-size: 0.9rem; font-weight: normal; color: #665745;">(우리는 마치 가상 음악 공장에서 일하는 것처럼 곡들을 조립하기로 결정했다.)</span>[cite: 16]
+    </div>
+
+    <!-- 제시문 단락 내용 -->
+    <h2>📌 보기 단락 구성</h2>
+    <div class="paragraph-box">
+        <strong>(A)</strong> Since each of us prefers a different genre of music and comes from a different culture, we all ended up learning a lot about different kinds of music. It was interesting and a lot of fun.[cite: 16]
+    </div>
+    <div class="paragraph-box">
+        <strong>(B)</strong> Then American Sam would add his guitar part, and Samantha would finish the song with her drumming. When it came to choosing songs to play, we took turns.[cite: 16]
+    </div>
+    <div class="paragraph-box">
+        <strong>(C)</strong> After we decided on a song, I would play it on my keyboard and send it to Singaporean Sam. He would sing along with the keyboard and send the recording to American Sam.[cite: 16]
+    </div>
+
+    <!-- 순서 배열 논리 분석 -->
+    <h2>🔍 글의 순서 배열 논리 분석</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">첫 번째 연결 (주어진 문장 ➔ C)</span>
+        <div class="en-text">...virtual music factory. ➔ **(C)** After we decided on a song, I would play it on my keyboard...</div>
+        <div class="kr-text">'가상 음악 공장'처럼 역할을 나누어 곡을 조립하겠다는 주어진 문장 직후에, 실제로 곡을 선정하고 키보드 연주를 싱가포르안 샘에게 보내는 **구체적인 작업 공정의 시작(C)**이 이어지는 것이 가장 자연스럽습니다[cite: 16].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">두 번째 연결 (C ➔ B)</span>
+        <div class="en-text">**(C)** ...send the recording to American Sam. ➔ **(B)** Then American Sam would add his guitar part...</div>
+        <div class="kr-text">(C)의 마지막 문장에서 싱가포르안 샘이 아메리칸 샘에게 녹음본을 보낸다는 내용에 이어져, **그다음에(Then) 아메리칸 샘이 기타 파트를 더하고 사만다가 드럼으로 곡을 마친다는 내용(B)**으로 매끄럽게 연결됩니다[cite: 16].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">세 번째 연결 (B ➔ A)</span>
+        <div class="en-text">**(B)** ...we took turns. ➔ **(A)** Since each of us prefers a different genre...</div>
+        <div class="kr-text">(B)의 후반부에서 곡을 선정할 때 돌아가면서(took turns) 정했다고 언급한 뒤, 각자 선호하는 장르와 문화가 달라 다양한 음악을 배우게 되었다는 총평과 소감(A)으로 글이 마무리됩니다[cite: 16].</div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 선택지 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>순서 배열</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>(A) - (C) - (B)</td>
+                <td class="status-wrong">오답</td>
+                <td>가상 공장 비유 바로 다음에 각자의 음악 취향과 소감(A)이 나오는 것은 구체적인 작업 방식 설명보다 앞서므로 부적절합니다[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>(B) - (A) - (C)</td>
+                <td class="status-wrong">오답</td>
+                <td>주어진 문장의 '가상 공장 작업' 설명 직후에 파트별 녹음 순서의 중간 단계인 (B)가 먼저 나오는 것은 논리적 흐름에 어긋납니다[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>(B) - (C) - (A)</td>
+                <td class="status-wrong">오답</td>
+                <td>역시 (B)가 맨 처음에 올 수 없으며, (C)의 구체적 작업 시작보다 (B)의 'Then(그다음)'이 먼저 올 수 없습니다[cite: 16].</td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>(C) - (A) - (B)</td>
+                <td class="status-wrong">오답</td>
+                <td>(A)에서 소감과 장르 선호를 먼저 말한 뒤 다시 (B)에서 악기 녹음 과정을 설명하는 것은 순서가 뒤바뀐 것입니다[cite: 16].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>⑤</td>
+                <td>(C) - (B) - (A)</td>
+                <td class="status-correct">정답</td>
+                <td>가상 공장 방식의 <strong>구체적 실행 과정(C ➔ B)</strong>을 순서대로 서술한 뒤, 이러한 협업을 통해 느끼고 배운 점을 정리하는 <strong>종합 소감(A)</strong>으로 이어지는 완벽한 흐름입니다[cite: 16].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>assemble</strong> 조립하다, 모으다[cite: 16]</div>
+        <div class="vocab-item"><strong>virtual</strong> 가상의[cite: 16]</div>
+        <div class="vocab-item"><strong>genre</strong> (예술 작품의) 장르[cite: 16]</div>
+        <div class="vocab-item"><strong>end up ~ing</strong> 결국 ~하게 되다</div>
+        <div class="vocab-item"><strong>take turns</strong> 돌아가며 하다[cite: 16]</div>
+        <div class="vocab-item"><strong>drumming</strong> 드럼 연주[cite: 16]</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 01번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        /* 정답 배지 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        /* 주어진 문장 박스 */
+        .given-box {
+            background-color: #f7ecd2;
+            border: 2px solid #c9922f;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        /* 문제 원문 박스 */
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        /* 문장 단위 논리 구조 분석 박스 */
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        /* 선택지 분석 표 */
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        /* 어휘 그리드 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q01">
+    <!-- 정답 태그 -->
+    <span class="answer-tag">정답: ③번</span>
+
+    <!-- 주어진 문장 -->
+    <h2>📌 주어진 문장</h2>
+    <div class="given-box">
+        They were able to purchase these at low prices from the boats’ owners.[cite: 17]<br>
+        <span style="font-size: 0.9rem; font-weight: normal; color: #665745;">(그들은 배의 소유주들로부터 이것들을 저렴한 가격에 구매할 수 있었다.)</span>[cite: 17]
+    </div>
+
+    <!-- 문제 원문 -->
+    <h2>📌 지문 흐름 및 정답 위치</h2>
+    <div class="box passage">
+        In the end, an architectural company submitted an innovative plan and was awarded a ten-year lease on the former shipyard. ( ① ) The plan was to turn the site into a sustainable office park. ( ② ) Since it was impossible to build foundations on the oily mud of the polluted land, the architects decided to use old, abandoned boats instead. ( ③ ) <span style="background-color: #f6dfd2; border-bottom: 2px solid #a8402f; color: #8f2f21; font-weight: bold; padding: 0 4px;">[정답 위치]</span> The architects created a small community that includes creative workspaces, studios, meeting rooms, cultural spaces, and even a café, all by upcycling the boats. ( ④ ) Then, to connect the boats, wooden paths were built. ( ⑤ )[cite: 17]
+    </div>
+
+    <!-- 논리 구조 분석 -->
+    <h2>🔍 문장 삽입 논리 분석</h2>
+    
+    <div class="sbox piv">
+        <span class="tagpill">단서 및 연결 고리 (지시어 these와 대상 old, abandoned boats)</span>
+        <div class="en-text">...the architects decided to use old, abandoned boats instead. ( ③ ) ➔ They were able to purchase <strong>these</strong> at low prices from the boats’ owners.</div>
+        <div class="kr-text">주어진 문장의 <code>these</code>는 바로 앞 문장에서 언급된 **'버려진 오래된 배들(old, abandoned boats)'**을 가리킵니다[cite: 17]. 따라서 건축가들이 오래된 배를 사용하기로 결정한 내용 직후인 **③번 자리**에 들어가야 지시어가 자연스럽게 연결됩니다[cite: 17].</div>
+    </div>
+
+    <div class="sbox pos">
+        <span class="tagpill">문맥적 흐름 (배 구입 ➔ 업사이클링 공간 창조)</span>
+        <div class="en-text">...purchase these at low prices from the boats’ owners. ( ③ 직후 ) ➔ The architects created a small community... all by upcycling the boats.</div>
+        <div class="kr-text">소유주들로부터 배를 저렴하게 구입한 과정이 먼저 언급된 후, 그렇게 확보한 배들을 업사이클링하여 다양한 창의적 공간(workspace, studio 등)을 만들었다는 후속 내용(④번 문장 앞)으로 매끄럽게 이어진다[cite: 17].</div>
+    </div>
+
+    <!-- 선택지 분석 -->
+    <h2>📊 보기 위치별 적절성 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>위치</th>
+                <th>앞뒤 문맥 요약</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>① ~ ②</td>
+                <td>부지 임대 및 지속 가능한 오피스 파크 조성 계획, 오염된 진흙 토양 문제</td>
+                <td class="status-wrong">부적절</td>
+                <td>'오래된 배(boats)'라는 소재가 아직 언급되지 않아 지시어 these가 가리킬 대상이 없습니다[cite: 17].</td>
+            </tr>
+            <tr class="is-correct">
+                <td>③</td>
+                <td>건축가들이 오래된 배를 사용하기로 결정함 (②문장 직후) ➔ <strong>[주어진 문장 삽입]</strong> ➔ 배 소유주에게 저렴하게 구입 ➔ 배를 업사이클링하여 공간 조성</td>
+                <td class="status-correct">정답</td>
+                <td>'오래된 배를 사용하기로 했다'는 내용(③번 앞)과 '배의 소유주로부터 저렴하게 구입했다'는 주어진 문장, 그리고 그 배들을 업사이클링했다는 내용(④번 앞)이 논리적으로 완벽하게 이어집니다[cite: 17].</td>
+            </tr>
+            <tr>
+                <td>④ ~ ⑤</td>
+                <td>업사이클링을 통한 소규모 공동체 조성 및 나무 통로 연결</td>
+                <td class="status-wrong">부적절</td>
+                <td>이미 배를 구매하여 공간을 만들기 시작한 단계이므로, 배를 구매한 경위가 이 위치에 들어가면 흐름이 끊깁니다[cite: 17].</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 어휘 정리 -->
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>architectural</strong> 건축의, 건축학의[cite: 17]</div>
+        <div class="vocab-item"><strong>innovative</strong> 혁신적인[cite: 17]</div>
+        <div class="vocab-item"><strong>lease</strong> 임대차 계약, 임대하다[cite: 17]</div>
+        <div class="vocab-item"><strong>shipyard</strong> 조선소[cite: 17]</div>
+        <div class="vocab-item"><strong>foundation</strong> 기초, 지반[cite: 17]</div>
+        <div class="vocab-item"><strong>upcycle</strong> 업사이클링하다 (재활용하여 가치를 높이다)[cite: 17]</div>
+    </div>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 02번, 03번, 04번</title>
+    <style>
+        /* 1. 기본 스타일 및 컬러 팔레트 */
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 2. 메인 컨테이너 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        /* 3. 컴포넌트 스타일 */
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- [02번 문제 해설] -->
+<div class="container" id="q02">
+    <span class="answer-tag">02번 정답: ① the area was left deserted</span>
+
+    <h2>📌 02번 원문 지문</h2>
+    <div class="box passage">
+        In the early 20th century, there was an area in the northern part of Amsterdam that was full of shipyards and factories. Over time, the shipyards closed down, and the work once done at the factories was moved abroad. As a result, <strong>__________</strong> and polluted for years. Wanting to do something to improve the area, the city purchased an abandoned shipyard called De Ceuvel...[cite: 14]
+    </div>
+
+    <h2>🔍 빈칸 추론 논리 분석</h2>
+    <div class="sbox neg">
+        <span class="tagpill">원인 (Shipyards closed & moved)</span>
+        <div class="en-text">...the shipyards closed down, and the work once done at the factories was moved abroad.</div>
+        <div class="kr-text">북부 암스테르담의 조선소와 공장들이 문을 닫고 해외로 이전하면서 해당 지역이 방치되는 원인이 되었습니다[cite: 14].</div>
+    </div>
+    <div class="sbox pos">
+        <span class="tagpill">결과 (방치 및 오염)</span>
+        <div class="en-text">As a result, <span style="color:#a8402f; font-weight:bold;">the area was left deserted</span> and polluted for years.</div>
+        <div class="kr-text">그 결과 해당 지역은 수년 동안 버려진 채 방치되었고(deserted) 오염되었다는 흐름이 자연스럽습니다[cite: 14].</div>
+    </div>
+
+    <h2>📊 02번 선택지 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr><th>선지</th><th>요약</th><th>판단</th><th>상세 분석</th></tr>
+        </thead>
+        <tbody>
+            <tr class="is-correct">
+                <td>①</td>
+                <td>그 지역이 버려진 채 방치되었다</td>
+                <td class="status-correct">정답</td>
+                <td>공장과 조선소 폐쇄 이후 수년간 버려져 오염되었다는 문맥과 정확히 일치합니다[cite: 14].</td>
+            </tr>
+            <tr><td>②</td><td>공장들이 해외로 이전했다</td><td class="status-wrong">오답</td><td>이미 앞 문장(moved abroad)에서 언급된 내용의 반복이며 주어가 'the area'이므로 문법/문맥상 맞지 않습니다[cite: 14].</td></tr>
+            <tr><td>③</td><td>시官员들이 오래된 조선소를 구입했다</td><td class="status-wrong">오답</td><td>시의 구입은 문제가 악화된 '결과'가 아니라 이후에 해결책으로 취한 조치입니다[cite: 14].</td></tr>
+            <tr><td>④</td><td>개발을 위한 공공 계획이 요청되었다</td><td class="status-wrong">오답</td><td>인과관계의 결과 자리에 올 내용으로 부적절합니다[cite: 14].</td></tr>
+            <tr><td>⑤</td><td>정화작업을 위한 지속 가능한 방법이 제안되었다</td><td class="status-wrong">오답</td><td>오염된 원인에 따른 부정적 결과가 올 자리입니다[cite: 14].</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- [03번 문제 해설] -->
+<div class="container" id="q03">
+    <span class="answer-tag">03번 정답: ② occupied (→ 빈칸 추론 / 원문 확인: abandoned 등 또는 문맥상 의미 오류)</span>
+
+    <h2>📌 03번 원문 지문 및 어휘 분석</h2>
+    <div class="box passage">
+        For years, the neighborhood was known for its ①<u>high</u> crime rates. Many apartments in Wallisblok were ②<u>occupied</u> [원문: abandoned/vacant 계열] and then taken over by people who lived in them illegally. At first, the government thought that the best solution was simply to ③<u>tear</u> the building down and build a new one in its place. However, having a ④<u>limited</u> budget, the government was unable to do so and had to come up with a new plan. The plan was to sell the empty apartments for one euro each. The only condition was that people who bought these apartments needed to ⑤<u>renovate</u> them.[cite: 14]
+    </div>
+
+    <h2>🔍 03번 상세 분석</h2>
+    <div class="sbox piv">
+        <span class="tagpill">오답 어휘 분석 (② occupied)</span>
+        <div class="en-text">Many apartments in Wallisblok were occupied and then taken over by people who lived in them illegally.</div>
+        <div class="kr-text">뒤에 '불법으로 거주하는 사람들에 의해 장악되었다(taken over by people who lived in them illegally)'라는 설명이 나오므로, 앞의 아파트들은 사람이 살지 않고 <strong>비어 있거나 버려진(abandoned 또는 vacant)</strong> 상태여야 말이 됩니다. 따라서 이미 사람이 살고 있음을 뜻하는 <code>occupied</code>는 문맥상 적절하지 않습니다[cite: 14].</div>
+    </div>
+
+    <h2>📊 03번 선택지별 검토</h2>
+    <table class="opt-table">
+        <thead>
+            <tr><th>번호</th><th>밑줄 어휘</th><th>판단</th><th>상세 분석</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>①</td><td>high crime rates</td><td class="status-correct">적절</td><td>범죄율이 높은(high) 지역으로 알려졌다는 문맥에 부합합니다[cite: 14].</td></tr>
+            <tr class="is-correct"><td>②</td><td>occupied</td><td class="status-wrong">오류 (정답)</td><td>불법 점거되기 전에는 비어 있거나 버려진(abandoned) 상태여야 하므로 틀렸습니다[cite: 14].</td></tr>
+            <tr><td>③</td><td>tear the building down</td><td class="status-correct">적절</td><td>건물을 허물고 새로 지으려 했다는 내용에 알맞습니다[cite: 14].</td></tr>
+            <tr><td>④</td><td>limited budget</td><td class="status-correct">적절</td><td>예산이 부족하여(limited) 건물을 철거하지 못했다는 흐름과 일치합니다[cite: 14].</td></tr>
+            <tr><td>⑤</td><td>renovate them</td><td class="status-correct">적절</td><td>1유로에 아파트를 사는 대신 직접 보수(renovate)해야 한다는 조건입니다[cite: 14].</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- [04번 문제 해설] -->
+<div class="container" id="q04">
+    <span class="answer-tag">04번 정답: ④ undesirable --- community</span>
+
+    <h2>📌 04번 요약문 및 지문 배경</h2>
+    <div class="box passage">
+        <strong>[요약문]</strong> The transformation of Wallisblok from an <u>(A) undesirable</u> area into a family-friendly <u>(B) community</u> demonstrates the positive change possible in urban environments.[cite: 14]
+    </div>
+
+    <h2>🔍 04번 요약문 빈칸 추론 분석</h2>
+    <div class="sbox pos">
+        <span class="tagpill">(A) 빈칸 분석 (기존 지역의 상태)</span>
+        <div class="en-text">...crime rates, illegally lived, empty apartments... nobody thought it could become a place where families would want to live.</div>
+        <div class="kr-text">과거 높은 범죄율과 불법 점거 등으로 사람들이 살고 싶어 하지 않았던 부정적 공간이므로, (A)에는 바람직하지 않거나 살기 곤란한 의미인 <strong>undesirable</strong>(살기 좋지 않은, 탐탁치 않은)이 가장 적절합니다[cite: 14].</div>
+    </div>
+    <div class="sbox pos">
+        <span class="tagpill">(B) 빈칸 분석 (변화된 모습)</span>
+        <div class="en-text">...family-friendly... neighbors chatting... modern residential structure...</div>
+        <div class="kr-text">주민들이 정원에서 이야기를 나누고 가족 친화적인 환경으로 탈바꿈한 주거 공동체의 모습을 뜻하므로 (B)에는 <strong>community</strong>(공동체)가 적합합니다[cite: 14].</div>
+    </div>
+
+    <h2>📊 04번 선택지 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr><th>선지</th><th>(A) --- (B) 조합</th><th>판단</th><th>상세 분석</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>①</td><td>central --- garden</td><td class="status-wrong">오답</td><td>중심가에서 정원으로의 변화라는 요약은 본문의 핵심 전환(범죄/슬럼가에서 가족 친화적 주거지로)을 담지 못합니다[cite: 14].</td></tr>
+            <tr><td>②</td><td>historic --- market</td><td class="status-wrong">오답</td><td>역사적 장소나 시장에 대한 글이 아닙니다[cite: 14].</td></tr>
+            <tr><td>③</td><td>crowded --- structure</td><td class="status-wrong">오답</td><td>혼잡한 곳에서 구조물로 바뀐다는 것은 글의 긍정적 변화를 포괄하기에 부족합니다[cite: 14].</td></tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>undesirable --- community</td>
+                <td class="status-correct">정답</td>
+                <td>살기 <strong>기피하던 지역(undesirable)</strong>에서 가족 친화적 <strong>공동체(community)</strong>로의 성공적인 변화를 완벽하게 요약합니다[cite: 14].</td>
+            </tr>
+            <tr><td>⑤</td><td>expensive --- building</td><td class="status-wrong">오답</td><td>비싼 곳으로 변했다는 내용은 본문에 없습니다[cite: 14].</td></tr>
+        </tbody>
+    </table>
+
+    <h2>📚 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>deserted</strong> 버려진, 황폐한[cite: 14]</div>
+        <div class="vocab-item"><strong>illegally</strong> 불법적으로[cite: 14]</div>
+        <div class="vocab-item"><strong>tear down</strong> ~을 허물다, 철거하다[cite: 14]</div>
+        <div class="vocab-item"><strong>renovate</strong> 보수하다, 리모델링하다[cite: 14]</div>
+        <div class="vocab-item"><strong>undesirable</strong> 바람직하지 않은[cite: 14]</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 05번, 06번, 07번, 08번 상세 분석</title>
+    <style>
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- [05번 문제 상세 분석] -->
+<div class="container" id="q05">
+    <span class="answer-tag">05번 정답: ④ attractively (→ attractive)</span>
+
+    <h2>📌 05번 원문 지문 전체 분석</h2>
+    <div class="box passage">
+        At first, the local government thought that the best solution was simply to tear the building down and build a new one in its place. However, having a limited budget, the government was unable to do so and had to come up with a new plan. The plan was to sell the empty apartments for one euro each. The only condition was that people who bought these apartments needed to renovate them. Although the new residents would have to pay for these renovations, the government's plan soon attracted many applicants. Apparently, it was not just the idea of one-euro apartments that people found ④<u>attractively</u>. They were also excited by the opportunity ⑤to use their creativity to improve the building.[cite: 14]
+    </div>
+
+    <h2>🔍 05번 어법 상세 분석</h2>
+    <div class="sbox neg">
+        <span class="tagpill">오답 포인트 (④ attractively)</span>
+        <div class="en-text">...it was not just the idea of one-euro apartments that people found ④<strong>attractively</strong>.</div>
+        <div class="kr-text">이 문장은 It ~ that 강조구문이며, 주절의 동사 <code>found</code>는 5형식 문장으로 쓰였습니다. 목적어인 <code>the idea of one-euro apartments</code>의 성질·상태를 보충 설명하는 **목적격 보어** 자리이므로, 부사 형태인 <code>attractively</code>가 아니라 형용사 형태인 **<code>attractive</code>**가 와야 올바릅니다[cite: 14].</div>
+    </div>
+    <div class="sbox pos">
+        <span class="tagpill">나머지 보기 어법 검토</span>
+        <div class="kr-text">
+            • ① <strong>simply</strong>: 주격 보어 역할을 하는 투부정사구(to tear ~)를 수식하는 부사로 적절합니다[cite: 14].<br>
+            • ② <strong>having</strong>: 주절의 주어(the government)가 예산을 '가지고 있는' 주체이므로 능동 분사구문으로 적절합니다[cite: 14].<br>
+            • ③ <strong>that</strong>: 주격 보어절을 이끄는 접속사로 완전한 절을 이끌고 있습니다[cite: 14].<br>
+            • ⑤ <strong>to use</strong>: 앞의 명사(opportunity)를 수식하는 형용사적 용법의 투부정사입니다[cite: 14].
+        </div>
+    </div>
+</div>
+
+<!-- [06번 문제 상세 분석 - 수정됨] -->
+<div class="container" id="q06">
+    <span class="answer-tag">06번 정답: ① (A) - (C) - (B)</span>
+
+    <h2>📌 주어진 문장</h2>
+    <div class="box" style="background-color: #f7ecd2; border: 2px solid #c9922f;">
+        Over time, the shipyards closed down, and the work once done at the factories was moved abroad.[cite: 14]<br>
+        <span style="font-size: 0.9rem; font-weight: normal; color: #665745;">(시간이 흐름에 따라 조선소들은 문을 닫았고, 한때 공장에서 행해지던 일은 해외로 이전되었다.)</span>[cite: 14]
+    </div>
+
+    <h2>📌 보기 단락 원문 전체 내용</h2>
+    <div class="box passage">
+        <strong>(A)</strong> As a result, the area was left deserted and polluted for years. Wanting to do something to improve the area, the city purchased an abandoned shipyard called De Ceuvel.<br><br>
+        <strong>(B)</strong> First, the plan had to include a method to clean up the land and turn it into a sustainable development. Second, it had to suggest a way to transform the site into a creative workspace.<br><br>
+        <strong>(C)</strong> However, city officials did not know what to do with it. So they turned to the public for help by asking for plans that would achieve two primary goals.[cite: 14]
+    </div>
+
+    <h2>🔍 06번 글의 순서 배열 상세 분석</h2>
+    <div class="sbox piv">
+        <span class="tagpill">첫 번째 연결 (주어진 문장 ➔ A)</span>
+        <div class="en-text">...was moved abroad. ➔ **(A)** As a result, the area was left deserted and polluted for years...</div>
+        <div class="kr-text">조선소 폐쇄와 공장 해외 이전이라는 주어진 문장의 결과로, **(A)**의 <code>As a result(그 결과)</code>를 통해 그 지역이 수년간 버려지고(deserted) 오염된 상태로 남게 되었다는 인과관계가 가장 먼저 이어집니다[cite: 14]. 이어서 시가 버려진 조선소를 매입했다는 내용이 나옵니다[cite: 14].</div>
+    </div>
+    <div class="sbox pos">
+        <span class="tagpill">두 번째 연결 (A ➔ C)</span>
+        <div class="en-text">**(A)** ...purchased an abandoned shipyard called De Ceuvel. ➔ **(C)** However, city officials did not know what to do with it...</div>
+        <div class="kr-text">시에서 조선소를 매입했음에도 불구하고, **(C)**의 <code>However(하지만)</code>를 통해 시 관계자들이 그 부지를 어떻게 해야 할지 몰라 대책을 세우지 못했다는 역접의 상황이 자연스럽게 연결됩니다[cite: 14]. 그 해결책으로 대중(public)에게 두 가지 주요 목표를 달성할 계획을 공모했다고 이어집니다[cite: 14].</div>
+    </div>
+    <div class="sbox pos">
+        <span class="tagpill">세 번째 연결 (C ➔ B)</span>
+        <div class="en-text">**(C)** ...asking for plans that would achieve two primary goals. ➔ **(B)** First, the plan had to include a method... Second, it had to suggest...</div>
+        <div class="kr-text">(C)의 마지막에 언급된 <code>two primary goals(두 가지 주요 목표)</code>를 **(B)**에서 <code>First(첫째로)</code>와 <code>Second(둘째로)</code>를 사용하여 구체적으로 설명해 주는 구조로 완벽하게 마무리됩니다[cite: 14]. 따라서 정답은 **①번 (A) - (C) - (B)**입니다[cite: 14].</div>
+    </div>
+</div>
+
+<!-- [07번 문제 상세 분석] -->
+<div class="container" id="q07">
+    <span class="answer-tag">07번 정답: ②번 문장</span>
+
+    <h2>📌 07번 원문 지문 전체 분석</h2>
+    <div class="box passage">
+        For years, the neighborhood was known for its high crime rates. Many apartments in Wallisblok were abandoned and then taken over by people who lived in them illegally. <br>
+        (①) At first, the local government thought that the best solution was simply to tear the building down and build a new one in its place. <br>
+        <span style="color:#a8402f; font-weight:bold;">(②) Similar programs have been used in rural towns to encourage new businesses and tourism.</span> <br>
+        (③) However, having a limited budget, the government was unable to do so and had to come up with a new plan. <br>
+        (④) The plan was to sell the empty apartments for one euro each. <br>
+        (⑤) The only condition was that people who bought these apartments needed to renovate them.[cite: 14]
+    </div>
+
+    <h2>🔍 07번 흐름 무관 문장 상세 분석</h2>
+    <div class="sbox neg">
+        <span class="tagpill">정답 문장 분석 (②번)</span>
+        <div class="en-text">Similar programs have been used in rural towns to encourage new businesses and tourism.</div>
+        <div class="kr-text">이 글은 도시 지역(Wallisblok)의 높은 범죄율과 슬럼화된 아파트 문제를 해결하기 위한 '1유로 아파트 리노베이션 정책'의 전개 과정을 다루고 있습니다. 따라서 **②번(농촌 지역에서 새로운 사업과 관광을 장려하기 위해 유사한 프로그램이 사용되었다)**은 전체 맥락과 전혀 관련이 없는 문장으로 흐름을 끊습니다[cite: 14].</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 08번 상세 분석</title>
+    <style>
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+        .en-text { font-weight: 600; margin-bottom: 4px; color: #2c251e; }
+        .kr-text { font-size: 0.9rem; color: #665745; }
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q08-detailed">
+    <span class="answer-tag">08번 정답: ④ De Ceuvel: A Model of Sustainable Urban Revitalization</span>
+
+    <h2>📌 08번 원문 지문 전체 분석</h2>
+    <div class="box passage">
+        The architects created a small community that
+includes creative workspaces, studios, meeting rooms,
+cultural spaces, and even a café, all by upcycling the
+boats. Then, to connect the boats, wooden paths were
+built. In addition, special plants that purify polluted soil
+were planted across the site. Today, some people come
+to De Ceuvel to test new sustainable technologies such
+as bio-filters and water reuse systems. Many others
+come to experience this successful revitalization project
+in person. De Ceuvel is now known as one of the most
+active playgrounds for innovative green technology in
+all of Amsterdam. At the end of the lease, the project
+will also leave behind a more valuable piece of land for
+the next people who use it.
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 08번 상세 분석</title>
+    <style>
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+        .kr-text { font-size: 0.9rem; color: #665745; line-height: 1.6; }
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="q08-analysis">
+    <span class="answer-tag">08번 정답: ④ De Ceuvel: A Model of Sustainable Urban Revitalization</span>
+
+    <h2>📌 지문 내용 요약 및 흐름 분석</h2>
+    <div class="box">
+        <p class="kr-text" style="margin: 0;">
+            본문은 암스테르담의 버려진 공간이었던 드 쇠이벌(De Ceuvel) 구역이 어떻게 탈바꿈했는지를 설명합니다. 건축가들은 버려진 배들을 재활용(업사이클링)하여 창업 공간, 작업실, 문화 공간 및 카페 등의 소공동체를 조성했습니다. 또한 나무 산책로를 만들고, 오염된 토양을 정화하는 특수 식물을 심었으며, 친환경 기술을 시험하고 경험하려는 사람들이 찾는 혁신적인 녹색 기술의 중심지로 자리 잡았음을 보여줍니다. 최종적으로 이 프로젝트는 미래 세대에게 더욱 가치 있는 땅을 물려주는 모범적인 재생 사례로 평가받고 있습니다.
+        </p>
+    </div>
+
+    <h2>🔍 핵심 주제 도출 과정</h2>
+    <div class="sbox piv">
+        <span class="tagpill">핵심 키워드 파악</span>
+        <div class="kr-text">
+            • <strong>Upcycling & Revitalization</strong>: 버려진 배와 공간을 새롭게 고쳐 살려냄<br>
+            • <strong>Sustainable Technologies & Green Technology</strong>: 친환경 녹색 기술과 지속 가능한 발전<br>
+            • <strong>Urban Model</strong>: 도시 환경을 성공적으로 되살린 모범 모델
+        </div>
+    </div>
+
+    <h2>📊 보기 선지 상세 비교 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr>
+                <th>선지</th>
+                <th>선지 내용 요약</th>
+                <th>판단</th>
+                <th>상세 분석</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>①</td>
+                <td>재활용된 보트로 카페를 짓는 방법</td>
+                <td class="status-wrong">오답</td>
+                <td>카페는 조성된 여러 공간 중 극히 일부에 불과하며, 글 전체의 거시적인 도시 재생 주제를 담기에는 너무 지엽적입니다.</td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>암스테르담이 수로로 유명한 이유</td>
+                <td class="status-wrong">오답</td>
+                <td>암스테르담의 일반적인 수로 특징이나 명성 전반을 다루는 글이 아닙니다.</td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>토양 정화 프로젝트에서 식물의 역할</td>
+                <td class="status-wrong">오답</td>
+                <td>오염된 토양을 정화하는 식물 언급은 부수적인 친환경 요소 중 하나일 뿐, 전체 글의 제목으로는 타당하지 않습니다.</td>
+            </tr>
+            <tr class="is-correct">
+                <td>④</td>
+                <td>드 쇠이벌: 지속 가능한 도시 재생의 모델</td>
+                <td class="status-correct">정답</td>
+                <td>방치된 공간을 친환경적인 방법으로 되살려 혁신적인 녹색 기술의 중심지로 만든 성공적인 도시 재생(Urban Revitalization) 프로젝트의 본질을 완벽하게 관통합니다.</td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>녹색 기술과 문화 행사의 완벽한 조화</td>
+                <td class="status-wrong">오답</td>
+                <td>문화 행사도 일부 포함되어 있으나, 핵심은 도시 공간의 지속 가능한 재생과 친환경 기술 적용에 초점이 맞춰져 있습니다.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>📚 필수 핵심 어휘 정리</h2>
+    <div class="vocab-grid" style="margin-top: 15px;">
+        <div class="vocab-item"><strong>revitalization</strong> 재생, 활성화</div>
+        <div class="vocab-item"><strong>sustainable</strong> 지속 가능한</div>
+        <div class="vocab-item"><strong>upcycling</strong> 업사이클링 (재활용 개선)</div>
+        <div class="vocab-item"><strong>purify</strong> 정화하다</div>
+        <div class="vocab-item"><strong>green technology</strong> 녹색 기술</div>
+        <div class="vocab-item"><strong>lease</strong> 임대, 임대 기간</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 09번, 10번, 11번, 12번 본문 포함 상세 분석</title>
+    <style>
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+        .sbox.neg { border-left-color: #a8402f; background-color: #f8e3d8; }
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+        .sbox.neg .tagpill { background: #f0cdbb; color: #8f2f21; }
+        .en-text { font-family: 'Georgia', serif; font-size: 0.95rem; margin-bottom: 8px; color: #2c251e; line-height: 1.6; }
+        .kr-text { font-size: 0.9rem; color: #665745; line-height: 1.6; }
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- [09번 문제 상세 분석] -->
+<div class="container" id="q09">
+    <span class="answer-tag">09번 정답: ⑤ transformation of an area into a family-friendly neighborhood</span>
+
+    <h2>📌 09번 원문 지문</h2>
+    <div class="box">
+        <div class="en-text">Rotterdam, the second largest city in the Netherlands, is known for its modern architecture and busy port. By taking a ten-minute tram ride west from the city center, however, you can get to a more peaceful environment. Instead of crowded streets, you will see neighbors chatting in front of a modern residential structure and families spending time in its garden. The structure is a large apartment building called Wallisblok. Not that long ago, this area was very different, and nobody thought it could become a place where families would want to live. Yet that is exactly what happened.</div>
+        <div class="kr-text">네덜란드 제2의 도시인 로테르담은 현대 건축과 번잡한 항구로 유명합니다. 하지만 도심에서 서쪽으로 전차를 타고 10분 정도 가면, 더 평화로운 환경에 이를 수 있습니다. 붐비는 거리 대신, 현대적인 주거용 건물 앞에서 담소 나누는 이웃들과 정원에서 시간을 보내는 가족들을 볼 수 있습니다. 그 도시는 '월리스블록'이라 불리는 대형 아파트 건물입니다. 불과 얼마 전까지만 해도 이 지역은 지금과 아주 달랐으며, 아무도 이곳이 가족들이 살고 싶어 하는 곳이 될 수 있을 거라고 생각하지 않았습니다. 하지만 그것이 정확히 일어난 일입니다.</div>
+    </div>
+
+    <h2>🔍 09번 주제 추론 상세 분석</h2>
+    <div class="sbox pos">
+        <span class="tagpill">핵심 논지 파악</span>
+        <div class="kr-text">과거 낙후되었던 지역(Wallisblok)이 혁신적인 변화를 거쳐 **가족 친화적인 이웃(family-friendly neighborhood)**으로 탈바꿈한 과정을 다루고 있습니다.</div>
+    </div>
+
+    <h2>📊 09번 선택지 비교 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr><th>선지</th><th>선지 내용 요약</th><th>판단</th><th>상세 분석</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>①</td><td>로테르담 항구의 현대화</td><td class="status-wrong">오답</td><td>항구 자체의 현대화가 아니라 특정 주거 구역의 재생을 다룹니다.</td></tr>
+            <tr><td>②</td><td>도심 인근 교외 거주의 장점</td><td class="status-wrong">오답</td><td>일반적인 교외 거주 장점에 관한 글이 아닙니다.</td></tr>
+            <tr><td>③</td><td>이웃 간 소통을 촉진하는 방법</td><td class="status-wrong">오답</td><td>소통 촉진 방법 안내서가 아닙니다.</td></tr>
+            <tr><td>④</td><td>커뮤니티 중심지로서 월리스블록의 다양한 기능</td><td class="status-wrong">오답</td><td>단순한 시설 기능 나열이 주제가 아닙니다.</td></tr>
+            <tr class="is-correct"><td>⑤</td><td>한 지역을 가족 친화적인 이웃으로 탈바꿈시키기</td><td class="status-correct">정답</td><td>슬럼가였던 월리스블록이 가족 친화적 주거 공간으로 변화한 핵심 주제를 정확히 표현합니다.</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- [10번 문제 상세 분석] -->
+<div class="container" id="q10">
+    <span class="answer-tag">10번 정답: ⑤ preserve (→ transform 또는 redevelop 등)</span>
+
+    <h2>📌 10번 원문 지문</h2>
+    <div class="box">
+        <div class="en-text">In the early 20th century, there was an area in the northern part of Amsterdam that was full of shipyards and factories. Over time, the shipyards closed down, and the work once done at the factories was ①<strong>moved</strong> abroad. As a result, the area was left ②<strong>abandoned</strong> and polluted for years. Wanting to do something to ③<strong>improve</strong> the area, the city purchased an abandoned shipyard called De Ceuvel. However, city officials did not know what to do with it. So they turned to the public for help by asking for plans that would achieve two primary goals. First, the plan had to include a method to clean up the land and turn it into a ④<strong>sustainable</strong> development. Second, it had to suggest a way to ⑤<strong>preserve</strong> the site into a creative workspace.</div>
+        <div class="kr-text">20세기 초, 암스테르담 북부에는 조선소와 공장들로 가득한 지역이 있었습니다. 시간이 지나면서 조선소들은 문을 닫았고, 한때 공장에서 이루어지던 일들은 해외로 ①<strong>이동되었습니다(moved)</strong>. 그 결과, 그 지역은 수년 동안 ②<strong>버려진 채(abandoned)</strong> 오염되었습니다. 그 지역을 ③<strong>개선하기(improve)</strong> 위해 무언가 하기를 원했던 시는 '데 쇠이벌'이라 불리는 버려진 조선소를 매입했습니다. 하지만 시 공무원들은 그것으로 무엇을 해야 할지 몰랐습니다. 그래서 그들은 두 가지 주요 목표를 달성할 계획을 요청함으로써 대중에게 도움을 청했습니다. 첫째, 그 계획은 땅을 정화하고 그것을 ④<strong>지속 가능한(sustainable)</strong> 개발로 바꿀 방법을 포함해야 했습니다. 둘째, 그 부지를 창의적인 업무 공간으로 ⑤<strong>보존할(preserve) → 바꿀/변모시킬</strong> 방법을 제시해야 했습니다.</div>
+    </div>
+
+    <h2>🔍 10번 어휘 적절성 상세 분석</h2>
+    <div class="sbox neg">
+        <span class="tagpill">오답 어휘 분석 (⑤ preserve)</span>
+        <div class="en-text">...it had to suggest a way to ⑤<strong>preserve</strong> the site into a creative workspace.</div>
+        <div class="kr-text">버려진 부지를 <strong>창의적인 업무 공간으로 탈바꿈(변모)</strong>시킬 방법을 제안해야 하므로, '변화시키다'라는 의미의 <code>transform</code> 등이 와야 합니다. 원형 그대로 보존한다는 뜻의 <code>preserve</code>는 뒤의 'into a creative workspace(창의적 업무 공간으로)'와 문맥상 상충되므로 적절하지 않습니다.</div>
+    </div>
+</div>
+
+<!-- [11번 문제 상세 분석] -->
+<div class="container" id="q11">
+    <span class="answer-tag">11번 정답: ② leading experimental site where new eco-friendly ideas are tested and developed</span>
+
+    <h2>📌 11번 원문 지문</h2>
+    <div class="box">
+        <div class="en-text">Today, some people come to De Ceuvel to test new sustainable technologies such as bio-filters and water reuse systems. Many others come to experience this successful revitalization project in person. De Ceuvel is now known as one of <u>the most active playgrounds for innovative green technology</u> in all of Amsterdam. At the end of the lease, the project will also leave behind a more valuable piece of land for the next people who use it.</div>
+        <div class="kr-text">오늘날, 어떤 사람들은 바이오 필터 및 수자원 재활용 시스템과 같은 새로운 지속 가능한 기술을 테스트하기 위해 데 쇠이벌에 옵니다. 다른 많은 사람들은 이 성공적인 재생 프로젝트를 직접 경험하기 위해 옵니다. 데 쇠이벌은 이제 암스테르담 전체에서 <u>혁신적인 녹색 기술을 위한 가장 활발한 놀이터[중심지]</u> 중 하나로 알려져 있습니다. 임대 기간이 끝날 때, 그 프로젝트는 그것을 사용하는 다음 사람들을 위해 더 가치 있는 땅을 남겨두게 될 것입니다.</div>
+    </div>
+
+    <h2>📊 11번 선택지 비교 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr><th>선지</th><th>선지 내용 요약</th><th>판단</th><th>상세 분석</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>①</td><td>큰 현대적 변화 없이 잘 보존된 역사적 랜드마크</td><td class="status-wrong">오답</td><td>새로운 녹색 기술의 시험장이라는 본문 내용과 다릅니다.</td></tr>
+            <tr class="is-correct"><td>②</td><td>새로운 친환경 아이디어가 시험되고 개발되는 선도적인 실험 장소</td><td class="status-correct">정답</td><td>녹색 기술과 지속 가능한 기술(bio-filters 등)을 테스트하는 'playground'의 비유적 의미와 정확히 일치합니다.</td></tr>
+            <tr><td>③</td><td>기술적 발전이나 산업 개발이 거의 없는 조용한 주거 지역</td><td class="status-wrong">오답</td><td>녹색 기술의 중심지라는 설명과 정반대입니다.</td></tr>
+            <tr><td>④</td><td>전통 네덜란드 건축과 문화 요소를 갖춘 인기 관광지</td><td class="status-wrong">오답</td><td>전통 건축물 관광지에 대한 글이 아닙니다.</td></tr>
+            <tr><td>⑤</td><td>주로 금융 투자와 기업 활동에 초점을 맞춘 배타적 업무 지구</td><td class="status-wrong">오답</td><td>금융 비즈니스 지구가 아닙니다.</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- [12번 문제 상세 분석] -->
+<div class="container" id="q12">
+    <span class="answer-tag">12번 정답: ②번 문장</span>
+
+    <h2>📌 12번 원문 지문</h2>
+    <div class="box">
+        <div class="en-text">Apparently, it was not just the idea of one-euro apartments that people found attractive. They were also excited by the opportunity to use their creativity to improve the building. In the end, 42 new families moved into Wallisblok. ① The government's bold plan was a success. <span style="color:#a8402f; font-weight:bold;">② Many people in Rotterdam prefer to commute by bicycle because the city is well equipped with bike lanes and cycling infrastructure.</span> ③ The residents transformed the old, worn-out building into 42 unique apartments with a community garden and rooftop terrace. ④ The surrounding area soon began to improve as well. ⑤ Today, Wallisblok is one of the most desirable places to live in Rotterdam.</div>
+        <div class="kr-text">분명히, 사람들이 매력적이라고 느낀 것은 1유로 아파트라는 아이디어만이 아니었습니다. 그들은 또한 건물을 개선하기 위해 자신들의 창의력을 사용할 수 있다는 기회에 흥분했습니다. 결국, 42새 가정이 월리스블록으로 이주시켰습니다. ① 정부의 대담한 계획은 성공적이었습니다. <span style="color:#a8402f; font-weight:bold;">② 로테르담의 많은 사람들은 자전거 도로와 자전거 인프라가 잘 갖추어져 있기 때문에 자전거로 출퇴근하는 것을 선호합니다.</span> ③ 주민들은 낡고 닳은 건물을 커뮤니티 정원과 옥상 테라스가 있는 42개의 독특한 아파트로 탈바꿈시켰습니다. ④ 주변 지역도 곧 개선되기 시작했습니다. ⑤ 오늘날 월리스블록은 로테르담에서 가장 살고 싶은 곳 중 하나입니다.</div>
+    </div>
+
+    <h2>🔍 12번 흐름 무관 문장 상세 분석</h2>
+    <div class="sbox neg">
+        <span class="tagpill">오답 문장 분석 (②번)</span>
+        <div class="en-text">Many people in Rotterdam prefer to commute by bicycle because the city is well equipped with bike lanes and cycling infrastructure.</div>
+        <div class="kr-text">이 글은 1유로 아파트 프로젝트를 통한 월리스블록(Wallisblok) 주거지의 성공적인 재생과 주민들의 리노베이션 과정을 다루고 있습니다. 따라서 **②번(자전거 도로 인프라가 잘 갖추어져 자전거로 출퇴근하는 사람들이 많다)**은 전체 문맥과 전혀 상관없는 내용으로 흐름을 끊습니다.</div>
+    </div>
+
+    <h2>📚 전체 핵심 어휘 정리</h2>
+    <div class="vocab-grid">
+        <div class="vocab-item"><strong>transformation</strong> 변화, 변모</div>
+        <div class="vocab-item"><strong>preserve</strong> 보존하다</div>
+        <div class="vocab-item"><strong>experimental</strong> 실험적인</div>
+        <div class="vocab-item"><strong>eco-friendly</strong> 친환경적인</div>
+        <div class="vocab-item"><strong>infrastructure</strong> 기반 시설</div>
+        <div class="vocab-item"><strong>revitalization</strong> 재생, 활성화</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 해설 - 13번, 14번, 15번 본문 포함 상세 분석</title>
+    <style>
+        body {
+            background-color: #f2eadb;
+            color: #3b342a;
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto 28px;
+            background: #fbf8f0;
+            padding: 30px;
+            border: 1px solid #e3d8c0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(120, 90, 40, 0.10);
+        }
+        h2 {
+            color: #7b5a2b;
+            border-bottom: 2px solid #b08a4f;
+            padding-bottom: 8px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+        .answer-tag {
+            display: inline-block;
+            background-color: #a8402f;
+            color: #fffaf0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+        .box {
+            background-color: #f6f0e0;
+            border: 1px solid #e3d8c0;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+        .sbox {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border-left: 4px solid #cbb98d;
+            background-color: #f6f0e0;
+            border-radius: 0 8px 8px 0;
+        }
+        .sbox.pos { border-left-color: #6f8a45; background-color: #eef2df; }
+        .sbox.piv { border-left-color: #c9922f; background-color: #f7ecd2; }
+        .sbox .tagpill {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .sbox.pos .tagpill { background: #dbe6c1; color: #4f6530; }
+        .sbox.piv .tagpill { background: #f0dba0; color: #8a5a12; }
+        .en-text { font-family: 'Georgia', serif; font-size: 0.95rem; margin-bottom: 8px; color: #2c251e; line-height: 1.6; }
+        .kr-text { font-size: 0.9rem; color: #665745; line-height: 1.6; }
+        table.opt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.opt-table th, table.opt-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e3d8c0;
+            font-size: 0.9rem;
+        }
+        table.opt-table th {
+            background-color: #efe6cf;
+            color: #6b5a34;
+            font-weight: 700;
+        }
+        table.opt-table tr.is-correct td {
+            background-color: #f3e9cf;
+        }
+        .status-correct { color: #4f6530; font-weight: bold; }
+        .status-wrong { color: #a8402f; font-weight: bold; }
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        .vocab-item {
+            background-color: #fffdf6;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ece2cb;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .container { padding: 18px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- [13번 문제 상세 분석] -->
+<div class="container" id="q13">
+    <span class="answer-tag">13번 정답: ③ (B)-(C)-(A)</span>
+
+    <h2>📌 13번 원문 지문 및 주어진 문장</h2>
+    <div class="box">
+        <div class="en-text" style="font-weight: bold; margin-bottom: 12px; border-bottom: 1px dashed #cbb98d; padding-bottom: 8px;">[주어진 문장]<br>The architects created a small community that includes creative workspaces, studios, meeting rooms, cultural spaces, and even a café, all by upcycling the boats.</div>
+        <div class="en-text"><strong>(B)</strong> Then, to connect the boats, wooden paths were built. In addition, special plants that purify polluted soil were planted across the site. Today, some people come to De Ceuvel to test new sustainable technologies such as bio-filters and water reuse systems.</div>
+        <div class="en-text"><strong>(C)</strong> Many others come to experience this successful revitalization project in person. De Ceuvel is now known as one of the most active playgrounds for innovative green technology in all of Amsterdam.</div>
+        <div class="en-text"><strong>(A)</strong> At the end of the lease, the project will also leave behind a more valuable piece of land for the next people who use it.</div>
+        <div class="kr-text" style="margin-top: 10px;">
+            <strong>해석 요약</strong>: 건축가들이 배를 업사이클링하여 소공동체를 만든 것에 이어 <strong>(B)</strong> 배들을 연결하는 나무 산책로와 토양 정화 식물을 설치하고 친환경 기술을 시험하는 모습을 보이고, <strong>(C)</strong> 이를 직접 경험하려는 사람들이 찾아오며 혁신적인 녹색 기술의 중심지가 되었음을 설명한 뒤, <strong>(A)</strong> 임대 기간이 끝날 때 다음 사람들을 위해 더 가치 있는 땅을 남길 것이라는 내용으로 이어집니다[cite: 14].
+        </div>
+    </div>
+
+    <h2>🔍 13번 글의 순서 배열 논리 분석</h2>
+    <div class="sbox pos">
+        <span class="tagpill">단서 연결성 파악</span>
+        <div class="kr-text">주어진 문장에서 배를 업사이클링해 공간을 만든 내용을 언급한 직후, 이어서 배들을 연결하기 위한 작업과 산책로 조성을 다루는 <strong>(B)</strong>가 이어집니다. <strong>(B)</strong>의 마지막 문장인 '새로운 지속 가능한 기술을 시험하기 위해 사람들이 온다'는 내용이 <strong>(C)</strong>의 'Many others come to experience...'로 자연스럽게 연결되며, 글의 마무리인 임대 기간 종료 후의 전망을 다루는 <strong>(A)</strong>가 마지막에 위치하는 것이 가장 적절합니다[cite: 14].</div>
+    </div>
+</div>
+
+<!-- [14번 문제 상세 분석] -->
+<div class="container" id="q14">
+    <span class="answer-tag">14번 정답: ④ use their creativity to improve the building</span>
+
+    <h2>📌 14번 원문 지문</h2>
+    <div class="box">
+        <div class="en-text">Although the new residents would have to pay for these renovations, the government's plan soon attracted many applicants. Apparently, it was not just the idea of one-euro apartments that people found attractive. They were also excited by the opportunity to ____________________. In the end, 42 new families moved into Wallisblok. The government's bold plan was a success. The residents transformed the old, worn-out building into 42 unique apartments with a community garden and rooftop terrace. The surrounding area soon began to improve as well. Today, Wallisblok is one of the most desirable places to live in Rotterdam.</div>
+        <div class="kr-text">비록 새로운 거주자들이 이러한 보수 비용을 지불해야 했지만, 정부의 계획은 곧 많은 지원자들을 끌어모았습니다. 겉보기에는, 사람들이 매력적이라고 느낀 것이 단지 1유로 아파트라는 아이디어만은 아니었습니다. 그들은 또한 <strong>건물을 개선하기 위해 자신들의 창의력을 사용할 수 있는</strong> 기회에 흥분했습니다. 결국 42가정이 월리스블록으로 이주했습니다. 정부의 대담한 계획은 성공적이었습니다. 주민들은 낡고 닳은 건물을 커뮤니티 정원과 옥상 테라스가 있는 42개의 독특한 아파트로 탈바꿈시켰습니다. 주변 지역도 곧 개선되기 시작했습니다. 오늘날 월리스블록은 로테르담에서 가장 살고 싶은 곳 중 하나입니다[cite: 14].</div>
+    </div>
+
+    <h2>📊 14번 선택지 비교 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr><th>선지</th><th>선지 내용 요약</th><th>판단</th><th>상세 분석</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>①</td><td>자신들의 비용으로 보수 비용을 충당하다</td><td class="status-wrong">오답</td><td>비용을 내야 한다는 점은 앞문장에 언급되었으나 빈칸의 이유와 직접 연결되지 않습니다[cite: 14].</td></tr>
+            <tr><td>②</td><td>함께 자원봉사 활동에 참여하다</td><td class="status-wrong">오답</td><td>자원봉사 활동에 관한 내용이 아닙니다[cite: 14].</td></tr>
+            <tr><td>③</td><td>시간이 지남에 따라 이웃 지역을 개선하는 데 도움을 주다</td><td class="status-wrong">오답</td><td>결과적으로 주변 지역이 개선된 것은 맞으나 빈칸 직후의 '주민들이 건물을 독특하게 변모시켰다'는 내용과 직결되지 않습니다[cite: 14].</td></tr>
+            <tr class="is-correct"><td>④</td><td>건물을 개선하기 위해 자신들의 창의력을 사용하다</td><td class="status-correct">정답</td><td>뒷문장의 'residents transformed the old, worn-out building into 42 unique apartments'라는 내용과 일맥상통합니다[cite: 14].</td></tr>
+            <tr><td>⑤</td><td>보수 과정이 끝난 후 결국 이주하다</td><td class="status-wrong">오답</td><td>보수 과정에 참여하여 직접 건물을 고친다는 맥락과 맞지 않습니다[cite: 14].</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- [15번 문제 상세 분석] -->
+<div class="container" id="q15">
+    <span class="answer-tag">15번 정답: ① transforming discarded materials into valuable new uses</span>
+
+    <h2>📌 15번 원문 지문</h2>
+    <div class="box">
+        <div class="en-text">In the end, an architectural company submitted an innovative plan and was awarded a ten-year lease on the former shipyard. The plan was to turn the site into a sustainable office park. Since it was impossible to build foundations on the oily mud of the polluted land, the architects decided to use old, abandoned boats instead. They were able to purchase these at low prices from the boats' owners. The architects created a small community that includes creative workspaces, studios, meeting rooms, cultural spaces, and even a café, <u>all by upcycling the boats</u>. Then, to connect the boats, wooden paths were built. In addition, special plants that purify polluted soil were planted across the site.</div>
+        <div class="kr-text">결국, 한 건축 회사가 혁신적인 계획을 제출하여 이전 조선소에 대한 10년 임대권을 받았습니다. 그 계획은 그 부지를 지속 가능한 사무실 단지로 바꾸는 것이었습니다. 오염된 땅의 기름진 진흙 위에 기초를 세우는 것이 불가능했기 때문에, 건축가들은 대신 오래된 버려진 배들을 사용하기로 결정했습니다. 그들은 배 소유주들로부터 이를 저렴한 가격에 살 수 있었습니다. 건축가들은 <u>모두 배를 업사이클링함으로써</u> 창업 공간, 스튜디오, 회의실, 문화 공간, 심지어 카페까지 포함하는 소공동체를 만들었습니다. 그런 다음, 배들을 연결하기 위해 나무 산책로가 지어졌습니다. 게다가, 오염된 토양을 정화하는 특수 식물들이 부지 전역에 심어졌습니다[cite: 14].</div>
+    </div>
+
+    <h2>📊 15번 선택지 비교 분석</h2>
+    <table class="opt-table">
+        <thead>
+            <tr><th>선지</th><th>선지 내용 요약</th><th>판단</th><th>상세 분석</th></tr>
+        </thead>
+        <tbody>
+            <tr class="is-correct"><td>①</td><td>폐기된 재료를 가치 있는 새로운 용도로 변환하기</td><td class="status-correct">정답</td><td>'upcycling the boats'(오래되고 버려진 배를 재활용하여 유용한 공간으로 탈바꿈시킴)의 정확한 의미입니다[cite: 14].</td></tr>
+            <tr><td>②</td><td>건설 프로젝트에 완전히 새로운 재료만 사용하기</td><td class="status-wrong">오답</td><td>새 재료가 아닌 'old, abandoned boats'를 사용했습니다[cite: 14].</td></tr>
+            <tr><td>③</td><td>구식 구조를 동일한 현대적 버전으로 교체하기</td><td class="status-wrong">오답</td><td>건물을 똑같이 재건축하는 내용이 아닙니다[cite: 14].</td></tr>
+            <tr><td>④</td><td>환경에 무해한 방식으로 오래된 자원을 폐기하기</td><td class="status-wrong">오답</td><td>폐기(disposing)가 아니라 가치 있는 공간으로 재활용(upcycling)한 것입니다[cite: 14].</td></tr>
+            <tr><td>⑤</td><td>환경에 미치는 영향을 고려하지 않고 건물을 디자인하기</td><td class="status-wrong">오답</td><td>친환경적이고 지속 가능한 개발을 다루고 있습니다[cite: 14].</td></tr>
+        </tbody>
+    </table>
+
+    <h2>📚 전체 핵심 어휘 정리</h2>
+    <div class="vocab-grid" style="margin-top: 15px;">
+        <div class="vocab-item"><strong>upcycling</strong> 업사이클링 (새활용)[cite: 14]</div>
+        <div class="vocab-item"><strong>revitalization</strong> 재생, 활성화[cite: 14]</div>
+        <div class="vocab-item"><strong>discarded</strong> 버려진, 폐기된[cite: 14]</div>
+        <div class="vocab-item"><strong>foundations</strong> (건물의) 기초, 기반[cite: 14]</div>
+        <div class="vocab-item"><strong>renovation</strong> 보수, 혁신[cite: 14]</div>
+        <div class="vocab-item"><strong>lease</strong> 임대, 임대 계약[cite: 14]</div>
+    </div>
+</div>
+
+</body>
+</html>
